@@ -1,0 +1,1 @@
+{"imie":"Bartosz Guz","oddzial":"Blok Operacyjny","opis":"nie dziala","time":"2020-09-27T16:41:25.643Z","nrtel":""}

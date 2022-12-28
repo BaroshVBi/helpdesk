@@ -1,0 +1,342 @@
+body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-flow: row;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+img {
+	filter: brightness(100%);
+}
+	img:hover {
+		filter: brightness(150%);
+	}
+
+.lista {
+	list-style: none;
+	padding: 0;
+	border: solid;
+		border-width: 3px;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#lista {
+	border-bottom: solid;
+		border-width: 4px 4px 0px 0px;
+	box-sizing: border-box;
+	background-color: #c4e0d7;
+}
+
+#lista2 {
+	border-bottom: solid;
+		border-width: 4px 0px 0px 4px;
+	box-sizing: border-box;
+	background-color: #c2c2fd;
+}
+
+#navigation {
+	width: 50px;
+	height: 100%;
+	background-color: #8eaed6;
+}
+
+#grad1 {
+	background-image: linear-gradient(to right, #82c3ad, #8eaed6);
+}
+
+#grad2 {
+	background-image: linear-gradient(to right, #8eaed6, #9999ff);
+}
+
+#pg1 {
+	height: 100%;
+	width: 50%;
+	display: flex;
+	flex-flow: column;
+}
+
+#pg2 {
+	height: 100%;
+	width: 50%;
+	display: flex;
+	flex-flow: column;
+	
+}
+
+#okno {
+    flex-flow: column;
+	border:solid;
+	background-color: #b6bbff;
+	border-width: 8px;
+	border-color: #3f48cc;
+	border-radius: 5px;
+	position: fixed;
+	width: 400px;
+	height: 350px;
+	top: 25%;
+    left: 50%;
+	transform: translate(-50%, 0);
+}
+
+	#okno2 textarea {
+		resize: none;
+		margin: 5px;
+		height: 30%;
+	}
+
+#okno2 {
+	flex-grow: 1;
+	padding: 10pt;
+	display: flex;
+	flex-flow: column;
+}
+
+#oknotitle {
+	display: flex;
+	width: 100%;
+	height: 40px;
+	background-color: #3f48cc;
+}
+
+	#oknotitle span {
+		font-family: "Arial Black", Gadget, sans-serif;
+		margin: auto;
+	}
+
+.container {
+	border: solid;
+	border-width: 8px;
+	box-sizing: border-box;
+}
+
+	#miesiace .container{
+		border-color: #9999ff !important;
+	}
+	
+	#lista2 .container {
+		border-color: #a1a1a1;
+	}
+
+.przykladopis {
+	padding: 17pt 35pt;
+	background-color: #c9c9ff;
+}
+
+.nav {
+	display: flex;
+	height: 45px;
+	position: relative;
+	width: 100%;
+}
+
+.nav2 {
+	margin: auto;
+	font-family: "Arial Black", Gadget, sans-serif;
+}
+
+.nav3 {
+	flex-grow : 1;
+	list-style: none;
+	padding: 0;
+}
+
+.ticket {
+	min-width: fit-content;
+}
+
+.pasek {
+	display: flex;
+	flex-flow: row;
+	background-color: gray;
+	border-bottom: solid;
+	border-color: #a1a1a1;
+	height: fit-content;
+	cursor: pointer;
+}
+
+	.pasek:hover{
+		background-color: #bebebe;
+	}
+
+.pasekA {
+	display: flex;
+	flex-flow: row;
+	background-color: gray;
+	border-bottom: solid;
+	border-color: #a1a1a1;
+	height: fit-content;
+	cursor: pointer;
+}
+
+	.pasekA:hover{
+		background-color: #bebebe;
+	}
+	
+.pasekP {
+	display: flex;
+	flex-flow: row;
+	background-color: #8787b8;
+	border-bottom: solid;
+	border-color: #a1a1a1;
+	height: fit-content;
+	cursor: pointer;
+}
+
+	.pasekP:hover{
+		background-color: #a8a8f0;
+	}
+
+.imie {
+	margin-left: 10pt;
+	padding: 7pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.czas {
+	padding: 7pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.oddzial {
+	padding: 7pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.guzik {
+	width: fit-content;
+	height: 100%;
+	margin: auto;
+	margin-right: 5px;
+}
+
+	.guzik img {
+		max-width: 20px;
+		max-height: 20px;
+	}
+
+.tresc {
+	padding: 17pt 35pt;
+	background-color: #85adad;
+	word-wrap: break-word;
+	border-bottom: solid;
+	border-color: #a1a1a1;
+}
+
+.pasekn {
+	display: flex;
+	flex-flow: row;
+	background-color: #82c3ad;
+}
+
+	#miesiace .pasekn {
+		border-top: solid;
+		border-color: #a1a1a1;
+		background-color: #6b6bfa;
+		cursor: pointer;
+	}
+	
+	#miesiace .pasekn:hover {
+		background-color: #a8a8f0
+	}
+
+.pasekn2 {
+	display: flex;
+	flex-flow: row;
+	background-color: #9999ff;
+	border-bottom: solid;
+	border-color: #a1a1a1;
+	cursor: pointer;
+}
+
+	.pasekn2:hover {
+		background-color: #a8a8f0
+	}
+
+.pasekn3 {
+	display: flex;
+	flex-flow: row;
+	background-color: #8484db;
+	border-bottom: none;
+	border-color: #a1a1a1;
+}
+
+.imien {
+	margin-left: 10pt;
+	padding: 7pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.czasn {
+	padding: 7pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.oddzialn {
+	padding: 7pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.imien2 {
+	margin-left: 10pt;
+	padding: 3pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.czasn2 {
+	padding: 3pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.oddzialn2 {
+	padding: 3pt;
+	width: 30%;
+	min-width: fit-content;
+}
+
+.delete {
+	width: fit-content;
+	padding-top: 7pt;
+	margin: auto;
+}
+	
+.archbutton{
+	width: 25px;
+	height:25px;
+	cursor: pointer;
+}
+	
+.przyklady {
+	padding: 7pt;
+}
+
+.navbuttons {
+	display: flex;
+	flex-flow: row;
+}
+
+.tab {
+	padding-left: 20pt;
+}
+
+.empty {
+	color: #cacaca;
+}
+
+.delcom {
+	height: 12px;
+	cursor: pointer;
+}

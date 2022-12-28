@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<title>read</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Helpdesk">
+		<meta name="author" content="Bartosz Guz">
+		<link rel = "stylesheet" type = "text/css" href = "/read.css">
+	</head>
+	<body>
+		<div id = 'pg1' class = 'pg'>
+			<div id = 'grad1' class = 'nav'><span class = 'nav2'>HelpDesk</span></div>
+			<ul class = 'nav3 lista' id = "lista">
+				<li>
+					<div class = 'pasekn'>
+						<div class = 'imien'>Imię:</div>
+						<div class = 'oddzialn'>Jednostka:</div>
+						<div class = 'czasn'>Utworzono:</div>
+						<div class = 'guzik'></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div id = 'navigation'></div>
+		
+		<div id = 'pg2' class = 'pg'>
+			<div id = 'grad2' class = 'nav'><span class = 'nav2'>Archiwum</span></div>
+			<ul class = 'nav3 lista' id = 'lista2'>
+				<li>
+					<div class = 'pasekn2' onClick = "poka(-3,1);show(-1,);">
+						<div class = 'przyklady'>Przyklady</div><div class = "guzik"><img title = 'Rozwiń' id = 'obrazekZ-3' src = 'plus.png' alt = 'Rozwiń'></div>
+					</div>
+					<div id = "opisZ-3" class = 'container' style = "display: none;">
+						<ul class = 'nav3' id = "przyklady"> </ul>
+					</div>
+				</li>
+				<li>
+					<div class = 'pasekn2' onClick = "poka(-2,1);">
+						<div class = 'przyklady'>Archiwum</div><div class = "guzik"><img title = 'Rozwiń' id = 'obrazekZ-2' src = 'plus.png' alt = 'Rozwiń'></div>
+					</div>
+					<div class = 'container' id = 'opisZ-2' style = 'display: none;'>
+						<ul class = 'nav3' id = "miesiace">
+							<li>
+								<div class = 'pasekn' onClick = 'poka(-1,1)'>
+									<div class = 'imie'>Niedawno rozwiązane tickety</div>
+									<div class = 'oddzialn'></div>
+									<div class = 'czasn'></div>
+									<div class = 'guzik'><img title = 'Zwiń' id = 'obrazekZ-1' src = 'plus.png' alt = 'Rozwiń'></div>
+								</div>
+								<div id = 'opisZ-1' class = 'container' style = 'display: none;'>
+										<ul class = 'nav3' id = "archiwum">
+											<li>
+												<div class = 'pasekn3'>
+													<div class = 'imien2'>Imię:</div>
+													<div class = 'oddzialn2'>Jednostka:</div>
+													<div class = 'czasn2'>Wykonano:</div>
+													<div class = 'guzik2'></div>
+												</div>
+											</li>
+										</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div id = 'okno' style = "display: none;">
+			<div id = 'oknotitle'><span>Dodaj nowy przykład rozwiązania błędu<span></div>
+			<div id = 'okno2'>
+				Nazwa przykładu:<input id = "nazwa" type = "text" maxlength="32" placeholder = "Nazwa" oninvalid="this.setCustomValidity('Proszę wprowadzić Nazweę')" oninput="this.setCustomValidity('')"></input>
+				Opis Błędu:
+				<textarea id = "blad" required maxlength="1024" placeholder = "Opis Usterki/Błędu" oninvalid="this.setCustomValidity('Proszę wprowadzić Opis usterki')" oninput="this.setCustomValidity('')"></textarea>
+				Przykładowe Rozwiązanie:
+				<textarea id = "rozwiazanie" required maxlength="1024" placeholder = "Rozwiązanie" oninvalid="this.setCustomValidity('Proszę wprowadzić rozwiązanie')" oninput="this.setCustomValidity('')"></textarea>
+				<div class = 'navbuttons'>
+					<div class = 'delete'><img class = 'archbutton' title = 'Anuluj' onClick = 'abort();' src = 'delete.png' alt = 'abort'></div>
+					<div class = 'delete'><img id = 'submit' class = 'archbutton' title = 'Dodaj' onClick = 'addin()' src = 'move.png' alt = 'add'></div>
+				</div>
+			</div>
+		</div>
+		<script src = "/socket.io/socket.io.js"></script>
+		<script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src = "/read.js"></script>
+	</body>
+</html>

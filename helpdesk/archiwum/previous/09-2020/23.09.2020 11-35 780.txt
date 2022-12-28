@@ -1,0 +1,1 @@
+{"imie":"Bartosz Guz","oddzial":"Oddział 1","opis":"halo pomocy","time":"2020-09-21T07:32:38.524Z","nrtel":"123456789","newtime":"2020-09-23T09:35:04.192Z","comment":["Wykonano"]}

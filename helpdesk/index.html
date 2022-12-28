@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<title>HelpDesk</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="Helpdesk">
+		<meta name="author" content="Bartosz Guz">
+		<link rel = "stylesheet" type = "text/css" href = "/style.css">
+	</head>
+	<body>
+		<div id = 'banner'>
+			<img src = 'logo.png'>
+			<span>HelpDesk</span>
+		</div>
+		<form action = "">
+			<div id = "imnr">
+				<div class = "name">
+					<div class = "toright"><span>Imię i Nazwisko:&nbsp;</span></div>
+					<div><input class = "w" id = "imie" required placeholder = "Imię i Nazwisko" oninvalid = "this.setCustomValidity('Proszę wprowadzić Imię i Nazwisko')" oninput="this.setCustomValidity('')"/></div>
+				</div>
+				<div class = "name">
+					<div class = "toright"><span>Jednostka:&nbsp;</span></div>		
+					<div>
+						<select class = "w" id = "oddzial" required oninvalid="this.setCustomValidity('Proszę wybrać jednostkę')" oninput="this.setCustomValidity('')">
+							<optgroup label = "Oddziały">
+								<Option>Blok Operacyjny</Option>
+								<Option>Oddział Chirurgiczny</Option>
+								<Option>Oddział Chorób Wewnętrznych</Option>
+								<Option>Oddział Dziecięcy</Option>
+								<Option>Oddział Ginekologiczno-Położniczy</Option>
+								<Option>Oddział Neonatologiczny</Option>
+							</optgroup>
+							<optgroup label = "Poradnie">
+								<Option>Poradnia Chirurgiczna</Option>
+								<Option>Poradnia K</Option>
+								<Option>Poradnia Laryngologiczna</Option>
+								<Option>Poradnia Urazowo-Ortopedyczna</Option>
+							</optgroup>
+							<optgroup label = "POZ">
+								<Option>POZ Fabryczna</Option>
+								<Option>POZ Wyczółkowskiego</Option>
+							</optgroup>
+							<optgroup label = "WOZ">
+								<Option>WOZ Działoszyn</Option>
+								<Option>WOZ Opolno</Option>
+								<Option>WOZ Porajów</Option>
+							</optgroup>
+							<optgroup label = "Pracownie">
+								<Option>Pracownia RTG</Option>
+								<Option>Pracownia USG</Option>
+							</optgroup>
+							<optgroup label = "Pozostałe">
+								<Option>Administracja</Option>
+								<Option>Izba Przyjęć</Option>
+								<Option>Laboratorium</Option>
+								<Option>Porodówka</Option>
+								<Option>Rejestracja Główna</Option>
+								<Option>Rehabilitacja</Option>
+								<Option>Serologia</Option>
+							</optgroup>
+						</select>
+					</div>
+				</div>
+				<div id = "zdr">
+				Opis:<textarea id = "zdarzenie" required placeholder = "Opis Usterki/Błędu" oninvalid="this.setCustomValidity('Proszę wprowadzić Opis usterki')" oninput="this.setCustomValidity('')"></textarea>
+				</div>
+				<div class = "name">
+					<div class = 'toright'><span>Nr telefonu do kontaktu:&nbsp;</span></div> 
+					<div>
+						<input type = "number" class = "w" id = "nrtel" max = "999999999" min = "111111111" placeholder = "123456789" oninvalid="this.setCustomValidity('Numer musi mieć 9 cyfr')"> (Nie wymagane)
+					</div>
+				</div>
+				<div id = "btn1"><button>WYŚLIJ</button></div>
+			</div>
+		</form>
+		<script src = "/socket.io/socket.io.js"></script>
+		<script src = "https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src = "/main.js"></script>
+	</body>
+</html>

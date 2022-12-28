@@ -1,0 +1,127 @@
+body {
+	width: 100%;
+	background-color: #9999ff;
+	margin: 0;
+	height: 100%;
+}
+
+form {
+	margin: auto;
+	width: fit-content;
+	background-color: #9c9cea !important;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	 box-sizing: border-box;
+}
+
+button {
+	margin: 0 auto;
+	padding: 9px;
+	border-radius: 5px;
+	border: none;
+	font-family: "Arial Black", Gadget, sans-serif;
+	font-size: 16px;
+}
+
+textarea {
+    resize: none;
+	min-width: 500px;
+	background-color: #e0e0fe;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+input {
+	 box-sizing: border-box;
+}
+
+img {
+	margin: auto;
+	padding: 5px;
+	width: 500px;
+}
+
+.w {
+	width: 250px;
+	background-color: #e0e0fe;
+	border: none;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.name {
+	display: flex;
+	flex-flow: row;
+	padding: 3px;
+}
+
+	.name div {
+		width: 40%;
+	}
+
+.toright {
+	display: flex;
+}
+
+	.toright span {
+		width: fit-content;
+		margin: auto 0;
+		margin-left: auto;
+	}
+
+#btn1 {
+	margin: 0 auto;
+	width: fit-content;
+	padding-top: 9pt;
+}
+
+#nrpokoju {
+	width: 50px;
+}
+
+#imnr {
+	margin: 0 auto;
+	margin-top: 50px;
+	border: solid;
+	width: fit-content;
+	padding: 9pt;
+}
+
+#zdarzenie {
+	 height: 150px;
+	 width: 98%;
+	 padding: 3px;
+}
+
+#zdr {
+	margin: 9pt;
+}
+
+#nrtel {
+	width: 70pt;
+}
+
+#banner {
+	background-color: #6e88e0 !important;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	flex-flow: column;
+}
+
+	#banner span {
+		margin: auto;
+		font-family: "Arial Black", Gadget, sans-serif;
+		font-size: 37px;
+		padding: 5px;
+	}
+	
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
