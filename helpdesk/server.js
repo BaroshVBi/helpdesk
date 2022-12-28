@@ -1,20 +1,29 @@
-var path 		= require('path');
-var express 	= require('express');
-var app 		= require('express')();
-var http 		= require('http').createServer(app);
-var io 			= require('socket.io')(http);
-var fs 			= require('fs');
-var nodemailer 	= require('nodemailer');
+var path = require('path');
+var express = require('express');
+var app = require('express')();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http);
+var fs = require('fs');
+var nodemailer = require('nodemailer');
+var mysql = require('mysql');
 
 var port = process.env.PORT || 8080;
+
+var con = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "root",
+	database: "helpdesk"
+});
+
+con.connect(function (err) {
+	if (err) throw err;
+	logs("Connected!");
+});
 
 var logFile = 'log ' + parseTime(new Date()) + '.txt';
 fs.writeFile("archiwum/logs/" + logFile, '', function(err) {
 	logs(logFile + ' został utworzony');
-});
-
-require('dns').lookup(require('os').hostname(), function (err, add, fam) {
-  logs('http://' + add + ":8000");
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,8 +36,8 @@ app.get('/read', (req, res) => {
 	res.sendFile(__dirname + '/read.html');
 });
 
-io.on('connection', function(socket) {
-	
+io.on('connection', (socket) => {
+	logs(socket.id);
 	socket.on('ticket', function(imie, oddzial, text, nrtel) {
 		var idnum = 0;
 		var files = fs.readdirSync('archiwum/tickets');
@@ -48,7 +57,7 @@ io.on('connection', function(socket) {
 		});
 	});
 
-	socket.on('login', function() {
+	socket.on('login', () => {
 		fs.readdir('archiwum/tickets', (err, files) => {
 			files.forEach(file => {
 				var text = fs.readFileSync("archiwum/tickets/" + file, 'utf-8');
