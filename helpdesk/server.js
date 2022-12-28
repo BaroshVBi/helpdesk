@@ -35,10 +35,12 @@ io.on('connection', (socket) => {
 	//logs(socket.id);
 
 	socket.on('ticket', (imie, dzial, tresc, nrtel) => {
-		var sql = "INSERT INTO tickets (imie, dzial, tresc, nrtel, data) VALUES ('" + imie + "', '" + dzial + "', '" + tresc + "', '" + nrtel + "','" + parseTime(new Date()) + "')";
+		var teraz = parseTime(new Date());
+		var sql = "INSERT INTO tickets (imie, dzial, tresc, nrtel, data) VALUES ('" + imie + "', '" + dzial + "', '" + tresc + "', '" + nrtel + "','" + teraz + "')";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			logs("ticket inserted");
+			//io.emit('ticketread', JSON.stringify(ticket(imie, dzial, tresc, nrtel, teraz)));
 		});
 		//io.emit('ticketread', JSON.stringify(cos), idnum + '.txt');
 	});
@@ -88,7 +90,7 @@ io.on('connection', (socket) => {
 			if (err) throw err;
 			logs('Ticket: ' + filename + ' zostal przeniesiony do archiwum');
 			io.emit('archiwumread', JSON.stringify(archiv), archiv.newtime + '.txt');
-//			fs.unlinkSync('archiwum/tickets/' + filename);
+			//fs.unlinkSync('archiwum/tickets/' + filename);
 			socket.broadcast.emit('deleted', filename);
 		});
 	});
@@ -250,12 +252,12 @@ function logs(string)
 
 class ticket
 {
-	constructor(imie, oddzial, opis, nrtel)
+	constructor(imie, dzial, tresc, czas, nrtel)
 	{
 		this.imie = imie;
-		this.oddzial = oddzial;
-		this.opis = opis;
-		this.time = new Date();
+		this.dzial = dzial;
+		this.tresc = tresc;
+		this.czas = czas;
 		this.nrtel = nrtel;
 	}
 }
