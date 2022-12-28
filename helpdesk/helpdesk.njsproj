@@ -50,6 +50,7 @@
     <Content Include="server.js" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="baza\" />
     <Folder Include="public\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
