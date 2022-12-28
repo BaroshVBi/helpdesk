@@ -38,23 +38,17 @@ app.get('/read', (req, res) => {
 
 io.on('connection', (socket) => {
 	logs(socket.id);
-	socket.on('ticket', function(imie, oddzial, text, nrtel) {
-		var idnum = 0;
-		var files = fs.readdirSync('archiwum/tickets');
-		do {
-			var k = 1;
-				idnum = Math.round(Math.random() * 6123);
-			files.forEach(file => {
-				if (file == idnum + '.txt')
-					k = 0;
-			});
-		}while(k == 0);
-		
-		var cos = new ticket(imie, oddzial, text, nrtel);						
-		fs.writeFile('archiwum/tickets/' + idnum + '.txt', JSON.stringify(cos), function(err) {
-			logs('Utworzono nowy ticket: ' + idnum);
-			io.emit('ticketread', JSON.stringify(cos), idnum + '.txt');
+	socket.on('ticket', (imie, dzial, tresc, nrtel) => {
+		var sql = "INSERT INTO tickets (imie, dzial, tresc, nrtel, data) VALUES ('" + imie + "', '" + dzial + "', '" + tresc + "', '" + nrtel + "','" + parseTime(new Date()) + "')";
+		logs(sql);
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			logs(parseTime(new Date()));
+			logs("1 ticket inserted");
 		});
+		
+		//logs('Utworzono nowy ticket: ' + idnum);
+		//io.emit('ticketread', JSON.stringify(cos), idnum + '.txt');
 	});
 
 	socket.on('login', () => {
@@ -222,30 +216,13 @@ function parseTime(d)
 	var M = time.getMonth() + 1;
 	if (M < 10)
 		M = "0" + M;
-	var d = time.getDate();
-	if (d < 10)
-		d = "0" + d;
+	var D = time.getDate();
+	if (D < 10)
+		D = "0" + d;
 	var s = time.getSeconds();
 	if (s < 10)
 		s = "0" + s;
-	return  d + "." + M + "." + time.getFullYear() + " " + h + "-" + m + "-" + s;
-}
-
-function sendmail(id, imie, oddzial, opis, nrtel)
-{
-	var mailOptions = {
-		from: sender,
-		to: recievers,
-		subject: 'Nowy ticket(' + id + ') od ' + imie + ' z ' + oddzial + '.',
-		text: opis + " nr. tel: " + nrtel
-	}
-	
-	transport.sendMail(mailOptions, function(err, info) {
-		if (err)
-			logs('Niepowodzenie przy wysyłaniu maila. Error: ' + err);
-		else
-			logs('Wysłano maila do: ' + recievers);
-	});
+	return time.getFullYear() + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
 }
 
 function organizeMIESIAC()
@@ -273,9 +250,6 @@ function logs(string)
 {
 	var logTime = "[" + parseTime(new Date()) + "]\t" + string + ".";
 	console.log(logTime);
-	fs.appendFile('archiwum/logs/' + logFile, logTime + "\n", function(err) {
-		if (err) console.log(err);
-	});
 }
 
 class ticket
