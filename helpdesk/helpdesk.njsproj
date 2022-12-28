@@ -28,8 +28,64 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="archiwum\current\28.09.2020 19-22-26 2693.txt" />
+    <Content Include="archiwum\logs\log 04.10.2020 19-02-20.txt" />
+    <Content Include="archiwum\logs\log 27.09.2020 18-41-00.txt" />
+    <Content Include="archiwum\logs\log 27.09.2020 18-42-29.txt" />
+    <Content Include="archiwum\logs\log 27.09.2020 20-45-29.txt" />
+    <Content Include="archiwum\logs\log 28.09.2020 18-11-12.txt" />
+    <Content Include="archiwum\logs\log 28.09.2020 19-13-04.txt" />
+    <Content Include="archiwum\logs\log 28.09.2020 19-16-26.txt" />
+    <Content Include="archiwum\logs\log 28.09.2020 19-18-31.txt" />
+    <Content Include="archiwum\logs\log 28.09.2020 19-22-21.txt" />
+    <Content Include="archiwum\logs\log 28.09.2020 19-23-48.txt" />
+    <Content Include="archiwum\previous\05-2020\21.09.2020 09-55 780.txt" />
+    <Content Include="archiwum\previous\09-2020\23.09.2020 11-35 780.txt" />
+    <Content Include="archiwum\previous\09-2020\23.09.2020 11-59 780.txt" />
+    <Content Include="archiwum\previous\09-2020\27.09.2020 14-48 2693.txt" />
+    <Content Include="archiwum\przyklady\er226.txt" />
+    <Content Include="archiwum\przyklady\er23.txt" />
+    <Content Include="archiwum\przyklady\fg.txt" />
+    <Content Include="archiwum\przyklady\kjl.txt" />
+    <Content Include="archiwum\przyklady\okjl.txt" />
+    <Content Include="archiwum\przyklady\sdfgfd.txt" />
+    <Content Include="archiwum\przyklady\yyy.txt" />
+    <Content Include="archiwum\tickets\2693.txt" />
+    <Content Include="archiwum\tickets\3488.txt" />
+    <Content Include="archiwum\tickets\4070.txt" />
+    <Content Include="archiwum\tickets\4230.txt" />
+    <Content Include="archiwum\tickets\780.txt" />
+    <Content Include="index.html" />
     <Content Include="package.json" />
+    <Content Include="public\add.png" />
+    <Content Include="public\com.png" />
+    <Content Include="public\comv2.png" />
+    <Content Include="public\delete.png" />
+    <Content Include="public\dol.png" />
+    <Content Include="public\edit.png" />
+    <Content Include="public\gora.png" />
+    <Content Include="public\logo.png" />
+    <Content Include="public\main.js" />
+    <Content Include="public\minus.png" />
+    <Content Include="public\move.png" />
+    <Content Include="public\plus.png" />
+    <Content Include="public\read.css" />
+    <Content Include="public\read.js" />
+    <Content Include="public\style.css" />
+    <Content Include="read.html" />
     <Content Include="README.md" />
+    <Content Include="server.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="archiwum\" />
+    <Folder Include="archiwum\current\" />
+    <Folder Include="archiwum\logs\" />
+    <Folder Include="archiwum\previous\" />
+    <Folder Include="archiwum\previous\05-2020\" />
+    <Folder Include="archiwum\previous\09-2020\" />
+    <Folder Include="archiwum\przyklady\" />
+    <Folder Include="archiwum\tickets\" />
+    <Folder Include="public\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
