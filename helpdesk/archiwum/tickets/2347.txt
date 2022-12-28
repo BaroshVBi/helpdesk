@@ -1,0 +1,1 @@
+{"imie":"bar","oddzial":"Oddział Chorób Wewnętrznych","opis":"nm,nm","time":"2022-12-28T09:56:35.616Z","nrtel":""}

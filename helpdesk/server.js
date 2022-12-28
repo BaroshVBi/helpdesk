@@ -13,48 +13,6 @@ fs.writeFile("archiwum/logs/" + logFile, '', function(err) {
 	logs(logFile + ' został utworzony');
 });
 
-//>>Konfiguracja wysylania maili.<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-		//Login do konta z którego będzie wysyłany email np. 'ktostam@gmail.com'.
-			var login = 'darejlul@gmail.com';
-
-		//Hasło do konta z którego będzie wysyłany email np. 'zaq1@WSX'.
-			var password = 'Pocztahd47';
-
-		//Maile na które będą przychodzić tickety np. 'ktostam@gmail.com' lub 'ktostam@gmail.com, ktosinny@gmail.com'.
-			var recievers = '';
-
-	//Jeżeli któreś z tych trzech pól powyżej będzie puste, maile nie będą wysyłane.
-
-		//Konfiguracja Serwisu(Prosty).
-			var transport = nodemailer.createTransport({
-				service: 'Gmail',							
-				auth: {
-					user: login,
-					pass: password,						
-				}
-			});
-		
-		//Zaawansowany(Do własnego serwisu pocztowego) https://nodemailer.com/about/
-		
-//			var transport = nodemailer.createTransport({
-//				host: 'smtp.ethereal.email',
-//				port: 587,
-//				secure: false, // true for 465, false for other ports							
-//				auth: {
-//					user: login,
-//					pass: password;						
-//				}
-//			});
-
-		// Naraz może być używana tylko jedna wersja serwisu. Nieużywaną należy wstawić w komentarz czyli postawić na początku dwa slashe //
-		
-		
-//>>KONIEC.<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
 require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   logs('http://' + add + ":8000");
 });
@@ -87,8 +45,6 @@ io.on('connection', function(socket) {
 		fs.writeFile('archiwum/tickets/' + idnum + '.txt', JSON.stringify(cos), function(err) {
 			logs('Utworzono nowy ticket: ' + idnum);
 			io.emit('ticketread', JSON.stringify(cos), idnum + '.txt');
-			if (recievers != '' && login != '' && password != '')
-				sendmail(idnum, imie, oddzial, stext, nrtel);
 		});
 	});
 

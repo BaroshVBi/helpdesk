@@ -1,0 +1,1 @@
+{"imie":"sdf","oddzial":"Oddział Chirurgiczny","opis":"bnmbnm","time":"2022-12-28T09:57:37.863Z","nrtel":""}
