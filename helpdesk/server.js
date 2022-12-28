@@ -6,6 +6,8 @@ var io 			= require('socket.io')(http);
 var fs 			= require('fs');
 var nodemailer 	= require('nodemailer');
 
+var port = process.env.PORT || 8080;
+
 var logFile = 'log ' + parseTime(new Date()) + '.txt';
 fs.writeFile("archiwum/logs/" + logFile, '', function(err) {
 	logs(logFile + ' został utworzony');
@@ -239,9 +241,8 @@ io.on('connection', function(socket) {
 	});
 });
 
-http.listen(8000, () => 
-{
-	logs('http://localhost:8000/');
+http.listen(port, () => {
+	
 });
 
 function parseTime(d)
