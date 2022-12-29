@@ -90,10 +90,19 @@ app.get('/read', (req, res) => {
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware));
 
+io.use((socket, next) => {
+	const session = socket.request.session;
+	if (session && session.loggedin) {
+		next();
+	} else {
+		next(new Error("unauthorized"));
+	}
+});
+
 io.on('connection', (socket) => {
 	const session = socket.request.session;
-	//logs(socket.id);
-	logs(session.username);
+	//logs(session.id);
+	//logs(session.username);
 	socket.on('ticket', (imie, dzial, tresc, nrtel) => {
 		var teraz = parseTime(new Date());
 		var sql = "INSERT INTO tickets (imie, dzial, tresc, nrtel, data) VALUES ('" + imie + "', '" + dzial + "', '" + tresc + "', '" + nrtel + "','" + teraz + "')";
