@@ -33,6 +33,9 @@
     <Content Include="login.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="home.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\add.png" />
     <Content Include="public\com.png" />
     <Content Include="public\comv2.png" />

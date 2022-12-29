@@ -47,7 +47,8 @@ app.post('/auth', (req, res) => {
 			if (result.length > 0) {
 				req.session.loggedin = true;
 				req.session.username = email;
-				res.redirect('/read');
+				req.session.lvl = 1;
+				res.redirect('/home');
 			} else {
 				res.send('Nieprawidłowa nazwa użytkownika lub hasło.');
 			}
@@ -59,10 +60,28 @@ app.post('/auth', (req, res) => {
 	}
 });
 
+app.get('/home', (req, res) => {
+	if (req.session.loggedin) {
+		if (req.session.lvl > 1) {
+			res.redirect('/read');
+		} else {
+			res.sendFile(__dirname + '/index.html');
+		}
+	} else {
+		res.redirect('/');
+    }
+});
+
 app.get('/read', (req, res) => {
 	if (req.session.loggedin) {
-		res.sendFile(__dirname + '/read.html');
-	} else res.redirect('/');
+		if (req.session.lvl > 1) {
+			res.sendFile(__dirname + '/read.html');
+		} else {
+			res.redirect('/home');
+		}
+	} else {
+		res.redirect('/');
+	}
 });
 
 io.on('connection', (socket) => {
