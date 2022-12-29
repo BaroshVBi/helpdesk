@@ -22,12 +22,13 @@ con.connect(function (err) {
 	logs("Database connected!");
 });
 
-app.use(session({
+const sessionMiddleware = session({
 	secret: 'secret',
 	resave: true,
 	saveUninitialized: true
-}));
+});
 
+app.use(sessionMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -86,9 +87,13 @@ app.get('/read', (req, res) => {
 	}
 });
 
-io.on('connection', (socket) => {
-	//logs(socket.id);
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
+io.use(wrap(sessionMiddleware));
 
+io.on('connection', (socket) => {
+	const session = socket.request.session;
+	//logs(socket.id);
+	logs(session.username);
 	socket.on('ticket', (imie, dzial, tresc, nrtel) => {
 		var teraz = parseTime(new Date());
 		var sql = "INSERT INTO tickets (imie, dzial, tresc, nrtel, data) VALUES ('" + imie + "', '" + dzial + "', '" + tresc + "', '" + nrtel + "','" + teraz + "')";
