@@ -47,8 +47,10 @@ app.post('/auth', (req, res) => {
 			if (result.length > 0) {
 				req.session.loggedin = true;
 				req.session.username = email;
-				req.session.lvl = 1;
+				req.session.user_id = result[0].id;
+				req.session.lvl = result[0].lvl;
 				res.redirect('/home');
+				logs(result[0].name + " has logged in.");
 			} else {
 				res.send('Nieprawidłowa nazwa użytkownika lub hasło.');
 			}
@@ -295,7 +297,7 @@ function organizeMIESIAC()
 
 function logs(string)
 {
-	var logTime = "[" + parseTime(new Date()) + "]\t" + string + ".";
+	var logTime = "[" + parseTime(new Date()) + "]\t" + string;
 	console.log(logTime);
 	var sql = "INSERT INTO logs (data, tresc) VALUES ('" + parseTime(new Date()) + "','" + string + "')";
 	con.query(sql, function (err, result) {
