@@ -50,7 +50,7 @@
     <Content Include="public\index.js" />
     <Content Include="public\read.css" />
     <Content Include="public\read.js" />
-    <Content Include="public\style.css" />
+    <Content Include="public\index.css" />
     <Content Include="read.html" />
     <Content Include="README.md" />
     <Content Include="server.js" />
