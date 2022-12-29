@@ -36,18 +36,18 @@
     <Content Include="home.html">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="public\add.png" />
-    <Content Include="public\com.png" />
-    <Content Include="public\comv2.png" />
-    <Content Include="public\delete.png" />
-    <Content Include="public\dol.png" />
-    <Content Include="public\edit.png" />
-    <Content Include="public\gora.png" />
-    <Content Include="public\logo.png" />
-    <Content Include="public\main.js" />
-    <Content Include="public\minus.png" />
-    <Content Include="public\move.png" />
-    <Content Include="public\plus.png" />
+    <Content Include="public\images\add.png" />
+    <Content Include="public\images\com.png" />
+    <Content Include="public\images\comv2.png" />
+    <Content Include="public\images\delete.png" />
+    <Content Include="public\images\dol.png" />
+    <Content Include="public\images\edit.png" />
+    <Content Include="public\images\gora.png" />
+    <Content Include="public\images\logo.png" />
+    <Content Include="public\images\minus.png" />
+    <Content Include="public\images\move.png" />
+    <Content Include="public\images\plus.png" />
+    <Content Include="public\index.js" />
     <Content Include="public\read.css" />
     <Content Include="public\read.js" />
     <Content Include="public\style.css" />
@@ -58,6 +58,7 @@
   <ItemGroup>
     <Folder Include="baza\" />
     <Folder Include="public\" />
+    <Folder Include="public\images\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
