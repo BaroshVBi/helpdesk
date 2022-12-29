@@ -1,5 +1,6 @@
 var path = require('path');
 var express = require('express');
+var session = require('express-session');
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
@@ -21,14 +22,47 @@ con.connect(function (err) {
 	logs("Database connected!");
 });
 
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html');
+	res.sendFile(__dirname + '/login.html');
+});
+
+app.post('/auth', (req, res) => {
+	let email = req.body.email;
+	let password = req.body.password;
+
+	if (email && password) {
+		sql = "SELECT * FROM login WHERE email ='" + email + "'  AND password = '" + password + "'";
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			if (result.length > 0) {
+				req.session.loggedin = true;
+				req.session.username = email;
+				res.redirect('/read');
+			} else {
+				res.send('Nieprawidłowa nazwa użytkownika lub hasło.');
+			}
+			res.end();
+		});
+	} else {
+		res.send('Wprowadź dane logowania.');
+		res.end();
+	}
 });
 
 app.get('/read', (req, res) => {
-	res.sendFile(__dirname + '/read.html');
+	if (req.session.loggedin) {
+		res.sendFile(__dirname + '/read.html');
+	} else res.redirect('/');
 });
 
 io.on('connection', (socket) => {

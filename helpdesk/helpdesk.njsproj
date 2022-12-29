@@ -30,6 +30,9 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="package.json" />
+    <Content Include="login.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\add.png" />
     <Content Include="public\com.png" />
     <Content Include="public\comv2.png" />
