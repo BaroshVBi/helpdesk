@@ -1,8 +1,11 @@
 var socket = io();
+document.getElementById('add_ticket').style.display = 'block';
 
-function test() {
-	//socket.emit('test');
-	document.getElementById('test1').innerHTML += 'halo';
-	//alert('test');
-	socket.emit('test');
+function tabs(tab) {
+    var tabcontent = document.getElementsByClassName('tabcontent');
+    for (var i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = 'none';
+    }
+
+    document.getElementById(tab).style.display = 'block';
 }
