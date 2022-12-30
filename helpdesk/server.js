@@ -88,6 +88,22 @@ app.get('/read', (req, res) => {
 	}
 });
 
+app.get('/logout', (req, res) => {
+	if (req.session) {
+		req.session.destroy((err) => {
+			if (err) {
+				res.status(400).send('Błąd przy wylogowaniu');
+			} else {
+				//res.send('Logout successful');
+				logs(req.session.username + 'has log out');
+				res.redirect('/');
+			}
+		});
+	} else {
+		res.redirect('/');
+	}
+});
+
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
 io.use(wrap(sessionMiddleware));
 
