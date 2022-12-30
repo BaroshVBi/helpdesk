@@ -48,9 +48,15 @@
     <Content Include="public\images\move.png" />
     <Content Include="public\images\plus.png" />
     <Content Include="public\index.js" />
+    <Content Include="public\home.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\read.css" />
     <Content Include="public\read.js" />
     <Content Include="public\index.css" />
+    <Content Include="public\Style.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="read.html" />
     <Content Include="README.md" />
     <Content Include="server.js" />

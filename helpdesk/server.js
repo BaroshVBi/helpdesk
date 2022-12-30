@@ -69,7 +69,7 @@ app.get('/home', (req, res) => {
 		if (req.session.lvl > 1) {
 			res.redirect('/read');
 		} else {
-			res.sendFile(__dirname + '/index.html');
+			res.sendFile(__dirname + '/home.html');
 		}
 	} else {
 		res.redirect('/');
@@ -113,6 +113,10 @@ io.on('connection', (socket) => {
 			//io.emit('ticketread', JSON.stringify(ticket(imie, dzial, tresc, nrtel, teraz)));
 		});
 		//io.emit('ticketread', JSON.stringify(cos), idnum + '.txt');
+	});
+
+	socket.on('test', () => {
+		logs('test home');
 	});
 
 	socket.on('login', () => {
