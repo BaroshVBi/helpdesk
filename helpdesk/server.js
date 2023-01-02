@@ -118,9 +118,10 @@ io.on('connection', (socket) => {
 	const session = socket.request.session;
 	//logs(session.username);
 
-	socket.on('ticket', (imie, dzial, tresc, nrtel) => {
+	socket.on('ticket', (topic, desc) => {
 		var teraz = parseTime(new Date());
-		var sql = "INSERT INTO tickets (imie, dzial, tresc, nrtel, data) VALUES ('" + imie + "', '" + dzial + "', '" + tresc + "', '" + nrtel + "','" + teraz + "')";
+		logs(topic + " " + desc);
+		var sql = "INSERT INTO tickets (login_id, topic, descr, data, status) VALUES ('1', '" + topic + "', '" + desc + "', '" + teraz + "', '1')";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			logs("ticket inserted");

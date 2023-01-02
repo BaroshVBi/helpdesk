@@ -9,3 +9,8 @@ function tabs(tab) {
 
     document.getElementById(tab).style.display = 'block';
 }
+function send() {
+    //var topic = document.getElementById('topic').value;
+    //var desc = document.getElementById('description').value;
+    socket.emit('ticket', $('#topic').val(), $('#desc').val());
+}

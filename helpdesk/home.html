@@ -14,7 +14,11 @@
         <a href="/logout">Wyloguj</a>
     </div>
     <div class="main" id="test1">
-        <div id="add_ticket" class="tabcontent">dodaj</div>
+        <div id="add_ticket" class="tabcontent">
+            <label for="topic">Temat:</label><input type="text" id="topic" />
+            <label for="desc">Opis:</label><input type="text" id="desc" />
+            <button onClick="send();">Wyślij</button>
+        </div>
         <div id="view_ticket" class="tabcontent">wyswietl</div>
         <div id="settings" class="tabcontent">ustawienia</div>
     </div>
