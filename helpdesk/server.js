@@ -79,7 +79,7 @@ app.post('/auth', (req, res) => {
 app.get('/home', (req, res) => {
 	if (req.session.loggedin) {
 		if (req.session.lvl > 1) {
-			res.redirect('/read');
+			res.redirect('/admin');
 		} else {
 			res.sendFile(__dirname + '/home.html');
 		}
@@ -88,10 +88,10 @@ app.get('/home', (req, res) => {
     }
 });
 
-app.get('/read', (req, res) => {
+app.get('/admin', (req, res) => {
 	if (req.session.loggedin) {
 		if (req.session.lvl > 1) {
-			res.sendFile(__dirname + '/read.html');
+			res.sendFile(__dirname + '/admin.html');
 		} else {
 			res.redirect('/home');
 		}

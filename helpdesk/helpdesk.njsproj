@@ -35,6 +35,9 @@
     <Content Include="home.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="admin.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\images\add.png" />
     <Content Include="public\images\com.png" />
     <Content Include="public\images\comv2.png" />
@@ -47,6 +50,9 @@
     <Content Include="public\images\move.png" />
     <Content Include="public\images\plus.png" />
     <Content Include="public\home.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="public\admin.js">
       <SubType>Code</SubType>
     </Content>
     <Content Include="public\Style.css">
