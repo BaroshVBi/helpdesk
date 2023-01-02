@@ -302,7 +302,7 @@ function parseTime(d)
 		M = "0" + M;
 	var D = time.getDate();
 	if (D < 10)
-		D = "0" + d;
+		D = "0" + D;
 	var s = time.getSeconds();
 	if (s < 10)
 		s = "0" + s;
