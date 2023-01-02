@@ -106,7 +106,6 @@ app.get('/logout', (req, res) => {
 			if (err) {
 				res.status(400).send('Błąd przy wylogowaniu');
 			} else {
-				logs(req.session.username + 'has log out');
 				res.redirect('/');
 			}
 		});
