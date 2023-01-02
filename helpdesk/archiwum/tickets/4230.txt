@@ -1,1 +1,0 @@
-{"imie":"ksiezniczka","oddzial":"Oddział Ginekologiczno-Położniczy","opis":"buty nie dzialaja","time":"2020-09-27T12:49:45.743Z","nrtel":"11111"}

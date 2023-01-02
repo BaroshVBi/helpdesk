@@ -1,1 +1,0 @@
-{"imie":"sdf","oddzial":"Blok Operacyjny","opis":"l';","time":"2022-12-28T09:58:52.162Z","nrtel":""}

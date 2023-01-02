@@ -1,1 +1,0 @@
-{"imie":"Bartosz Guz","oddzial":"Oddział Chirurgiczny","opis":"nie wime","time":"2020-09-27T12:47:58.771Z","nrtel":"","newtime":"2020-09-28T17:22:26.397Z","comment":[]}
