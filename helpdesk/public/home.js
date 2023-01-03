@@ -7,7 +7,7 @@ socket.on('list_ticket', function (id, topic, data, status, priority) {
 
 socket.on('ticket_data', function (id, topic, descr, data, status, priority) {
     $('#view_ticket').html(id + " | " + topic + " | " + descr + " | " + data + " | " + status + " | " + priority);
-    console.log('ticket_data');
+    tabs('view_ticket');
 });
 
 function tabs(tab) {
@@ -15,7 +15,6 @@ function tabs(tab) {
     for (var i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = 'none';
     }
-
     document.getElementById(tab).style.display = 'block';
 }
 
@@ -32,5 +31,4 @@ function next(i) {
 
 function view(id) {
     socket.emit('view_ticket', id);
-    tabs('view_ticket');
 }

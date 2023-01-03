@@ -117,15 +117,12 @@ app.get('/logout', (req, res) => {
 
 io.on('connection', (socket) => {
 	const session = socket.request.session;
-	//logs(session.username);
 
 	socket.on('ticket', (topic, desc, priority) => {
-		//logs(topic + " " + desc);
 		var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			logs("ticket inserted");
-			//io.emit('view_ticket');
 		});
 	});
 
@@ -172,10 +169,6 @@ io.on('connection', (socket) => {
 				io.emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority);
 			}
 		});
-	});
-
-	socket.on('test', () => {
-		logs('test home');
 	});
 });
 
