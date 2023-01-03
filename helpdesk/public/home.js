@@ -1,6 +1,15 @@
 var socket = io();
 document.getElementById('add_ticket').style.display = 'block';
 
+socket.on('list_ticket', function (id, topic, data, status, priority) {
+    $('#ticket_list').append($('<li>').html("<div onClick='view(" + id + ")'>" + id + " | " + topic + " | " + data + " | " + status + " | " + priority + "</div><br>"));
+});
+
+socket.on('ticket_data', function (id, topic, descr, data, status, priority) {
+    $('#view_ticket').html(id + " | " + topic + " | " + descr + " | " + data + " | " + status + " | " + priority);
+    console.log('ticket_data');
+});
+
 function tabs(tab) {
     var tabcontent = document.getElementsByClassName('tabcontent');
     for (var i = 0; i < tabcontent.length; i++) {
@@ -16,11 +25,12 @@ function send() {
     next(0);
 }
 
-socket.on('list_ticket', function (id, topic, descr, data, status, priority) {
-    $('#ticket_list').append($('<li>').html(id + " | " + topic + " | " + descr + " | " + data + " | " + status + " | " + priority + "<br>"));
-});
-
 function next(i) {
     $('#ticket_list').html("");
     socket.emit('next_page', i);
+}
+
+function view(id) {
+    socket.emit('view_ticket', id);
+    tabs('view_ticket');
 }

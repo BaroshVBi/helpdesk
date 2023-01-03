@@ -135,7 +135,7 @@ io.on('connection', (socket) => {
 			if (err) throw err;
 			var x = 0;
 			for (var i = result.length -1; i >= 0 && x < 10; i--) {
-				io.emit('list_ticket', result[i].id, result[i].topic, result[i].descr, parseTime(result[i].data), result[i].status, result[i].priority);
+				io.emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
 				x += 1;
 			}
 		});
@@ -157,8 +157,19 @@ io.on('connection', (socket) => {
 			var x = 0;
 			var top = result.length - 1 - (10 * session.pg);
 			for (var i = top; i >= 0 && x < 10; i--) {
-				io.emit('list_ticket', result[i].id, result[i].topic, result[i].descr, parseTime(result[i].data), result[i].status, result[i].priority);
+				io.emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
 				x += 1;
+			}
+		});
+	});
+
+	socket.on('view_ticket', (id) => {
+		//logs('view ticket');
+		var sql = "SELECT * FROM `tickets` WHERE id = '" + id + "'";
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			if (result.length > 0) {
+				io.emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority);
 			}
 		});
 	});

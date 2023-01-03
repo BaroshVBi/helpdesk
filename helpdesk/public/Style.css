@@ -50,3 +50,8 @@ body {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+#ticket_list div {
+    background-color: lightslategrey;
+    padding: 5px;
+}
