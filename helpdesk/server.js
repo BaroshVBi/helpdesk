@@ -133,14 +133,31 @@ io.on('connection', (socket) => {
 		var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
-			for (var i = 0; i < result.length && i < 10; i++) {
+			var x = 0;
+			for (var i = result.length -1; i >= 0 && x < 10; i--) {
 				io.emit('view_ticket', result[i].id, result[i].topic, result[i].descr, parseTime(result[i].data), result[i].status, result[i].priority);
+				x = x + 1;
 			}
 		});
 	}
 
-	socket.on('next_page', (i) => {
-
+	socket.on('next_page', (pg) => {
+		logs('next page');
+		var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			if (pg == 0) session.pg = 0;
+			session.pg += pg;
+			if (session.pg < 0) session.pg = 0;
+			if (session.pg > (result.length / 10)) session.pg = Math.floor(result.length / 10);
+			//logs(session.pg);
+			var x = 0;
+			var top = result.length - 1 - (10 * session.pg);
+			for (var i = top; i >= 0 && x < 10; i--) {
+				io.emit('view_ticket', result[i].id, result[i].topic, result[i].descr, parseTime(result[i].data), result[i].status, result[i].priority);
+				x += 1;
+			}
+		});
 	});
 
 	socket.on('test', () => {
