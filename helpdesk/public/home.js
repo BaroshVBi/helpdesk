@@ -18,7 +18,6 @@ function send() {
 
 socket.on('view_ticket', function (id, topic, descr, data, status, priority) {
     $('#ticket_list').append($('<li>').html(id + " | " + topic + " | " + descr + " | " + data + " | " + status + " | " + priority + "<br>"));
-    console.log('hey');
 });
 
 function next(i) {
