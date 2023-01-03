@@ -17,6 +17,12 @@
         <div id="add_ticket" class="tabcontent">
             <label for="topic">Temat:</label><input type="text" id="topic" />
             <label for="desc">Opis:</label><input type="text" id="desc" />
+            <label for="priority">Priorytet</label>
+            <select id="priority">
+                <option value="1">Niski</option>
+                <option value="2">Normalny</option>
+                <option value="3">Wysoki</option>
+            </select>
             <button onClick="send();">Wyślij</button>
         </div>
         <div id="view_ticket" class="tabcontent">wyswietl</div>

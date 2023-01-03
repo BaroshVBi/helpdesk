@@ -118,10 +118,10 @@ io.on('connection', (socket) => {
 	const session = socket.request.session;
 	//logs(session.username);
 
-	socket.on('ticket', (topic, desc) => {
-		var teraz = parseTime(new Date());
-		logs(topic + " " + desc);
-		var sql = "INSERT INTO tickets (login_id, topic, descr, data, status) VALUES ('1', '" + topic + "', '" + desc + "', '" + teraz + "', '1')";
+	socket.on('ticket', (topic, desc, priority) => {
+		//var teraz = parseTime(new Date());
+		//logs(topic + " " + desc);
+		var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			logs("ticket inserted");
@@ -138,8 +138,7 @@ http.listen(port, () => {
 	
 });
 
-function parseTime(d)
-{
+function parseTime(d) {
 	var time = new Date(d);
 	var M = time.getMonth() + 1;
 	if (M < 10)
@@ -159,8 +158,7 @@ function parseTime(d)
 	return time.getFullYear() + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
 }
 
-function logs(string)
-{
+function logs(string) {
 	var logTime = "[" + parseTime(new Date()) + "]\t" + string;
 	console.log(logTime);
 	var sql = "INSERT INTO logs (data, tresc) VALUES ('" + parseTime(new Date()) + "','" + string + "')";

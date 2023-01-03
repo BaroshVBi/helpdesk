@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Sty 2023, 10:42
+-- Czas generowania: 03 Sty 2023, 08:18
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 8.1.6
 
@@ -32,16 +32,17 @@ CREATE TABLE `login` (
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `lvl` int(11) NOT NULL DEFAULT 1
+  `lvl` int(11) NOT NULL DEFAULT 1,
+  `dept` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `login`
 --
 
-INSERT INTO `login` (`id`, `name`, `email`, `password`, `lvl`) VALUES
-(1, 'test', 'test@test.com', 'test', 1),
-(2, 'admin', 'admin@test.com', 'test', 2);
+INSERT INTO `login` (`id`, `name`, `email`, `password`, `lvl`, `dept`) VALUES
+(1, 'test', 'test@test.com', 'test', 1, 1),
+(2, 'admin', 'admin@test.com', 'test', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -249,7 +250,78 @@ INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
 (187, '2022-12-30 12:19:47', 'test@test.comhas log out'),
 (188, '2022-12-30 12:20:37', 'Database connected!'),
 (189, '2022-12-30 12:20:43', 'test has logged in.'),
-(190, '2022-12-30 12:20:47', 'test@test.comhas log out');
+(190, '2022-12-30 12:20:47', 'test@test.comhas log out'),
+(191, '0000-00-00 00:00:00', 'Database connected!'),
+(192, '0000-00-00 00:00:00', 'Database connected!'),
+(193, '0000-00-00 00:00:00', 'Database connected!'),
+(194, '0000-00-00 00:00:00', 'Database connected!'),
+(195, '2023-01-02 10:56:29', 'Database connected!'),
+(196, '2023-01-02 10:59:09', 'Database connected!'),
+(197, '2023-01-02 10:59:13', 'test has logged in.'),
+(198, '2023-01-02 11:27:01', 'Database connected!'),
+(199, '2023-01-02 11:27:08', 'test has logged in.'),
+(200, '2023-01-02 11:30:51', 'Database connected!'),
+(201, '2023-01-02 11:34:14', 'Database connected!'),
+(202, '2023-01-02 11:37:04', 'test has logged in.'),
+(203, '2023-01-02 11:49:28', 'Database connected!'),
+(204, '2023-01-02 11:49:37', 'admin has logged in.'),
+(205, '2023-01-02 11:50:41', 'Database connected!'),
+(206, '2023-01-02 11:50:53', 'admin has logged in.'),
+(207, '2023-01-02 11:52:59', 'Database connected!'),
+(208, '2023-01-02 11:53:14', 'admin has logged in.'),
+(209, '2023-01-02 11:53:56', 'test has logged in.'),
+(210, '2023-01-02 12:07:23', 'Database connected!'),
+(211, '2023-01-02 12:07:29', 'test has logged in.'),
+(212, '2023-01-02 16:12:08', 'Database connected!'),
+(213, '2023-01-02 16:12:16', 'test has logged in.'),
+(214, '2023-01-02 16:19:51', 'Database connected!'),
+(215, '2023-01-02 16:20:04', 'test has logged in.'),
+(216, '2023-01-02 16:20:46', 'test '),
+(217, '2023-01-02 16:20:50', 'test test'),
+(218, '2023-01-02 16:20:51', 'test test'),
+(219, '2023-01-02 16:21:44', 'Database connected!'),
+(220, '2023-01-02 16:26:46', 'Database connected!'),
+(221, '2023-01-02 16:26:51', 'test has logged in.'),
+(222, '2023-01-02 16:26:57', 'test test'),
+(223, '2023-01-02 16:27:05', 'Database connected!'),
+(224, '2023-01-02 16:27:15', 'test has logged in.'),
+(225, '2023-01-02 16:27:21', 'test test'),
+(226, '2023-01-02 16:28:29', 'Database connected!'),
+(227, '2023-01-02 16:28:41', 'test has logged in.'),
+(228, '2023-01-02 16:28:47', 'test test'),
+(229, '2023-01-02 16:31:42', 'Database connected!'),
+(230, '2023-01-02 16:31:51', 'test has logged in.'),
+(231, '2023-01-02 16:31:57', 'test test'),
+(232, '2023-01-02 16:34:03', 'Database connected!'),
+(233, '2023-01-02 16:34:14', 'test has logged in.'),
+(234, '2023-01-02 16:34:20', 'test test'),
+(235, '2023-01-02 16:35:36', 'Database connected!'),
+(236, '2023-01-02 16:35:44', 'test has logged in.'),
+(237, '2023-01-02 16:35:48', 'test test'),
+(238, '2023-01-02 16:38:06', 'Database connected!'),
+(239, '2023-01-02 16:38:12', 'test has logged in.'),
+(240, '2023-01-02 16:38:17', 'dfsg sdfgd'),
+(241, '2023-01-02 16:40:02', 'Database connected!'),
+(242, '2023-01-02 16:40:09', 'test has logged in.'),
+(243, '2023-01-02 16:40:13', 'asg sdag'),
+(244, '2023-01-02 16:45:31', 'Database connected!'),
+(245, '2023-01-02 16:45:41', 'test has logged in.'),
+(246, '2023-01-02 16:45:44', 'sdg asdg'),
+(247, '2023-01-02 16:45:44', 'ticket inserted'),
+(248, '2023-01-02 16:47:29', 'Database connected!'),
+(249, '2023-01-02 16:47:37', 'test has logged in.'),
+(250, '2023-01-02 16:47:40', 'dsfg dfgsdf'),
+(251, '2023-01-02 16:47:40', 'ticket inserted'),
+(252, '2023-01-03 08:01:02', 'Database connected!'),
+(253, '2023-01-03 08:01:10', 'test has logged in.'),
+(254, '2023-01-03 08:01:19', 'dfhdhfs dsfhdsfhdf'),
+(255, '2023-01-03 08:01:19', 'ticket inserted'),
+(256, '2023-01-03 08:07:59', 'Database connected!'),
+(257, '2023-01-03 08:08:06', 'test has logged in.'),
+(258, '2023-01-03 08:08:10', 'ticket inserted'),
+(259, '2023-01-03 08:15:58', 'Database connected!'),
+(260, '2023-01-03 08:16:03', 'test has logged in.'),
+(261, '2023-01-03 08:16:12', 'ticket inserted');
 
 -- --------------------------------------------------------
 
@@ -259,28 +331,32 @@ INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
 
 CREATE TABLE `tickets` (
   `id` int(11) NOT NULL,
-  `imie` text NOT NULL,
-  `dzial` int(11) NOT NULL,
-  `tresc` text NOT NULL,
-  `nrtel` int(11) NOT NULL,
+  `login_id` int(11) NOT NULL,
+  `topic` text NOT NULL DEFAULT 'brak',
+  `descr` text NOT NULL,
   `data` datetime NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` int(11) NOT NULL DEFAULT 1,
+  `priority` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `tickets`
 --
 
-INSERT INTO `tickets` (`id`, `imie`, `dzial`, `tresc`, `nrtel`, `data`, `status`) VALUES
-(1, 'sdf', 1, 'jkl', 0, '0000-00-00 00:00:00', 1),
-(2, 'sdf', 1, 'tyitityu', 0, '0000-00-00 00:00:00', 1),
-(3, 'bar', 1, 'tgfhgf', 0, '0000-00-00 00:00:00', 1),
-(4, 'sdf', 1, 'bhj', 0, '0000-00-00 00:00:00', 1),
-(5, 'sdf', 1, 'yuiy', 111111111, '0000-00-00 00:00:00', 1),
-(6, 'bar', 1, 'ghg', 111111111, '2022-12-28 13:46:37', 1),
-(7, 'rty', 1, 'hj', 0, '2022-12-28 13:57:14', 1),
-(8, '54', 1, 'gfhh', 0, '2022-12-28 13:58:08', 1),
-(9, 'rty', 1, 'gfhfgh', 0, '2022-12-28 14:18:43', 1);
+INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `priority`) VALUES
+(1, 0, '', 'jkl', '0000-00-00 00:00:00', 1, 0),
+(2, 0, '', 'tyitityu', '0000-00-00 00:00:00', 1, 0),
+(3, 0, '', 'tgfhgf', '0000-00-00 00:00:00', 1, 0),
+(4, 0, '', 'bhj', '0000-00-00 00:00:00', 1, 0),
+(5, 0, '', 'yuiy', '0000-00-00 00:00:00', 1, 0),
+(6, 0, '', 'ghg', '2022-12-28 13:46:37', 1, 0),
+(7, 0, '', 'hj', '2022-12-28 13:57:14', 1, 0),
+(9, 0, '', 'gfhfgh', '2022-12-28 14:18:43', 1, 0),
+(10, 1, 'sdg', 'asdg', '2023-01-02 16:45:44', 1, 0),
+(11, 1, 'dsfg', 'dfgsdf', '2023-01-02 16:47:40', 1, 0),
+(12, 1, 'dfhdhfs', 'dsfhdsfhdf', '2023-01-03 08:01:19', 1, 0),
+(13, 1, 'test', 'test', '2023-01-03 08:08:10', 1, 0),
+(14, 1, 'tesgdfh', 'dsfhdfhdh', '2023-01-03 08:16:12', 1, 2);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -318,13 +394,13 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT dla tabeli `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=262;
 
 --
 -- AUTO_INCREMENT dla tabeli `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
