@@ -63,6 +63,7 @@ app.post('/auth', (req, res) => {
 				req.session.username = email;
 				req.session.user_id = result[0].id;
 				req.session.lvl = result[0].lvl;
+				req.session.pg = 0;
 				res.redirect('/home');
 				logs(result[0].name + " has logged in.");
 			} else {
@@ -119,14 +120,27 @@ io.on('connection', (socket) => {
 	//logs(session.username);
 
 	socket.on('ticket', (topic, desc, priority) => {
-		//var teraz = parseTime(new Date());
 		//logs(topic + " " + desc);
 		var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			logs("ticket inserted");
-			//io.emit('ticketread', JSON.stringify(ticket(imie, dzial, tresc, nrtel, teraz)));
+			//io.emit('view_ticket');
 		});
+	});
+
+	if (session.lvl = 1) {
+		var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			for (var i = 0; i < result.length && i < 10; i++) {
+				io.emit('view_ticket', result[i].id, result[i].topic, result[i].descr, parseTime(result[i].data), result[i].status, result[i].priority);
+			}
+		});
+	}
+
+	socket.on('next_page', (i) => {
+
 	});
 
 	socket.on('test', () => {
