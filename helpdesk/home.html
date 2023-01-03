@@ -9,7 +9,7 @@
 <body>
     <div class="sidenav">
         <a class="tablinks" href="#" onclick="tabs('add_ticket');">Nowy ticket</a>
-        <a class="tablinks" href="#" onclick="tabs('view_ticket');">Twoje tickety</a>
+        <a class="tablinks" href="#" onclick="tabs('list_ticket');">Twoje tickety</a>
         <a class="tablinks" href="#" onclick="tabs('settings');">Ustawienia</a>
         <a href="/logout">Wyloguj</a>
     </div>
@@ -25,12 +25,13 @@
             </select>
             <button onClick="send();">Wyślij</button>
         </div>
-        <div id="view_ticket" class="tabcontent">
+        <div id="list_ticket" class="tabcontent">
             <ul id="ticket_list">
             </ul>
             <button onclick="next(1)">next</button>
             <button onclick="next(-1)">prev</button>
         </div>
+        <div id="view_ticket"></div>
         <div id="settings" class="tabcontent">ustawienia</div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
