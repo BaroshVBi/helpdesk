@@ -180,20 +180,15 @@ http.listen(port, () => {
 function parseTime(d) {
 	var time = new Date(d);
 	var M = time.getMonth() + 1;
-	if (M < 10)
-		M = "0" + M;
+	if (M < 10) M = "0" + M;
 	var D = time.getDate();
-	if (D < 10)
-		D = "0" + D;
+	if (D < 10) D = "0" + D;
 	var h = time.getHours();
-	if (h < 10)
-		h = "0" + h;
+	if (h < 10) h = "0" + h;
 	var m = time.getMinutes();
-	if (m < 10)
-		m = "0" + m;
+	if (m < 10) m = "0" + m;
 	var s = time.getSeconds();
-	if (s < 10)
-		s = "0" + s;
+	if (s < 10) s = "0" + s;
 	return time.getFullYear() + "-" + M + "-" + D + " " + h + ":" + m + ":" + s;
 }
 

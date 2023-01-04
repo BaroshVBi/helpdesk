@@ -23,6 +23,9 @@ function tabs(tab) {
 
 function send() {
     socket.emit('ticket', $('#topic').val(), $('#desc').val(), $('#priority').val());
+    $('#topic').val('');
+    $('#desc').val('');
+    $('#priority').val(0);
     tabs('list_ticket');
     next(0);
 }
