@@ -20,21 +20,21 @@
                     <td colspan="2"><label>Wypełnij formularz</label></td>
                 </tr>
                 <tr>
-                    <th><label for="topic">Temat:</label></th>
+                    <th><label for="topic">Temat</label></th>
                     <th><input type="text" id="topic" /></th>
                 </tr>
                 <tr>
                     <th><label for="priority">Priorytet</label></th>
                     <th>
                         <select id="priority">
-                            <option value="1">Niski</option>
-                            <option value="2">Normalny</option>
-                            <option value="3">Wysoki</option>
+                            <option value="0">Niski</option>
+                            <option value="1">Normalny</option>
+                            <option value="2">Wysoki</option>
                         </select>
                     </th>
                 </tr>
                 <tr>
-                    <th><label for="desc">Opis:</label></th>
+                    <th><label for="desc">Opis</label></th>
                     <th><textarea type="text" id="desc" wrap="hard"></textarea></th>
                 </tr>
                 <tr>
@@ -43,10 +43,17 @@
             </table>
         </div>
         <div id="list_ticket" class="tabcontent">
-            <ul id="ticket_list">
-            </ul>
-            <button onclick="next(1)">next</button>
+            <table id="ticket_list">
+                <tr>
+                    <td>ID</td>
+                    <td>Temat</td>
+                    <td>Data</td>
+                    <td>Status</td>
+                    <td>Priorytet</td>
+                </tr>
+            </table>
             <button onclick="next(-1)">prev</button>
+            <button onclick="next(1)">next</button>
         </div>
         <div id="view_ticket" class="tabcontent"></div>
         <div id="settings" class="tabcontent">ustawienia</div>

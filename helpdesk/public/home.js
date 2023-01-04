@@ -1,8 +1,11 @@
 var socket = io();
-document.getElementById('add_ticket').style.display = 'block';
+var tabstatus = ['nowy', 'potwierdzony', 'wstrzymany', 'rozwi¹zany'];
+var tabpriority = ['niski', 'normalny', 'wysoki'];
+
+tabs('add_ticket');
 
 socket.on('list_ticket', function (id, topic, data, status, priority) {
-    $('#ticket_list').append($('<li>').html("<div onClick='view(" + id + ")'>" + id + " | " + topic + " | " + data + " | " + status + " | " + priority + "</div><br>"));
+    $('#ticket_list').append($('<tr>').html("<th>" + id + "</th><th>" + topic + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th>"));
 });
 
 socket.on('ticket_data', function (id, topic, descr, data, status, priority) {
@@ -25,7 +28,7 @@ function send() {
 }
 
 function next(i) {
-    $('#ticket_list').html("");
+    $('#ticket_list').html("<tr><td> ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
     socket.emit('next_page', i);
 }
 

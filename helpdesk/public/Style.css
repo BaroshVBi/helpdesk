@@ -65,9 +65,13 @@ table {
     border-top: none;
 }
 
-#ticket_list div {
+#ticket_list td {
     background-color: lightslategrey;
     padding: 5px;
+}
+
+#ticket_list tr {
+    
 }
 
 #add_ticket textarea {
@@ -84,4 +88,14 @@ table {
 #priority {
     width: 200px;
     height: 100%;
+}
+
+@keyframes moveToRight {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
 }
