@@ -61,6 +61,7 @@ app.post('/auth', (req, res) => {
 			if (result.length > 0) {
 				req.session.loggedin = true;
 				req.session.username = email;
+				req.session.name = result[0].name;
 				req.session.user_id = result[0].id;
 				req.session.lvl = result[0].lvl;
 				req.session.pg = 0;

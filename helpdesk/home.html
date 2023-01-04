@@ -15,15 +15,32 @@
     </div>
     <div class="main" id="test1">
         <div id="add_ticket" class="tabcontent">
-            <label for="topic">Temat:</label><input type="text" id="topic" />
-            <label for="desc">Opis:</label><input type="text" id="desc" />
-            <label for="priority">Priorytet</label>
-            <select id="priority">
-                <option value="1">Niski</option>
-                <option value="2">Normalny</option>
-                <option value="3">Wysoki</option>
-            </select>
-            <button onClick="send();">Wyślij</button>
+            <table>
+                <tr>
+                    <td colspan="2"><label>Wypełnij formularz</label></td>
+                </tr>
+                <tr>
+                    <th><label for="topic">Temat:</label></th>
+                    <th><input type="text" id="topic" /></th>
+                </tr>
+                <tr>
+                    <th><label for="priority">Priorytet</label></th>
+                    <th>
+                        <select id="priority">
+                            <option value="1">Niski</option>
+                            <option value="2">Normalny</option>
+                            <option value="3">Wysoki</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th><label for="desc">Opis:</label></th>
+                    <th><textarea type="text" id="desc" wrap="hard"></textarea></th>
+                </tr>
+                <tr>
+                    <th colspan="2"><button onClick="send();">Wyślij</button></th>
+                </tr>
+            </table>
         </div>
         <div id="list_ticket" class="tabcontent">
             <ul id="ticket_list">
