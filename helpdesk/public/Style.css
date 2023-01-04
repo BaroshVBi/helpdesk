@@ -65,25 +65,39 @@ table {
     border-top: none;
 }
 
-#ticket_list td {
+.header {
     background-color: lightslategrey;
-    padding: 5px;
+    color: #f1f1f1;
 }
 
-#ticket_list tr {
-    
-}
+#ticket_list { }
 
-#add_ticket textarea {
-    resize: none;
-    width: 100%;
-    height: 200px;
-}
+    #ticket_list td {
+        background-color: lightslategrey;
+        padding: 5px;
+        color: #f1f1f1;
+    }
 
-#add_ticket input {
-    width: 100%;
-    height: 100%;
-}
+    #ticket_list th{
+        cursor: pointer;
+    }
+
+        #ticket_list tr:hover {
+            background-color: #f1f1f1;
+        }
+
+#add_ticket { }
+
+    #add_ticket textarea {
+        resize: none;
+        width: 100%;
+        height: 200px;
+    }
+
+    #add_ticket input {
+        width: 100%;
+        height: 100%;
+    }
 
 #priority {
     width: 200px;

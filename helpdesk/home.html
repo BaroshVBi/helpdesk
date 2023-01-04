@@ -15,6 +15,7 @@
     </div>
     <div class="main" id="test1">
         <div id="add_ticket" class="tabcontent">
+            <h2>Nowe Zgłoszenie</h2>
             <table>
                 <tr>
                     <td colspan="2"><label>Wypełnij formularz</label></td>
@@ -43,6 +44,7 @@
             </table>
         </div>
         <div id="list_ticket" class="tabcontent">
+            <h2>Twoje Zgłoszenia</h2>
             <table id="ticket_list">
                 <tr>
                     <td>ID</td>
@@ -55,8 +57,12 @@
             <button onclick="next(-1)">prev</button>
             <button onclick="next(1)">next</button>
         </div>
-        <div id="view_ticket" class="tabcontent"></div>
-        <div id="settings" class="tabcontent">ustawienia</div>
+        <div id="view_ticket" class="tabcontent">
+
+        </div>
+        <div id="settings" class="tabcontent">
+            <h2>Ustawienia</h2>
+        </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
