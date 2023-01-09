@@ -167,7 +167,13 @@ io.on('connection', (socket) => {
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			if (result.length > 0) {
-				io.emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority);
+				var sql = "SELECT name, dept FROM `login` WHERE id = '" + result[0].login_id + "'";
+				con.query(sql, function (err, result2) {
+					if (err) throw err;
+					if (result.length > 0) {
+						io.emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority, result2[0].name, result2[0].dept);
+					}
+				});
 			}
 		});
 	});

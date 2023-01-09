@@ -1,5 +1,5 @@
-var socket = io();
-var tabstatus = ['Nowy', 'Potwierdzony', 'Wstrzymany', 'Rozwi�zany'];
+﻿var socket = io();
+var tabstatus = ['Nowy', 'Potwierdzony', 'Wstrzymany', 'Rozwiązany'];
 var tabpriority = ['Niski', 'Normalny', 'Wysoki'];
 
 tabs('add_ticket');
@@ -8,8 +8,8 @@ socket.on('list_ticket', function (id, topic, data, status, priority) {
     $('#ticket_list').append($("<tr onclick='view(" + id + ")'>").html("<th>" + id + "</th><th>" + topic + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th>"));
 });
 
-socket.on('ticket_data', function (id, topic, descr, data, status, priority) {
-    $('#view_ticket').html("<table><tr><th class='header'>ID</th><th class='header'>Data</th><th class='header'>Status</th><th class='header'>Priorytet</th></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th></tr><tr><th class='header'>Temat</th><th colspan='3'>" + topic + "</th></tr><tr><th class='header'>Opis</th><th colspan='3'>" + descr + "</th></tr></table>");
+socket.on('ticket_data', function (id, topic, descr, data, status, priority, name, dept) {
+    $('#view_ticket').html("<table><tr><th class='header'>ID</th><th class='header'>Data</th><th class='header'>Status</th><th class='header'>Priorytet</th><th class='header'>Pracownik</th><th class='header'>Dział</th></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + dept + "</th></tr><tr><th class='header'>Temat</th><th colspan='5'>" + topic + "</th></tr><tr><th class='header'>Opis</th><th colspan='5'>" + descr + "</th></tr></table>");
     tabs('view_ticket');
 });
 
