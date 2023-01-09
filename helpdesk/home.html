@@ -18,14 +18,14 @@
             <h2>Nowe Zgłoszenie</h2>
             <table>
                 <tr>
-                    <td colspan="2"><label>Wypełnij formularz</label></td>
+                    <td class="header" colspan="2">Wypełnij formularz</td>
                 </tr>
                 <tr>
-                    <th><label for="topic">Temat</label></th>
+                    <th class="header" >Temat</th>
                     <th><input type="text" id="topic" /></th>
                 </tr>
                 <tr>
-                    <th><label for="priority">Priorytet</label></th>
+                    <th class="header" >Priorytet</th>
                     <th>
                         <select id="priority">
                             <option value="0">Niski</option>
@@ -35,11 +35,11 @@
                     </th>
                 </tr>
                 <tr>
-                    <th><label for="desc">Opis</label></th>
+                    <th class="header" >Opis</th>
                     <th><textarea type="text" id="desc" wrap="hard"></textarea></th>
                 </tr>
                 <tr>
-                    <th colspan="2"><button onClick="send();">Wyślij</button></th>
+                    <th class="header"  colspan="2"><button onClick="send();">Wyślij</button></th>
                 </tr>
             </table>
         </div>
