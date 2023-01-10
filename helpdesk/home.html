@@ -58,7 +58,26 @@
             <button onclick="next(1)">next</button>
         </div>
         <div id="view_ticket" class="tabcontent">
+            <h2>Zgłoszenie</h2>
+            <table id="view_ticket_table"></table>
 
+            <h2>Komentarze</h2>
+            <table id="view_ticket_com">
+                <tr><th class="header">Komentarze</th></tr>
+                <tr><th>Brak Komentarzy</th></tr>
+            </table>
+
+            <h2>Dodaj Komentarz</h2>
+            <table id="add_com">
+                <tr><th class="header" colspan="2">Dodaj Komentarz</th></tr>
+                <tr>
+                    <th class="header">Treść</th>
+                    <th><input type="text" id="com" /></th>
+                </tr>
+                <tr>
+                    <th class="header" colspan="2"><button onClick="send_com();">Wyślij</button></th>
+                </tr>
+            </table>
         </div>
         <div id="settings" class="tabcontent">
             <h2>Ustawienia</h2>

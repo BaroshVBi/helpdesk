@@ -9,17 +9,10 @@ socket.on('list_ticket', function (id, topic, data, status, priority) {
 });
 
 socket.on('ticket_data', function (id, topic, descr, data, status, priority, name, dept) {
-    $('#view_ticket').html("<table><tr><th class='header'>ID</th><th class='header'>Data</th><th class='header'>Status</th><th class='header'>Priorytet</th><th class='header'>Pracownik</th><th class='header'>Dział</th></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + dept + "</th></tr><tr><th class='header'>Temat</th><th colspan='5'>" + topic + "</th></tr><tr><th class='header'>Opis</th><th colspan='5'>" + descr + "</th></tr></table>");
+    $('#view_ticket_table').html("<tr><th class='header'>ID</th><th class='header'>Data</th><th class='header'>Status</th><th class='header'>Priorytet</th><th class='header'>Pracownik</th><th class='header'>Dział</th></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + dept + "</th></tr><tr><th class='header'>Temat</th><th colspan='5'>" + topic + "</th></tr><tr><th class='header'>Opis</th><th colspan='5'>" + descr + "</th></tr>");
+    $('#view_ticket_com').html("<tr><th class='header'>Komentarze</th></tr>< tr > <th>Brak Komentarzy</th></tr>");
     tabs('view_ticket');
 });
-
-function tabs(tab) {
-    var tabcontent = document.getElementsByClassName('tabcontent');
-    for (var i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = 'none';
-    }
-    document.getElementById(tab).style.display = 'block';
-}
 
 function send() {
     socket.emit('ticket', $('#topic').val(), $('#desc').val(), $('#priority').val());
@@ -30,6 +23,10 @@ function send() {
     next(0);
 }
 
+function send_com() {
+
+}
+
 function next(i) {
     $('#ticket_list').html("<tr><td> ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
     socket.emit('next_page', i);
@@ -37,4 +34,12 @@ function next(i) {
 
 function view(id) {
     socket.emit('view_ticket', id);
+}
+
+function tabs(tab) {
+    var tabcontent = document.getElementsByClassName('tabcontent');
+    for (var i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = 'none';
+    }
+    document.getElementById(tab).style.display = 'block';
 }

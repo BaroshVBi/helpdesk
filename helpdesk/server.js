@@ -140,7 +140,6 @@ io.on('connection', (socket) => {
 	}
 
 	socket.on('next_page', (pg) => {
-		//logs('next page');
 		var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
@@ -151,7 +150,6 @@ io.on('connection', (socket) => {
 				if (session.pg < 0) session.pg = 0;
 				if (session.pg > (result.length / 10)) session.pg = Math.floor(result.length / 10);
 			}
-			//logs(session.pg);
 			var x = 0;
 			var top = result.length - 1 - (10 * session.pg);
 			for (var i = top; i >= 0 && x < 10; i--) {
@@ -162,7 +160,6 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('view_ticket', (id) => {
-		//logs('view ticket');
 		var sql = "SELECT * FROM `tickets` WHERE id = '" + id + "'";
 		con.query(sql, function (err, result) {
 			if (err) throw err;

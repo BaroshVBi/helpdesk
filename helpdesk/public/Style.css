@@ -105,6 +105,17 @@ table {
         box-sizing: border-box;
     }
 
+#view_ticket_com {
+    margin-top: 30px;
+}
+
+#add_com input {
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
 @keyframes moveToRight {
     0% {
         transform: translateX(-100%);
