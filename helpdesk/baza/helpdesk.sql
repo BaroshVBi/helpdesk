@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 03 Sty 2023, 12:40
+-- Czas generowania: 10 Sty 2023, 15:07
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 8.1.6
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Baza danych: `helpdesk`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `comment`
+--
+
+CREATE TABLE `comment` (
+  `id` int(11) NOT NULL,
+  `com` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `ticket_id` int(11) NOT NULL,
+  `data` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -557,7 +571,86 @@ INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
 (519, '2023-01-03 12:33:18', 'next page'),
 (520, '2023-01-03 12:33:19', 'next page'),
 (521, '2023-01-03 12:33:19', 'next page'),
-(522, '2023-01-03 12:33:20', 'next page');
+(522, '2023-01-03 12:33:20', 'next page'),
+(523, '2023-01-03 12:43:05', 'next page'),
+(524, '2023-01-03 12:43:05', 'next page'),
+(525, '2023-01-03 12:43:06', 'next page'),
+(526, '2023-01-03 12:43:06', 'next page'),
+(527, '2023-01-03 12:43:07', 'next page'),
+(528, '2023-01-03 12:43:08', 'next page'),
+(529, '2023-01-03 12:43:09', 'next page'),
+(530, '2023-01-03 12:43:09', 'next page'),
+(531, '2023-01-03 12:43:10', 'next page'),
+(532, '2023-01-03 12:43:47', 'next page'),
+(533, '2023-01-03 12:43:47', 'next page'),
+(534, '2023-01-03 12:43:47', 'next page'),
+(535, '2023-01-03 12:43:48', 'next page'),
+(536, '2023-01-03 12:43:49', 'next page'),
+(537, '2023-01-03 12:43:49', 'next page'),
+(538, '2023-01-03 12:43:49', 'next page'),
+(539, '2023-01-03 12:43:50', 'next page'),
+(540, '2023-01-03 12:44:45', 'next page'),
+(541, '2023-01-03 12:44:46', 'next page'),
+(542, '2023-01-03 12:44:47', 'next page'),
+(543, '2023-01-03 12:44:47', 'next page'),
+(544, '2023-01-03 12:44:48', 'next page'),
+(545, '2023-01-03 12:44:48', 'next page'),
+(546, '2023-01-03 12:44:49', 'next page'),
+(547, '2023-01-03 12:44:49', 'next page'),
+(548, '2023-01-03 12:44:49', 'next page'),
+(549, '2023-01-03 12:58:58', 'next page'),
+(550, '2023-01-03 12:58:59', 'next page'),
+(551, '2023-01-03 12:58:59', 'next page'),
+(552, '2023-01-03 12:59:00', 'next page'),
+(553, '2023-01-03 12:59:00', 'next page'),
+(554, '2023-01-03 12:59:00', 'next page'),
+(555, '2023-01-03 12:59:01', 'next page'),
+(556, '2023-01-03 12:59:01', 'next page'),
+(557, '2023-01-03 12:59:02', 'next page'),
+(558, '2023-01-03 12:59:03', 'next page'),
+(559, '2023-01-03 12:59:03', 'next page'),
+(560, '2023-01-03 12:59:03', 'next page'),
+(561, '2023-01-03 13:01:16', 'Database connected!'),
+(562, '2023-01-03 13:22:50', 'test has logged in.'),
+(563, '2023-01-03 13:26:06', 'Database connected!'),
+(564, '2023-01-03 13:26:11', 'test has logged in.'),
+(565, '2023-01-03 14:03:30', 'Database connected!'),
+(566, '2023-01-03 14:03:36', 'test has logged in.'),
+(567, '2023-01-03 14:05:41', 'Database connected!'),
+(568, '2023-01-03 14:05:48', 'test has logged in.'),
+(569, '2023-01-03 14:06:59', 'Database connected!'),
+(570, '2023-01-03 14:07:06', 'test has logged in.'),
+(571, '2023-01-03 14:07:11', 'view ticket'),
+(572, '2023-01-03 14:07:22', 'Database connected!'),
+(573, '2023-01-03 14:07:30', 'test has logged in.'),
+(574, '2023-01-03 14:07:34', 'view ticket'),
+(575, '2023-01-03 14:08:18', 'Database connected!'),
+(576, '2023-01-03 14:08:23', 'test has logged in.'),
+(577, '2023-01-03 14:08:26', 'view ticket'),
+(578, '2023-01-03 14:09:39', 'view ticket'),
+(579, '2023-01-03 14:09:44', 'view ticket'),
+(580, '2023-01-03 14:09:58', 'ticket inserted'),
+(581, '2023-01-03 14:09:59', 'view ticket'),
+(582, '2023-01-03 14:12:21', 'view ticket'),
+(583, '2023-01-03 14:12:26', 'view ticket'),
+(584, '2023-01-03 14:12:35', 'view ticket'),
+(585, '2023-01-03 14:12:37', 'view ticket'),
+(586, '2023-01-03 14:12:40', 'view ticket'),
+(587, '2023-01-03 14:13:32', 'view ticket'),
+(588, '2023-01-03 14:13:34', 'view ticket'),
+(589, '2023-01-03 14:13:37', 'view ticket'),
+(590, '2023-01-04 08:24:59', 'Database connected!'),
+(591, '2023-01-04 08:34:01', 'test has logged in.'),
+(592, '2023-01-04 10:41:53', 'test has logged in.'),
+(593, '2023-01-04 11:58:20', 'ticket inserted'),
+(594, '2023-01-04 12:08:39', 'ticket inserted'),
+(595, '2023-01-04 12:09:02', 'ticket inserted'),
+(596, '2023-01-09 12:13:56', 'Database connected!'),
+(597, '2023-01-09 12:14:08', 'test has logged in.'),
+(598, '2023-01-09 15:42:24', 'Database connected!'),
+(599, '2023-01-09 15:42:50', 'test has logged in.'),
+(600, '2023-01-10 12:07:48', 'Database connected!'),
+(601, '2023-01-10 12:07:58', 'test has logged in.');
 
 -- --------------------------------------------------------
 
@@ -571,7 +664,7 @@ CREATE TABLE `tickets` (
   `topic` text NOT NULL DEFAULT 'brak',
   `descr` text NOT NULL,
   `data` datetime NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1,
+  `status` int(11) NOT NULL DEFAULT 0,
   `priority` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -624,11 +717,21 @@ INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `pr
 (43, 1, 'dfhdhfs', 'dsfhdfhdh', '2023-01-03 12:29:38', 1, 1),
 (44, 1, 'dfhdhfs', 'dsfhdfhdh', '2023-01-03 12:29:40', 1, 1),
 (45, 1, 'dsfh', 'fgjd', '2023-01-03 12:32:18', 1, 1),
-(46, 1, 'dsfh', 'fgjd', '2023-01-03 12:33:10', 1, 1);
+(46, 1, 'dsfh', 'fgjd', '2023-01-03 12:33:10', 1, 1),
+(47, 1, 'dfhdhfs', 'dsfhdfhdh', '2023-01-03 14:09:58', 1, 1),
+(48, 1, 'Problem z komputerem', 'Komputer sie nie uruchamia', '2023-01-04 11:58:20', 0, 0),
+(49, 1, 'cos tam', 'halo', '2023-01-04 12:08:39', 0, 1),
+(50, 1, 'halo', 'cos tam', '2023-01-04 12:09:02', 0, 2);
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `login`
@@ -653,6 +756,12 @@ ALTER TABLE `tickets`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT dla tabeli `login`
 --
 ALTER TABLE `login`
@@ -662,13 +771,13 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT dla tabeli `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=523;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=602;
 
 --
 -- AUTO_INCREMENT dla tabeli `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
