@@ -10,8 +10,12 @@ socket.on('list_ticket', function (id, topic, data, status, priority) {
 
 socket.on('ticket_data', function (id, topic, descr, data, status, priority, name, dept) {
     $('#view_ticket_table').html("<tr><th class='header'>ID</th><th class='header'>Data</th><th class='header'>Status</th><th class='header'>Priorytet</th><th class='header'>Pracownik</th><th class='header'>Dział</th></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + dept + "</th></tr><tr><th class='header'>Temat</th><th colspan='5'>" + topic + "</th></tr><tr><th class='header'>Opis</th><th colspan='5'>" + descr + "</th></tr>");
-    $('#view_ticket_com').html("<tr><th class='header'>Komentarze</th></tr>< tr > <th>Brak Komentarzy</th></tr>");
+    $('#view_ticket_com').html("<tr><td class='header'>Data dodania</td><td class='header'>Użytkownik</td><td class='header'>Komentarz</td></tr>");
     tabs('view_ticket');
+});
+
+socket.on('comment_data', function (com, name, data) {
+    $('#view_ticket_com').append($('<tr>').html("<th>" + data + "</th><th>" + name + "</th><th>" + com + "</th>"));
 });
 
 function send() {
@@ -24,7 +28,8 @@ function send() {
 }
 
 function send_com() {
-
+    socket.emit('add_comment', $('#com').val());
+    $('#com').val('');
 }
 
 function next(i) {
