@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Sty 2023, 15:07
+-- Czas generowania: 11 Sty 2023, 14:18
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 8.1.6
 
@@ -30,10 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `com` text NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `login_id` int(11) NOT NULL,
   `ticket_id` int(11) NOT NULL,
   `data` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `comment`
+--
+
+INSERT INTO `comment` (`id`, `com`, `login_id`, `ticket_id`, `data`) VALUES
+(1, 'nowy komentaz', 1, 49, '2023-01-11 11:47:16'),
+(2, 'fgdhdfgh', 1, 49, '2023-01-11 13:00:01'),
+(3, 'sadgsdg', 1, 49, '2023-01-11 13:55:47'),
+(4, 'nie wiem', 1, 50, '2023-01-11 13:56:01'),
+(5, 'a może wiem', 1, 50, '2023-01-11 13:56:35');
 
 -- --------------------------------------------------------
 
@@ -650,7 +661,82 @@ INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
 (598, '2023-01-09 15:42:24', 'Database connected!'),
 (599, '2023-01-09 15:42:50', 'test has logged in.'),
 (600, '2023-01-10 12:07:48', 'Database connected!'),
-(601, '2023-01-10 12:07:58', 'test has logged in.');
+(601, '2023-01-10 12:07:58', 'test has logged in.'),
+(602, '2023-01-11 11:22:27', 'Database connected!'),
+(603, '2023-01-11 11:22:33', 'test has logged in.'),
+(604, '2023-01-11 11:46:52', 'Database connected!'),
+(605, '2023-01-11 11:46:58', 'test has logged in.'),
+(606, '2023-01-11 11:47:16', 'comment inserted'),
+(607, '2023-01-11 12:02:34', 'Database connected!'),
+(608, '2023-01-11 12:02:39', 'test has logged in.'),
+(609, '2023-01-11 12:02:59', 'Database connected!'),
+(610, '2023-01-11 12:03:11', 'test has logged in.'),
+(611, '2023-01-11 12:03:31', 'Database connected!'),
+(612, '2023-01-11 12:03:40', 'test has logged in.'),
+(613, '2023-01-11 12:09:56', 'Database connected!'),
+(614, '2023-01-11 12:10:07', 'test has logged in.'),
+(615, '2023-01-11 12:16:41', 'Database connected!'),
+(616, '2023-01-11 12:16:50', 'test has logged in.'),
+(617, '2023-01-11 12:16:54', '1'),
+(618, '2023-01-11 12:17:40', 'Database connected!'),
+(619, '2023-01-11 12:17:49', 'test has logged in.'),
+(620, '2023-01-11 12:17:52', 'nowy komentaz'),
+(621, '2023-01-11 12:18:56', 'Database connected!'),
+(622, '2023-01-11 12:19:10', 'test has logged in.'),
+(623, '2023-01-11 12:19:13', 'nowy komentaz'),
+(624, '2023-01-11 12:19:13', '1'),
+(625, '2023-01-11 12:21:05', 'Database connected!'),
+(626, '2023-01-11 12:21:11', 'Database connected!'),
+(627, '2023-01-11 12:21:21', 'test has logged in.'),
+(628, '2023-01-11 12:21:24', 'nowy komentaz'),
+(629, '2023-01-11 12:23:57', 'Database connected!'),
+(630, '2023-01-11 12:24:06', 'test has logged in.'),
+(631, '2023-01-11 12:24:10', '0'),
+(632, '2023-01-11 12:24:10', 'nowy komentaz'),
+(633, '2023-01-11 12:25:08', 'Database connected!'),
+(634, '2023-01-11 12:25:23', 'test has logged in.'),
+(635, '2023-01-11 12:25:26', 'out0'),
+(636, '2023-01-11 12:25:26', 'nowy komentaz'),
+(637, '2023-01-11 12:31:15', 'Database connected!'),
+(638, '2023-01-11 12:31:23', 'test has logged in.'),
+(639, '2023-01-11 12:39:07', 'Database connected!'),
+(640, '2023-01-11 12:39:18', 'test has logged in.'),
+(641, '2023-01-11 12:39:22', 'nowy komentaz'),
+(642, '2023-01-11 13:00:01', 'comment inserted'),
+(643, '2023-01-11 13:00:17', 'nowy komentaz'),
+(644, '2023-01-11 13:01:02', 'Database connected!'),
+(645, '2023-01-11 13:01:08', 'test has logged in.'),
+(646, '2023-01-11 13:14:41', 'Database connected!'),
+(647, '2023-01-11 13:14:48', 'test has logged in.'),
+(648, '2023-01-11 13:14:51', '0'),
+(649, '2023-01-11 13:15:34', 'Database connected!'),
+(650, '2023-01-11 13:15:40', 'test has logged in.'),
+(651, '2023-01-11 13:15:43', '2'),
+(652, '2023-01-11 13:15:43', '0'),
+(653, '2023-01-11 13:17:22', 'Database connected!'),
+(654, '2023-01-11 13:17:30', 'test has logged in.'),
+(655, '2023-01-11 13:17:44', '2'),
+(656, '2023-01-11 13:17:44', '1'),
+(657, '2023-01-11 13:17:44', '1'),
+(658, '2023-01-11 13:27:40', 'Database connected!'),
+(659, '2023-01-11 13:27:48', 'test has logged in.'),
+(660, '2023-01-11 13:27:53', '2'),
+(661, '2023-01-11 13:27:53', '0'),
+(662, '2023-01-11 13:27:53', '1'),
+(663, '2023-01-11 13:33:34', '2'),
+(664, '2023-01-11 13:33:34', '0'),
+(665, '2023-01-11 13:33:34', '1'),
+(666, '2023-01-11 13:55:29', 'Database connected!'),
+(667, '2023-01-11 13:55:36', 'test has logged in.'),
+(668, '2023-01-11 13:55:47', 'comment inserted'),
+(669, '2023-01-11 13:56:01', 'comment inserted'),
+(670, '2023-01-11 13:56:35', 'comment inserted'),
+(671, '2023-01-11 13:58:12', 'Database connected!'),
+(672, '2023-01-11 13:58:21', 'test has logged in.'),
+(673, '2023-01-11 13:58:55', 'Database connected!'),
+(674, '2023-01-11 13:59:09', 'test has logged in.'),
+(675, '2023-01-11 13:59:30', 'Database connected!'),
+(676, '2023-01-11 13:59:35', 'test has logged in.');
 
 -- --------------------------------------------------------
 
@@ -759,7 +845,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT dla tabeli `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT dla tabeli `login`
@@ -771,7 +857,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT dla tabeli `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=602;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=677;
 
 --
 -- AUTO_INCREMENT dla tabeli `tickets`
