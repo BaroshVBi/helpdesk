@@ -163,7 +163,7 @@ io.on('connection', (socket) => {
 			else {
 				session.pg += pg;
 				if (session.pg < 0) session.pg = 0;
-				if (session.pg > (result.length / 10)) session.pg = Math.floor(result.length / 10);
+				if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
 			}
 			var x = 0;
 			var top = result.length - 1 - (10 * session.pg);
@@ -185,7 +185,7 @@ io.on('connection', (socket) => {
 			else {
 				session.pg += pg;
 				if (session.pg < 0) session.pg = 0;
-				if (session.pg > (result.length / 10)) session.pg = Math.floor(result.length / 10);
+				if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
 			}
 			var x = 0;
 			var top = result.length - 1 - (10 * session.pg);
