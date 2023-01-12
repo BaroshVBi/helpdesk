@@ -9,14 +9,93 @@
 <body>
     <div class="sidenav">
         <a class="tablinks" href="#" onclick="tabs('add_ticket');">Nowy ticket</a>
-        <a class="tablinks" href="#" onclick="tabs('view_ticket');">Twoje tickety</a>
+        <a class="tablinks" href="#" onclick="tabs('list_ticket');">Twoje tickety</a>
+        <a class="tablinks" href="#" onclick="tabs('list_ticket_admin');">Wszystkie tickety</a>
         <a class="tablinks" href="#" onclick="tabs('settings');">Ustawienia</a>
         <a href="/logout">Wyloguj</a>
     </div>
     <div class="main" id="test1">
-        <div id="add_ticket" class="tabcontent">dodaj</div>
-        <div id="view_ticket" class="tabcontent">wyswietl</div>
-        <div id="settings" class="tabcontent">ustawienia</div>
+        <div id="add_ticket" class="tabcontent">
+            <h2>Nowe Zgłoszenie</h2>
+            <table>
+                <tr>
+                    <td class="header" colspan="2">Wypełnij formularz</td>
+                </tr>
+                <tr>
+                    <th class="header">Temat</th>
+                    <th><input type="text" id="topic" /></th>
+                </tr>
+                <tr>
+                    <th class="header">Priorytet</th>
+                    <th>
+                        <select id="priority">
+                            <option value="0">Niski</option>
+                            <option value="1">Normalny</option>
+                            <option value="2">Wysoki</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="header">Opis</th>
+                    <th><textarea type="text" id="desc" wrap="hard"></textarea></th>
+                </tr>
+                <tr>
+                    <th class="header" colspan="2"><button onClick="send();">Wyślij</button></th>
+                </tr>
+            </table>
+        </div>
+        <div id="list_ticket" class="tabcontent">
+            <h2>Twoje Zgłoszenia</h2>
+            <table id="ticket_list">
+                <tr>
+                    <td>ID</td>
+                    <td>Temat</td>
+                    <td>Data</td>
+                    <td>Status</td>
+                    <td>Priorytet</td>
+                </tr>
+            </table>
+            <button onclick="next(-1)">prev</button>
+            <button onclick="next(1)">next</button>
+        </div>
+        <div id="list_ticket_admin" class="tabcontent">
+            <h2>Twoje Zgłoszenia</h2>
+            <table id="ticket_list_admin">
+                <tr>
+                    <td>ID</td>
+                    <td>Temat</td>
+                    <td>Data</td>
+                    <td>Status</td>
+                    <td>Priorytet</td>
+                </tr>
+            </table>
+            <button onclick="next_admin(-1)">prev</button>
+            <button onclick="next_admin(1)">next</button>
+        </div>
+        <div id="view_ticket" class="tabcontent">
+            <h2>Zgłoszenie</h2>
+            <table id="view_ticket_table"></table>
+
+            <h2>Komentarze</h2>
+            <table id="view_ticket_com">
+                <tr><td class="header">Data dodania</td><td class="header">Użytkownik</td><td class="header">Komentarz</td></tr>
+            </table>
+
+            <h2>Dodaj Komentarz</h2>
+            <table id="add_com">
+                <tr><th class="header" colspan="2">Dodaj Komentarz</th></tr>
+                <tr>
+                    <th class="header">Treść</th>
+                    <th><input type="text" id="com" /></th>
+                </tr>
+                <tr>
+                    <th class="header" colspan="2"><button onClick="send_com();">Wyślij</button></th>
+                </tr>
+            </table>
+        </div>
+        <div id="settings" class="tabcontent">
+            <h2>Ustawienia</h2>
+        </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
