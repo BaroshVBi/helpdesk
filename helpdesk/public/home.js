@@ -25,7 +25,6 @@ function send() {
     $('#desc').val('');
     $('#priority').val(0);
     tabs('list_ticket');
-    next(0);
 }
 
 function send_com() {
@@ -47,5 +46,10 @@ function tabs(tab) {
     for (var i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = 'none';
     }
+
+    if (tab == 'list_ticket') {
+        next(0);
+    }
+
     document.getElementById(tab).style.display = 'block';
 }

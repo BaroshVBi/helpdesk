@@ -29,7 +29,6 @@ function send() {
     $('#desc').val('');
     $('#priority').val(0);
     tabs('list_ticket');
-    next(0);
 }
 
 function send_com() {
