@@ -2,6 +2,7 @@ var socket = io();
 var tabstatus = ['Nowy', 'Potwierdzony', 'Wstrzymany', 'Rozwiązany'];
 var tabpriority = ['Niski', 'Normalny', 'Wysoki'];
 var tabdept = ['HR', 'IT', 'Sprzedaż', 'Produkcja'];
+var current_ticket = 0;
 
 tabs('list_ticket_admin');
 
@@ -34,6 +35,7 @@ function send() {
 function send_com() {
     socket.emit('add_comment', $('#com').val());
     $('#com').val('');
+    view(current_ticket);
 }
 
 function next(i) {
@@ -48,6 +50,7 @@ function next_admin(i) {
 
 function view(id) {
     socket.emit('view_ticket', id);
+    current_ticket = id;
 }
 
 function tabs(tab) {

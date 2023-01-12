@@ -147,7 +147,7 @@ io.on('connection', (socket) => {
 				var x = 0;
 				var top = result.length - 1 - (10 * session.pg);
 				for (var i = top; i >= 0 && x < 10; i--) {
-					io.emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
+					io.to(socket.id).emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
 					x += 1;
 				}
 			});
@@ -171,7 +171,7 @@ io.on('connection', (socket) => {
 				var x = 0;
 				var top = result.length - 1 - (10 * session.pg);
 				for (var i = top; i >= 0 && x < 10; i--) {
-					io.emit('list_ticket_admin', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
+					io.to(socket.id).emit('list_ticket_admin', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
 					x += 1;
 				}
 			});
@@ -188,7 +188,7 @@ io.on('connection', (socket) => {
 					con.query(sql, function (err, result2) {
 						if (err) throw err;
 						if (result2.length > 0) {
-							io.emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority, result2[0].name, result2[0].dept);
+							io.to(socket.id).emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority, result2[0].name, result2[0].dept);
 							session.current_ticket = result[0].id;
 							comment_data(id); //function
 						}
@@ -203,10 +203,29 @@ io.on('connection', (socket) => {
 			var sql = "INSERT INTO comment (com, login_id, ticket_id, data) VALUES ('" + com + "', '" + session.user_id + "', '" + session.current_ticket + "', '" + parseTime(new Date()) + "')";
 			con.query(sql, function (err, result) {
 				if (err) throw err;
+				//comment_data(session.current_ticket);
 				logs("comment inserted");
 			});
 		}
 	});
+
+	function comment_data(id) {
+		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			if (result.length > 0) {
+				for (var i = 0; i < result.length; i++) {
+					(function (resi) {
+						var sql = "SELECT name From login WHERE id = '" + result[resi].login_id + "'";
+						con.query(sql, function (err, result2) {
+							if (err) throw err;
+							io.to(socket.id).emit('comment_data', result[resi].com, result2[0].name, parseTime(result[resi].data));
+						});
+					})(i);
+				}
+			}
+		});
+	}
 });
 
 http.listen(port, () => {
@@ -234,23 +253,5 @@ function logs(string) {
 	var sql = "INSERT INTO logs (data, tresc) VALUES ('" + parseTime(new Date()) + "','" + string + "')";
 	con.query(sql, function (err, result) {
 		if (err) throw err;
-	});
-}
-
-function comment_data(id) {
-	var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
-	con.query(sql, function (err, result) {
-		if (err) throw err;
-		if (result.length > 0) {
-			for (var i = 0; i < result.length; i++) {
-				(function (resi) {
-					var sql = "SELECT name From login WHERE id = '" + result[resi].login_id + "'";
-					con.query(sql, function (err, result2) {
-						if (err) throw err;
-						io.emit('comment_data', result[resi].com, result2[0].name, parseTime(result[resi].data));
-					});
-				})(i);
-			}
-		}
 	});
 }

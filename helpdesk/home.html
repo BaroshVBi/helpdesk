@@ -43,6 +43,7 @@
                 </tr>
             </table>
         </div>
+
         <div id="list_ticket" class="tabcontent">
             <h2>Twoje Zgłoszenia</h2>
             <table id="ticket_list" class="ticketList">
@@ -57,6 +58,7 @@
             <button onclick="next(-1)">prev</button>
             <button onclick="next(1)">next</button>
         </div>
+
         <div id="view_ticket" class="tabcontent">
             <h2>Zgłoszenie</h2>
             <table id="view_ticket_table"></table>
@@ -69,17 +71,9 @@
             <h2>Dodaj Komentarz</h2>
             <table id="add_com">
                 <tr><th class="header" colspan="2">Dodaj Komentarz</th></tr>
-                <tr>
-                    <th class="header">Treść</th>
-                    <th><input type="text" id="com" /></th>
-                </tr>
-                <tr>
-                    <th class="header" colspan="2"><button onClick="send_com();">Wyślij</button></th>
-                </tr>
+                <tr><th class="header">Treść</th><th><input type="text" id="com" /></th></tr>
+                <tr><th class="header" colspan="2"><button onClick="send_com();">Wyślij</button></th></tr>
             </table>
-        </div>
-        <div id="settings" class="tabcontent">
-            <h2>Ustawienia</h2>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
