@@ -120,106 +120,92 @@ app.get('/logout', (req, res) => {
 io.on('connection', (socket) => {
 	const session = socket.request.session;
 
-	if (session.loggedin) {
-		var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			var x = 0;
-			for (var i = result.length - 1; i >= 0 && x < 10; i--) {
-				io.emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
-				x += 1;
-			}
-		});
-	}
-
-	if (session.loggedin && session.lvl == 2) {
-		var sql = "SELECT * FROM `tickets`";
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			var x = 0;
-			for (var i = result.length - 1; i >= 0 && x < 10; i--) {
-				io.emit('list_ticket_admin', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
-				x += 1;
-			}
-		});
-    }
-
 	socket.on('ticket', (topic, desc, priority) => {
-		var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			logs("ticket inserted");
-		});
+		if (session.loggedin) {
+			var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("ticket inserted");
+			});
+		}
 	});
 
 	socket.on('next_page', (pg) => {
-		session.current_ticket = 0;
-		var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			if (pg == 0) {
-				session.pg = 0;
-			}
-			else {
-				session.pg += pg;
-				if (session.pg < 0) session.pg = 0;
-				if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
-			}
-			var x = 0;
-			var top = result.length - 1 - (10 * session.pg);
-			for (var i = top; i >= 0 && x < 10; i--) {
-				io.emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
-				x += 1;
-			}
-		});
+		if (session.loggedin) {
+			session.current_ticket = 0;
+			var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				if (pg == 0) {
+					session.pg = 0;
+				}
+				else {
+					session.pg += pg;
+					if (session.pg < 0) session.pg = 0;
+					if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
+				}
+				var x = 0;
+				var top = result.length - 1 - (10 * session.pg);
+				for (var i = top; i >= 0 && x < 10; i--) {
+					io.emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
+					x += 1;
+				}
+			});
+		}
 	});
 
 	socket.on('next_page_admin', (pg) => {
-		session.current_ticket = 0;
-		var sql = "SELECT * FROM `tickets`";
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			if (pg == 0) {
-				session.pg = 0;
-			}
-			else {
-				session.pg += pg;
-				if (session.pg < 0) session.pg = 0;
-				if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
-			}
-			var x = 0;
-			var top = result.length - 1 - (10 * session.pg);
-			for (var i = top; i >= 0 && x < 10; i--) {
-				io.emit('list_ticket_admin', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
-				x += 1;
-			}
-		});
+		if (session.loggedin && session.lvl == 2) {
+			session.current_ticket = 0;
+			var sql = "SELECT * FROM `tickets`";
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				if (pg == 0) {
+					session.pg = 0;
+				}
+				else {
+					session.pg += pg;
+					if (session.pg < 0) session.pg = 0;
+					if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
+				}
+				var x = 0;
+				var top = result.length - 1 - (10 * session.pg);
+				for (var i = top; i >= 0 && x < 10; i--) {
+					io.emit('list_ticket_admin', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
+					x += 1;
+				}
+			});
+		}
 	});
 
 	socket.on('view_ticket', (id) => {
-		var sql = "SELECT * FROM `tickets` WHERE id = '" + id + "'";
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			if (result.length > 0) {
-				var sql = "SELECT name, dept FROM `login` WHERE id = '" + result[0].login_id + "'";
-				con.query(sql, function (err, result2) {
-					if (err) throw err;
-					if (result2.length > 0) {
-						io.emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority, result2[0].name, result2[0].dept);
-						session.current_ticket = result[0].id;
-						comment_data(id); //function
-					}
-				});
-			}
-		});
+		if (session.loggedin) {
+			var sql = "SELECT * FROM `tickets` WHERE id = '" + id + "'";
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				if (result.length > 0) {
+					var sql = "SELECT name, dept FROM `login` WHERE id = '" + result[0].login_id + "'";
+					con.query(sql, function (err, result2) {
+						if (err) throw err;
+						if (result2.length > 0) {
+							io.emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority, result2[0].name, result2[0].dept);
+							session.current_ticket = result[0].id;
+							comment_data(id); //function
+						}
+					});
+				}
+			});
+		}
 	});
 
 	socket.on('add_comment', (com) => {
-		var sql = "INSERT INTO comment (com, login_id, ticket_id, data) VALUES ('" + com + "', '" + session.user_id + "', '" + session.current_ticket + "', '" + parseTime(new Date()) + "')";
-		con.query(sql, function (err, result) {
-			if (err) throw err;
-			logs("comment inserted");
-		});
+		if (session.loggedin) {
+			var sql = "INSERT INTO comment (com, login_id, ticket_id, data) VALUES ('" + com + "', '" + session.user_id + "', '" + session.current_ticket + "', '" + parseTime(new Date()) + "')";
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("comment inserted");
+			});
+		}
 	});
 });
 
