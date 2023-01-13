@@ -209,6 +209,16 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('send_edit', (priority, status) => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "UPDATE tickets SET status = '" + status + "', priority = '" + priority + "' WHERE tickets.id =" + session.current_ticket;
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("ticket edited");
+			});
+		}
+	});
+
 	function comment_data(id) {
 		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
 		con.query(sql, function (err, result) {

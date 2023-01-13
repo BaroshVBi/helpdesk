@@ -1,10 +1,11 @@
 ﻿var socket = io();
-var tabstatus = ['Nowy', 'Potwierdzony', 'Wstrzymany', 'Rozwiązany'];
-var tabpriority = ['Niski', 'Normalny', 'Wysoki'];
-var tabdept = ['HR', 'IT', 'Sprzedaż', 'Produkcja'];
+var tabstatus = []; tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
+var tabpriority = []; tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
+var tabdept = []; tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
 var current_ticket = 0;
 
 tabs('add_ticket');
+tabpriority.forEach(appendPriority);
 
 socket.on('list_ticket', function (id, topic, data, status, priority) {
     $('#ticket_list').append($("<tr onclick='view(" + id + ")'>").html("<th>" + id + "</th><th>" + topic + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th>"));
@@ -55,4 +56,8 @@ function tabs(tab) {
     }
 
     document.getElementById(tab).style.display = 'block';
+}
+
+function appendPriority(item, index) {
+    $('#priority').append($("<option value='" + index + "'>").html(item));
 }

@@ -27,13 +27,7 @@
                 </tr>
                 <tr>
                     <th class="header">Priorytet</th>
-                    <th>
-                        <select id="priority">
-                            <option value="0">Niski</option>
-                            <option value="1">Normalny</option>
-                            <option value="2">Wysoki</option>
-                        </select>
-                    </th>
+                    <th><select id="priority"></select></th>
                 </tr>
                 <tr>
                     <th class="header">Opis</th>
@@ -82,6 +76,20 @@
             <h2>Komentarze</h2>
             <table id="view_ticket_com">
                 <tr><td class="header">Data dodania</td><td class="header">Użytkownik</td><td class="header">Komentarz</td></tr>
+            </table>
+
+            <h2>Edytuj</h2>
+            <table>
+                <tr><th class="header" colspan="2">Wprowadź Zmiany</th></tr>
+                <tr>
+                    <th class="header">Priorytet</th>
+                    <th><select id="edit_priority"></select></th>
+                </tr>
+                <tr>
+                    <th class="header">Status</th>
+                    <th><select id="edit_status"></select></th>
+                </tr>
+                <tr><th class="header" colspan="2"><button onClick="sendEdit();">Wyślij</button></th></tr>
             </table>
 
             <h2>Dodaj Komentarz</h2>
