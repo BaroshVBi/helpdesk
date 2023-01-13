@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 11 Sty 2023, 14:18
+-- Czas generowania: 13 Sty 2023, 13:44
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 8.1.6
 
@@ -44,7 +44,95 @@ INSERT INTO `comment` (`id`, `com`, `login_id`, `ticket_id`, `data`) VALUES
 (2, 'fgdhdfgh', 1, 49, '2023-01-11 13:00:01'),
 (3, 'sadgsdg', 1, 49, '2023-01-11 13:55:47'),
 (4, 'nie wiem', 1, 50, '2023-01-11 13:56:01'),
-(5, 'a może wiem', 1, 50, '2023-01-11 13:56:35');
+(5, 'a może wiem', 1, 50, '2023-01-11 13:56:35'),
+(6, 'sdfasd', 2, 51, '2023-01-12 10:44:36'),
+(7, 'dfgdfg', 1, 54, '2023-01-12 12:27:00'),
+(8, 'ghjvgh', 1, 54, '2023-01-12 12:27:03'),
+(9, 'hjlkj', 1, 54, '2023-01-12 12:27:07'),
+(10, 'halo', 1, 55, '2023-01-12 12:27:21'),
+(11, 'test sesji', 2, 55, '2023-01-12 12:28:24'),
+(12, 'test 2', 2, 55, '2023-01-12 12:28:32'),
+(13, 'test sessesesse', 2, 55, '2023-01-12 12:29:10'),
+(14, 'test sa', 2, 55, '2023-01-12 12:38:55'),
+(15, 'rtdt', 1, 55, '2023-01-12 12:39:04'),
+(16, 'rertretretretre', 2, 55, '2023-01-12 12:39:43'),
+(17, 'sdfsdf', 1, 55, '2023-01-12 12:43:22'),
+(18, 'sdfgdfsg', 2, 55, '2023-01-12 12:47:46'),
+(19, 'test', 1, 55, '2023-01-12 12:59:02'),
+(20, 'halo', 1, 55, '2023-01-12 12:59:51'),
+(21, 'sdfgs', 1, 55, '2023-01-12 13:00:06'),
+(22, 'sdfg', 2, 55, '2023-01-12 13:00:08'),
+(23, 'sdfgsdfg', 2, 55, '2023-01-12 13:00:15'),
+(24, 'sdfgs', 1, 55, '2023-01-12 13:00:36'),
+(25, 'sdfg', 2, 55, '2023-01-12 13:00:41'),
+(26, 'sdfg', 2, 55, '2023-01-12 13:00:47'),
+(27, 'asdfasdf', 2, 55, '2023-01-12 13:01:59'),
+(28, '1', 2, 55, '2023-01-12 13:02:04'),
+(29, 's', 2, 55, '2023-01-12 13:02:09'),
+(30, 'sdfgdsf', 2, 56, '2023-01-13 11:27:48'),
+(31, 'gsdfgsdfg', 2, 56, '2023-01-13 11:27:58');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `config_dept`
+--
+
+CREATE TABLE `config_dept` (
+  `id` int(11) NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `config_dept`
+--
+
+INSERT INTO `config_dept` (`id`, `value`) VALUES
+(1, 'HR'),
+(2, 'IT'),
+(3, 'Sprzedaż'),
+(4, 'Produkcja');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `config_priority`
+--
+
+CREATE TABLE `config_priority` (
+  `id` int(11) NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `config_priority`
+--
+
+INSERT INTO `config_priority` (`id`, `value`) VALUES
+(1, 'Niski'),
+(2, 'Normalny'),
+(3, 'Wysoki');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `config_status`
+--
+
+CREATE TABLE `config_status` (
+  `id` int(11) NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `config_status`
+--
+
+INSERT INTO `config_status` (`id`, `value`) VALUES
+(1, 'Nowy'),
+(2, 'Potwierdzony'),
+(3, 'Wstrzymany'),
+(4, 'Rozwiązany');
 
 -- --------------------------------------------------------
 
@@ -66,8 +154,8 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`id`, `name`, `email`, `password`, `lvl`, `dept`) VALUES
-(1, 'test', 'test@test.com', 'test', 1, 1),
-(2, 'admin', 'admin@test.com', 'test', 2, 2);
+(1, 'test', 'test@test.com', 'test', 1, 0),
+(2, 'admin', 'admin@test.com', 'test', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -736,7 +824,199 @@ INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
 (673, '2023-01-11 13:58:55', 'Database connected!'),
 (674, '2023-01-11 13:59:09', 'test has logged in.'),
 (675, '2023-01-11 13:59:30', 'Database connected!'),
-(676, '2023-01-11 13:59:35', 'test has logged in.');
+(676, '2023-01-11 13:59:35', 'test has logged in.'),
+(677, '2023-01-12 10:31:04', 'Database connected!'),
+(678, '2023-01-12 10:31:12', 'test has logged in.'),
+(679, '2023-01-12 10:34:11', 'test has logged in.'),
+(680, '2023-01-12 10:40:31', 'admin has logged in.'),
+(681, '2023-01-12 10:44:28', 'ticket inserted'),
+(682, '2023-01-12 10:44:36', 'comment inserted'),
+(683, '2023-01-12 11:06:32', 'Database connected!'),
+(684, '2023-01-12 11:06:40', 'admin has logged in.'),
+(685, '2023-01-12 11:10:16', 'Database connected!'),
+(686, '2023-01-12 11:10:24', 'admin has logged in.'),
+(687, '2023-01-12 11:14:17', 'Database connected!'),
+(688, '2023-01-12 11:14:27', 'admin has logged in.'),
+(689, '2023-01-12 11:22:08', 'Database connected!'),
+(690, '2023-01-12 11:22:17', 'admin has logged in.'),
+(691, '2023-01-12 11:23:42', 'Database connected!'),
+(692, '2023-01-12 11:23:49', 'admin has logged in.'),
+(693, '2023-01-12 11:26:52', 'Database connected!'),
+(694, '2023-01-12 11:27:02', 'admin has logged in.'),
+(695, '2023-01-12 11:36:24', 'ticket inserted'),
+(696, '2023-01-12 11:37:23', 'Database connected!'),
+(697, '2023-01-12 11:37:29', 'admin has logged in.'),
+(698, '2023-01-12 11:40:49', 'Database connected!'),
+(699, '2023-01-12 11:40:56', 'admin has logged in.'),
+(700, '2023-01-12 11:44:51', 'Database connected!'),
+(701, '2023-01-12 11:44:58', 'admin has logged in.'),
+(702, '2023-01-12 11:47:01', 'Database connected!'),
+(703, '2023-01-12 11:47:15', 'admin has logged in.'),
+(704, '2023-01-12 11:49:25', 'Database connected!'),
+(705, '2023-01-12 11:49:30', 'admin has logged in.'),
+(706, '2023-01-12 11:50:30', 'Database connected!'),
+(707, '2023-01-12 11:50:36', 'admin has logged in.'),
+(708, '2023-01-12 11:50:52', 'ticket inserted'),
+(709, '2023-01-12 11:53:40', 'Database connected!'),
+(710, '2023-01-12 11:53:45', 'admin has logged in.'),
+(711, '2023-01-12 12:04:09', 'Database connected!'),
+(712, '2023-01-12 12:04:14', 'test has logged in.'),
+(713, '2023-01-12 12:04:59', 'ticket inserted'),
+(714, '2023-01-12 12:05:33', 'ticket inserted'),
+(715, '2023-01-12 12:11:31', 'admin has logged in.'),
+(716, '2023-01-12 12:26:47', 'Database connected!'),
+(717, '2023-01-12 12:26:52', 'test has logged in.'),
+(718, '2023-01-12 12:27:00', 'comment inserted'),
+(719, '2023-01-12 12:27:03', 'comment inserted'),
+(720, '2023-01-12 12:27:07', 'comment inserted'),
+(721, '2023-01-12 12:27:21', 'comment inserted'),
+(722, '2023-01-12 12:28:03', 'admin has logged in.'),
+(723, '2023-01-12 12:28:24', 'comment inserted'),
+(724, '2023-01-12 12:28:32', 'comment inserted'),
+(725, '2023-01-12 12:29:10', 'comment inserted'),
+(726, '2023-01-12 12:30:18', 'ticket inserted'),
+(727, '2023-01-12 12:34:59', 'Database connected!'),
+(728, '2023-01-12 12:35:05', 'test has logged in.'),
+(729, '2023-01-12 12:35:31', 'admin has logged in.'),
+(730, '2023-01-12 12:37:08', 'Database connected!'),
+(731, '2023-01-12 12:37:15', 'test has logged in.'),
+(732, '2023-01-12 12:37:21', 'admin has logged in.'),
+(733, '2023-01-12 12:38:25', 'Database connected!'),
+(734, '2023-01-12 12:38:30', 'test has logged in.'),
+(735, '2023-01-12 12:38:45', 'admin has logged in.'),
+(736, '2023-01-12 12:38:55', 'comment inserted'),
+(737, '2023-01-12 12:39:04', 'comment inserted'),
+(738, '2023-01-12 12:39:43', 'comment inserted'),
+(739, '2023-01-12 12:43:10', 'Database connected!'),
+(740, '2023-01-12 12:43:15', 'test has logged in.'),
+(741, '2023-01-12 12:43:22', 'comment inserted'),
+(742, '2023-01-12 12:43:28', 'admin has logged in.'),
+(743, '2023-01-12 12:47:12', 'Database connected!'),
+(744, '2023-01-12 12:47:17', 'test has logged in.'),
+(745, '2023-01-12 12:47:38', 'admin has logged in.'),
+(746, '2023-01-12 12:47:46', 'comment inserted'),
+(747, '2023-01-12 12:59:02', 'comment inserted'),
+(748, '2023-01-12 12:59:51', 'comment inserted'),
+(749, '2023-01-12 13:00:06', 'comment inserted'),
+(750, '2023-01-12 13:00:08', 'comment inserted'),
+(751, '2023-01-12 13:00:15', 'comment inserted'),
+(752, '2023-01-12 13:00:36', 'comment inserted'),
+(753, '2023-01-12 13:00:41', 'comment inserted'),
+(754, '2023-01-12 13:00:47', 'comment inserted'),
+(755, '2023-01-12 13:01:59', 'comment inserted'),
+(756, '2023-01-12 13:02:04', 'comment inserted'),
+(757, '2023-01-12 13:02:10', 'comment inserted'),
+(758, '2023-01-13 11:25:42', 'Database connected!'),
+(759, '2023-01-13 11:25:51', 'admin has logged in.'),
+(760, '2023-01-13 11:27:48', 'comment inserted'),
+(761, '2023-01-13 11:27:58', 'comment inserted'),
+(762, '2023-01-13 12:27:15', 'Database connected!'),
+(763, '2023-01-13 12:27:21', 'admin has logged in.'),
+(764, '2023-01-13 12:27:37', 'ticket edited'),
+(765, '2023-01-13 12:30:40', 'ticket inserted'),
+(766, '2023-01-13 13:02:28', 'Database connected!'),
+(767, '2023-01-13 13:02:34', 'admin has logged in.'),
+(768, '2023-01-13 13:09:24', 'Database connected!'),
+(769, '2023-01-13 13:09:34', 'admin has logged in.'),
+(770, '2023-01-13 13:12:09', 'Database connected!'),
+(771, '2023-01-13 13:12:16', 'admin has logged in.'),
+(772, '2023-01-13 13:12:16', 'test'),
+(773, '2023-01-13 13:12:16', 'test'),
+(774, '2023-01-13 13:12:16', 'test'),
+(775, '2023-01-13 13:12:16', 'test'),
+(776, '2023-01-13 13:12:16', 'test'),
+(777, '2023-01-13 13:12:16', 'test'),
+(778, '2023-01-13 13:12:16', 'test'),
+(779, '2023-01-13 13:12:16', 'test'),
+(780, '2023-01-13 13:12:16', 'test'),
+(781, '2023-01-13 13:12:16', 'test'),
+(782, '2023-01-13 13:12:16', 'test'),
+(783, '2023-01-13 13:12:16', 'test'),
+(784, '2023-01-13 13:12:30', 'Database connected!'),
+(785, '2023-01-13 13:12:38', 'admin has logged in.'),
+(786, '2023-01-13 13:12:39', 'test2'),
+(787, '2023-01-13 13:12:39', 'test'),
+(788, '2023-01-13 13:12:39', 'test'),
+(789, '2023-01-13 13:12:39', 'test'),
+(790, '2023-01-13 13:12:39', 'test'),
+(791, '2023-01-13 13:12:39', 'test'),
+(792, '2023-01-13 13:12:39', 'test'),
+(793, '2023-01-13 13:12:39', 'test'),
+(794, '2023-01-13 13:12:39', 'test'),
+(795, '2023-01-13 13:12:39', 'test'),
+(796, '2023-01-13 13:12:39', 'test'),
+(797, '2023-01-13 13:12:39', 'test'),
+(798, '2023-01-13 13:13:32', 'Database connected!'),
+(799, '2023-01-13 13:13:37', 'admin has logged in.'),
+(800, '2023-01-13 13:13:37', 'test2'),
+(801, '2023-01-13 13:13:37', 'test0'),
+(802, '2023-01-13 13:13:37', 'test0'),
+(803, '2023-01-13 13:13:37', 'test0'),
+(804, '2023-01-13 13:13:37', 'test1'),
+(805, '2023-01-13 13:13:37', 'test1'),
+(806, '2023-01-13 13:13:37', 'test1'),
+(807, '2023-01-13 13:13:37', 'test1'),
+(808, '2023-01-13 13:13:37', 'test2'),
+(809, '2023-01-13 13:13:37', 'test2'),
+(810, '2023-01-13 13:13:37', 'test2'),
+(811, '2023-01-13 13:13:37', 'test2'),
+(812, '2023-01-13 13:21:18', 'Database connected!'),
+(813, '2023-01-13 13:21:25', 'admin has logged in.'),
+(814, '2023-01-13 13:21:25', 'test0'),
+(815, '2023-01-13 13:21:25', 'test0'),
+(816, '2023-01-13 13:21:25', 'test0'),
+(817, '2023-01-13 13:21:25', 'test1'),
+(818, '2023-01-13 13:21:25', 'test1'),
+(819, '2023-01-13 13:21:25', 'test1'),
+(820, '2023-01-13 13:21:25', 'test1'),
+(821, '2023-01-13 13:21:25', 'test2'),
+(822, '2023-01-13 13:21:25', 'test2'),
+(823, '2023-01-13 13:21:25', 'test2'),
+(824, '2023-01-13 13:21:25', 'test2'),
+(825, '2023-01-13 13:28:13', 'test0'),
+(826, '2023-01-13 13:28:13', 'test0'),
+(827, '2023-01-13 13:28:13', 'test0'),
+(828, '2023-01-13 13:28:13', 'test1'),
+(829, '2023-01-13 13:28:13', 'test1'),
+(830, '2023-01-13 13:28:13', 'test1'),
+(831, '2023-01-13 13:28:13', 'test1'),
+(832, '2023-01-13 13:28:13', 'test2'),
+(833, '2023-01-13 13:28:13', 'test2'),
+(834, '2023-01-13 13:28:13', 'test2'),
+(835, '2023-01-13 13:28:13', 'test2'),
+(836, '2023-01-13 13:33:02', 'test0'),
+(837, '2023-01-13 13:33:02', 'test0'),
+(838, '2023-01-13 13:33:02', 'test0'),
+(839, '2023-01-13 13:33:02', 'test1'),
+(840, '2023-01-13 13:33:02', 'test1'),
+(841, '2023-01-13 13:33:02', 'test1'),
+(842, '2023-01-13 13:33:02', 'test1'),
+(843, '2023-01-13 13:33:02', 'test2'),
+(844, '2023-01-13 13:33:02', 'test2'),
+(845, '2023-01-13 13:33:02', 'test2'),
+(846, '2023-01-13 13:33:02', 'test2'),
+(847, '2023-01-13 13:42:36', 'test0'),
+(848, '2023-01-13 13:42:36', 'test0'),
+(849, '2023-01-13 13:42:36', 'test0'),
+(850, '2023-01-13 13:42:36', 'test1'),
+(851, '2023-01-13 13:42:36', 'test1'),
+(852, '2023-01-13 13:42:36', 'test1'),
+(853, '2023-01-13 13:42:36', 'test1'),
+(854, '2023-01-13 13:42:36', 'test2'),
+(855, '2023-01-13 13:42:36', 'test2'),
+(856, '2023-01-13 13:42:36', 'test2'),
+(857, '2023-01-13 13:42:36', 'test2'),
+(858, '2023-01-13 13:43:06', 'test0'),
+(859, '2023-01-13 13:43:06', 'test0'),
+(860, '2023-01-13 13:43:06', 'test0'),
+(861, '2023-01-13 13:43:06', 'test1'),
+(862, '2023-01-13 13:43:06', 'test1'),
+(863, '2023-01-13 13:43:06', 'test1'),
+(864, '2023-01-13 13:43:06', 'test1'),
+(865, '2023-01-13 13:43:06', 'test2'),
+(866, '2023-01-13 13:43:06', 'test2'),
+(867, '2023-01-13 13:43:06', 'test2'),
+(868, '2023-01-13 13:43:06', 'test2');
 
 -- --------------------------------------------------------
 
@@ -759,8 +1039,7 @@ CREATE TABLE `tickets` (
 --
 
 INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `priority`) VALUES
-(1, 0, '', 'jkl', '0000-00-00 00:00:00', 1, 0),
-(2, 0, '', 'tyitityu', '0000-00-00 00:00:00', 1, 0),
+(2, 0, '', 'tyitityu', '0000-00-00 00:00:00', 2, 1),
 (3, 0, '', 'tgfhgf', '0000-00-00 00:00:00', 1, 0),
 (4, 0, '', 'bhj', '0000-00-00 00:00:00', 1, 0),
 (5, 0, '', 'yuiy', '0000-00-00 00:00:00', 1, 0),
@@ -807,7 +1086,14 @@ INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `pr
 (47, 1, 'dfhdhfs', 'dsfhdfhdh', '2023-01-03 14:09:58', 1, 1),
 (48, 1, 'Problem z komputerem', 'Komputer sie nie uruchamia', '2023-01-04 11:58:20', 0, 0),
 (49, 1, 'cos tam', 'halo', '2023-01-04 12:08:39', 0, 1),
-(50, 1, 'halo', 'cos tam', '2023-01-04 12:09:02', 0, 2);
+(50, 1, 'halo', 'cos tam', '2023-01-04 12:09:02', 0, 2),
+(51, 2, 'admin', 'admin', '2023-01-12 10:44:28', 0, 0),
+(52, 2, 'test2', 'test', '2023-01-12 11:36:24', 0, 0),
+(53, 2, 'test3', 'test', '2023-01-12 11:50:52', 0, 0),
+(54, 1, 'tesgdfh', 'sdfgsdfg', '2023-01-12 12:04:59', 0, 0),
+(55, 1, 'testsetsetestset', 'etsetestestest', '2023-01-12 12:05:33', 0, 0),
+(56, 2, 'tiuf', 'gygyg', '2023-01-12 12:30:18', 3, 2),
+(57, 2, 'sprawdziac', 'ale o co chodzi', '2023-01-13 12:30:40', 0, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -817,6 +1103,24 @@ INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `pr
 -- Indeksy dla tabeli `comment`
 --
 ALTER TABLE `comment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `config_dept`
+--
+ALTER TABLE `config_dept`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `config_priority`
+--
+ALTER TABLE `config_priority`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `config_status`
+--
+ALTER TABLE `config_status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -845,7 +1149,25 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT dla tabeli `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT dla tabeli `config_dept`
+--
+ALTER TABLE `config_dept`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT dla tabeli `config_priority`
+--
+ALTER TABLE `config_priority`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT dla tabeli `config_status`
+--
+ALTER TABLE `config_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `login`
@@ -857,13 +1179,13 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT dla tabeli `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=677;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=869;
 
 --
 -- AUTO_INCREMENT dla tabeli `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
