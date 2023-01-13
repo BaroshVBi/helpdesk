@@ -1,12 +1,24 @@
 var socket = io();
-var tabstatus = []; tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
-var tabpriority = []; tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
-var tabdept = []; tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
+var tabstatus = []; //tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
+var tabpriority = []; //tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
+var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
 var current_ticket = 0;
 
 tabs('list_ticket_admin');
-tabpriority.forEach(appendPriority);
-tabstatus.forEach(appendStatus);
+
+socket.on('config_priority', function (id, value, length) {
+    tabpriority[id] = value;
+    if (arrayLength(tabpriority) == length) tabpriority.forEach(appendPriority);
+});
+
+socket.on('config_status', function (id, value, length) {
+    tabstatus[id] = value;
+    if (arrayLength(tabstatus) == length) tabstatus.forEach(appendStatus);
+});
+
+socket.on('config_dept', function (id, value, length) {
+    tabdept[id] = value;
+});
 
 socket.on('list_ticket', function (id, topic, data, status, priority) {
     $('#ticket_list').append($("<tr onclick='view(" + id + ")'>").html("<th>" + id + "</th><th>" + topic + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th>"));
@@ -84,4 +96,13 @@ function appendPriority(item, index) {
 
 function appendStatus(item, index) {
     $('#edit_status').append($("<option value='" + index + "'>").html(item));
+}
+
+//https://stackoverflow.com/a/48022161
+function arrayLength(arr) {
+    var count = 0;
+    arr.forEach(function () {
+        count++
+    });
+    return count
 }

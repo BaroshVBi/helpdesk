@@ -120,6 +120,22 @@ app.get('/logout', (req, res) => {
 io.on('connection', (socket) => {
 	const session = socket.request.session;
 
+	if (session.loggedin) {
+		var config = ['config_priority', 'config_status', 'config_dept'];
+		for (var i = 0; i < config.length; i++) {
+			(function (i) {
+				var sql = "SELECT * FROM " + config[i];
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					for (var j = 0; j < result.length; j++) {
+						io.to(socket.id).emit(config[i], result[j].id, result[j].value, result.length);
+						logs('test' + i);
+                    }
+				});
+			}(i));
+		}
+    }
+
 	socket.on('ticket', (topic, desc, priority) => {
 		if (session.loggedin) {
 			var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
