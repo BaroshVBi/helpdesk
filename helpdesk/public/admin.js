@@ -128,6 +128,80 @@ function deletePriority(i) {
     }
 }
 
+function editStatus(i, element) {
+    $("#edit_status_" + i).html("<input id='edit_status_input_" + i + "' class='full_cell' value='" + tabstatus[i] + "' required/>");
+    $(element).removeAttr('onclick');
+    $(element).attr('onClick', "saveStatus(" + i + ", this);");
+    element.src = 'move.png';
+}
+
+function saveStatus(i, element) {
+    var val = $("#edit_status_input_" + i).val();
+    if (val != '' && val != null) {
+        socket.emit('save_status', i, val);
+        $(element).removeAttr('onclick');
+        $(element).attr('onClick', "editStatus(" + i + ", this);");
+        element.src = 'edit.png';
+    }
+    else {
+        alert('Wypełnij pole!');
+    }
+}
+
+function addStatus() {
+    var val = $("#add_status_input").val();
+    if (val != '' && val != null) {
+        socket.emit('add_status', val);
+        $("#add_status_input").val('');
+    }
+    else {
+        alert('Wypełnij pole!');
+    }
+}
+
+function deleteStatus(i) {
+    if (confirm("Czy napewno chcesz usunąć wybraną pozycję?") == true) {
+        socket.emit('delete_status', i);
+    }
+}
+
+function editDept(i, element) {
+    $("#edit_dept_" + i).html("<input id='edit_dept_input_" + i + "' class='full_cell' value='" + tabdept[i] + "' required/>");
+    $(element).removeAttr('onclick');
+    $(element).attr('onClick', "saveDept(" + i + ", this);");
+    element.src = 'move.png';
+}
+
+function saveDept(i, element) {
+    var val = $("#edit_dept_input_" + i).val();
+    if (val != '' && val != null) {
+        socket.emit('save_dept', i, val);
+        $(element).removeAttr('onclick');
+        $(element).attr('onClick', "editDept(" + i + ", this);");
+        element.src = 'edit.png';
+    }
+    else {
+        alert('Wypełnij pole!');
+    }
+}
+
+function addDept() {
+    var val = $("#add_dept_input").val();
+    if (val != '' && val != null) {
+        socket.emit('add_dept', val);
+        $("#add_dept_input").val('');
+    }
+    else {
+        alert('Wypełnij pole!');
+    }
+}
+
+function deleteDept(i) {
+    if (confirm("Czy napewno chcesz usunąć wybraną pozycję?") == true) {
+        socket.emit('delete_dept', i);
+    }
+}
+
 function tabs(tab) {
     var tabcontent = document.getElementsByClassName('tabcontent');
     for (var i = 0; i < tabcontent.length; i++) {
@@ -149,11 +223,11 @@ function appendPriority(item, index) {
 
 function appendStatus(item, index) {
     $('#edit_status').append($("<option value='" + index + "'>").html(item));
-    $('#config_status').append($("<tr>").html("<th>" + index + "</th><th>" + item + "</th>"));
+    $('#config_status').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_status_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editStatus(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deleteStatus(" + index + ")'/></th>"));
 }
 
 function appendDept(item, index) {
-    $('#config_dept').append($("<tr>").html("<th>" + index + "</th><th>" + item + "</th>"));
+    $('#config_dept').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_dept_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editDept(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deleteDept(" + index + ")'/></th>"));
 }
 
 //https://stackoverflow.com/a/48022161

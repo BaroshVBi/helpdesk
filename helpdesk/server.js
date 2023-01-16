@@ -270,6 +270,80 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('save_status', (id, val) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (val != '' && val != null) {
+				var sql = "UPDATE config_status SET value = '" + val + "' WHERE config_status.id = " + id;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("updated status");
+					updateConfig();
+				});
+			}
+		}
+	});
+
+	socket.on('add_status', (val) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (val != '' && val != null) {
+				var sql = "INSERT INTO config_status (value) VALUES ('" + val + "')";
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("added status");
+					updateConfig();
+				});
+			}
+		}
+	});
+
+	socket.on('delete_status', (id) => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "DELETE FROM config_status WHERE config_status.id =" + id;
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("deleted status");
+				updateConfig();
+			});
+		}
+	});
+
+	socket.on('save_dept', (id, val) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (val != '' && val != null) {
+				var sql = "UPDATE config_dept SET value = '" + val + "' WHERE config_dept.id = " + id;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("updated dept");
+					updateConfig();
+				});
+			}
+		}
+	});
+
+	socket.on('add_dept', (val) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (val != '' && val != null) {
+				var sql = "INSERT INTO config_dept (value) VALUES ('" + val + "')";
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("added dept");
+					updateConfig();
+				});
+			}
+		}
+	});
+
+	socket.on('delete_dept', (id) => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "DELETE FROM config_dept WHERE config_dept.id =" + id;
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("deleted dept");
+				updateConfig();
+			});
+		}
+	});
+
 	function comment_data(id) {
 		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
 		con.query(sql, function (err, result) {
