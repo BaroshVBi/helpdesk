@@ -129,7 +129,6 @@ io.on('connection', (socket) => {
 					if (err) throw err;
 					for (var j = 0; j < result.length; j++) {
 						io.to(socket.id).emit(config[i], result[j].id, result[j].value, result.length);
-						logs('test' + i);
                     }
 				});
 			}(i));
@@ -219,7 +218,6 @@ io.on('connection', (socket) => {
 			var sql = "INSERT INTO comment (com, login_id, ticket_id, data) VALUES ('" + com + "', '" + session.user_id + "', '" + session.current_ticket + "', '" + parseTime(new Date()) + "')";
 			con.query(sql, function (err, result) {
 				if (err) throw err;
-				//comment_data(session.current_ticket);
 				logs("comment inserted");
 			});
 		}

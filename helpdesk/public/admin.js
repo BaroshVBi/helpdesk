@@ -11,6 +11,7 @@ socket.on('config_priority', function (id, value, length) {
     if (arrayLength(tabpriority) == length) {
         $('#edit_priority').html('');
         $('#priority').html('');
+        $('#config_priority').html("<tr><td class='header'>ID</td><td class='header'>Wartość</td></tr>");
         tabpriority.forEach(appendPriority);
     }
 });
@@ -19,12 +20,17 @@ socket.on('config_status', function (id, value, length) {
     tabstatus[id] = value;
     if (arrayLength(tabstatus) == length) {
         $('#edit_status').html('');
+        $('#config_status').html("<tr><td class='header'>ID</td><td class='header'>Wartość</td></tr>");
         tabstatus.forEach(appendStatus);
     }
 });
 
 socket.on('config_dept', function (id, value, length) {
     tabdept[id] = value;
+    if (arrayLength(tabdept) == length) {
+        $('#config_dept').html("<tr><td class='header'>ID</td><td class='header'>Wartość</td></tr>");
+        tabdept.forEach(appendDept);
+    }
 });
 
 socket.on('list_ticket', function (id, topic, data, status, priority) {
@@ -99,10 +105,16 @@ function tabs(tab) {
 function appendPriority(item, index) {
     $('#edit_priority').append($("<option value='" + index + "'>").html(item));
     $('#priority').append($("<option value='" + index + "'>").html(item));
+    $('#config_priority').append($("<tr>").html("<th>" + index + "</th><th>" + item + "</th>"));
 }
 
 function appendStatus(item, index) {
     $('#edit_status').append($("<option value='" + index + "'>").html(item));
+    $('#config_status').append($("<tr>").html("<th>" + index + "</th><th>" + item + "</th>"));
+}
+
+function appendDept(item, index) {
+    $('#config_dept').append($("<tr>").html("<th>" + index + "</th><th>" + item + "</th>"));
 }
 
 //https://stackoverflow.com/a/48022161
