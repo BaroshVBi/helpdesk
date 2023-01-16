@@ -6,6 +6,12 @@ var current_ticket = 0;
 
 tabs('add_ticket');
 
+socket.on('clean_config', function () {
+    tabstatus = [];
+    tabpriority = [];
+    tabdept = [];
+});
+
 socket.on('config_priority', function (id, value, length) {
     tabpriority[id] = value;
     if (arrayLength(tabpriority) == length) {
@@ -16,10 +22,10 @@ socket.on('config_priority', function (id, value, length) {
 
 socket.on('config_status', function (id, value, length) {
     tabstatus[id] = value;
-    if (arrayLength(tabstatus) == length) {
-        $('#edit_status').html('');
-        tabstatus.forEach(appendStatus);
-    }
+});
+
+socket.on('config_dept', function (id, value, length) {
+    tabdept[id] = value;
 });
 
 socket.on('list_ticket', function (id, topic, data, status, priority) {
@@ -75,10 +81,6 @@ function tabs(tab) {
 
 function appendPriority(item, index) {
     $('#priority').append($("<option value='" + index + "'>").html(item));
-}
-
-function appendStatus(item, index) {
-    $('#edit_status').append($("<option value='" + index + "'>").html(item));
 }
 
 //https://stackoverflow.com/a/48022161
