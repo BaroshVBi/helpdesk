@@ -6,6 +6,12 @@ var current_ticket = 0;
 
 tabs('list_ticket_admin');
 
+socket.on('clean_config', function () {
+    tabstatus = [];
+    tabpriority = [];
+    tabdept = [];
+});
+
 socket.on('config_priority', function (id, value, length) {
     tabpriority[id] = value;
     if (arrayLength(tabpriority) == length) {
@@ -96,8 +102,6 @@ function savePriority(i, element) {
     var val = $("#edit_priority_input_" + i).val();
     if (val != '' && val != null) {
         socket.emit('save_priority', i, val);
-        tabpriority[i] = val;
-        $("#edit_priority_" + i).html(tabpriority[i]);
         $(element).removeAttr('onclick');
         $(element).attr('onClick', "editPriority(" + i + ", this);");
         element.src = 'edit.png';
@@ -111,12 +115,16 @@ function addPriority() {
     var val = $("#add_priority_input").val();
     if (val != '' && val != null) {
         socket.emit('add_priority', val);
-        tabpriority.push(val);
-        appendPriority(val, tabpriority.indexOf(val));
         $("#add_priority_input").val('');
     }
     else {
         alert('Wypełnij pole!');
+    }
+}
+
+function deletePriority(i) {
+    if (confirm("Czy napewno chcesz usunąć wybraną pozycję?") == true) {
+        socket.emit('delete_priority', i);
     }
 }
 
@@ -136,7 +144,7 @@ function tabs(tab) {
 function appendPriority(item, index) {
     $('#edit_priority').append($("<option value='" + index + "'>").html(item));
     $('#priority').append($("<option value='" + index + "'>").html(item));
-    $('#config_priority').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_priority_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editPriority(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png'/></th>"));
+    $('#config_priority').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_priority_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editPriority(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deletePriority(" + index + ")'/></th>"));
 }
 
 function appendStatus(item, index) {

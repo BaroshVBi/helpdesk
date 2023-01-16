@@ -240,6 +240,7 @@ io.on('connection', (socket) => {
 				con.query(sql, function (err, result) {
 					if (err) throw err;
 					logs("updated priority");
+					updateConfig();
 				});
 			}
         }
@@ -252,8 +253,20 @@ io.on('connection', (socket) => {
 				con.query(sql, function (err, result) {
 					if (err) throw err;
 					logs("added priority");
+					updateConfig();
 				});
 			}
+		}
+	});
+
+	socket.on('delete_priority', (id) => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "DELETE FROM config_priority WHERE config_priority.id =" + id;
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("deleted priority");
+				updateConfig();
+			});
 		}
 	});
 
@@ -274,6 +287,22 @@ io.on('connection', (socket) => {
 			}
 		});
 	}
+
+	function updateConfig() {
+		var config = ['config_priority', 'config_status', 'config_dept'];
+		io.emit('clean_config');
+		for (var i = 0; i < config.length; i++) {
+			(function (i) {
+				var sql = "SELECT * FROM " + config[i];
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					for (var j = 0; j < result.length; j++) {
+						io.emit(config[i], result[j].id, result[j].value, result.length);
+					}
+				});
+			}(i));
+		}
+    }
 });
 
 http.listen(port, () => {
