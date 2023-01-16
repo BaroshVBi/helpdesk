@@ -11,7 +11,7 @@ socket.on('config_priority', function (id, value, length) {
     if (arrayLength(tabpriority) == length) {
         $('#edit_priority').html('');
         $('#priority').html('');
-        $('#config_priority').html("<tr><td class='header'>ID</td><td class='header'>Wartość</td></tr>");
+        $('#config_priority').html("<tr class='header'><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
         tabpriority.forEach(appendPriority);
     }
 });
@@ -20,7 +20,7 @@ socket.on('config_status', function (id, value, length) {
     tabstatus[id] = value;
     if (arrayLength(tabstatus) == length) {
         $('#edit_status').html('');
-        $('#config_status').html("<tr><td class='header'>ID</td><td class='header'>Wartość</td></tr>");
+        $('#config_status').html("<tr class='header'><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
         tabstatus.forEach(appendStatus);
     }
 });
@@ -28,7 +28,7 @@ socket.on('config_status', function (id, value, length) {
 socket.on('config_dept', function (id, value, length) {
     tabdept[id] = value;
     if (arrayLength(tabdept) == length) {
-        $('#config_dept').html("<tr><td class='header'>ID</td><td class='header'>Wartość</td></tr>");
+        $('#config_dept').html("<tr class='header'><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
         tabdept.forEach(appendDept);
     }
 });
@@ -85,19 +85,50 @@ function sendEdit() {
     view(current_ticket);
 }
 
+function editPriority(i, element) {
+    $("#edit_priority_" + i).html("<input id='edit_priority_input_" + i + "' class='full_cell' value='" + tabpriority[i] + "' required/>");
+    $(element).removeAttr('onclick');
+    $(element).attr('onClick', "savePriority(" + i + ", this);");
+    element.src = 'move.png';
+}
+
+function savePriority(i, element) {
+    var val = $("#edit_priority_input_" + i).val();
+    if (val != '' && val != null) {
+        socket.emit('save_priority', i, val);
+        tabpriority[i] = val;
+        $("#edit_priority_" + i).html(tabpriority[i]);
+        $(element).removeAttr('onclick');
+        $(element).attr('onClick', "editPriority(" + i + ", this);");
+        element.src = 'edit.png';
+    }
+    else {
+        alert('Wypełnij pole!');
+    }
+}
+
+function addPriority() {
+    var val = $("#add_priority_input").val();
+    if (val != '' && val != null) {
+        socket.emit('add_priority', val);
+        tabpriority.push(val);
+        appendPriority(val, tabpriority.indexOf(val));
+        $("#add_priority_input").val('');
+    }
+    else {
+        alert('Wypełnij pole!');
+    }
+}
+
 function tabs(tab) {
     var tabcontent = document.getElementsByClassName('tabcontent');
     for (var i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = 'none';
     }
 
-    if (tab == 'list_ticket_admin') {
-        next_admin(0);
-    }
+    if (tab == 'list_ticket_admin') next_admin(0);
 
-    if (tab == 'list_ticket') {
-        next(0);
-    }
+    if (tab == 'list_ticket') next(0);
 
     document.getElementById(tab).style.display = 'block';
 }
@@ -105,7 +136,7 @@ function tabs(tab) {
 function appendPriority(item, index) {
     $('#edit_priority').append($("<option value='" + index + "'>").html(item));
     $('#priority').append($("<option value='" + index + "'>").html(item));
-    $('#config_priority').append($("<tr>").html("<th>" + index + "</th><th>" + item + "</th>"));
+    $('#config_priority').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_priority_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editPriority(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png'/></th>"));
 }
 
 function appendStatus(item, index) {

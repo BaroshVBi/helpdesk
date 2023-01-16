@@ -86,9 +86,36 @@ table {
         background-color: #f1f1f1;
     }
 
-#add_ticket {
-
+.imgbutton {
+    height:100%;
 }
+
+    .imgbutton:hover {
+        filter : brightness(150%);
+    }
+
+.full_cell {
+    width: 100%;
+    height: 100%;
+    display: block;
+    box-sizing: border-box;
+}
+
+.full_width {
+    width: 100%;
+}
+
+.short_width {
+    min-width: 50px;
+    text-align:center;
+}
+
+.ani {
+    animation-name: moveToRight;
+    animation-duration: 1s;
+}
+
+#add_ticket { }
 
     #add_ticket textarea {
         resize: none;
@@ -118,10 +145,10 @@ table {
 
 @keyframes moveToRight {
     0% {
-        transform: translateX(-100%);
+        transform: translateY(-100%);
     }
 
     100% {
-        transform: translateX(0%);
+        transform: translateY(0%);
     }
 }

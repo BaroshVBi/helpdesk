@@ -233,6 +233,30 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('save_priority', (id, val) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (val != '' && val != null) {
+				var sql = "UPDATE config_priority SET value = '" + val + "' WHERE config_priority.id = " + id;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("updated priority");
+				});
+			}
+        }
+	});
+
+	socket.on('add_priority', (val) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (val != '' && val != null) {
+				var sql = "INSERT INTO config_priority (value) VALUES ('" + val + "')";
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("added priority");
+				});
+			}
+		}
+	});
+
 	function comment_data(id) {
 		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
 		con.query(sql, function (err, result) {
