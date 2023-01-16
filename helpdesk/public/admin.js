@@ -8,12 +8,19 @@ tabs('list_ticket_admin');
 
 socket.on('config_priority', function (id, value, length) {
     tabpriority[id] = value;
-    if (arrayLength(tabpriority) == length) tabpriority.forEach(appendPriority);
+    if (arrayLength(tabpriority) == length) {
+        $('#edit_priority').html('');
+        $('#priority').html('');
+        tabpriority.forEach(appendPriority);
+    }
 });
 
 socket.on('config_status', function (id, value, length) {
     tabstatus[id] = value;
-    if (arrayLength(tabstatus) == length) tabstatus.forEach(appendStatus);
+    if (arrayLength(tabstatus) == length) {
+        $('#edit_status').html('');
+        tabstatus.forEach(appendStatus);
+    }
 });
 
 socket.on('config_dept', function (id, value, length) {

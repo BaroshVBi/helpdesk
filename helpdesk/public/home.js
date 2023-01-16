@@ -5,7 +5,22 @@ var tabdept = []; tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'
 var current_ticket = 0;
 
 tabs('add_ticket');
-tabpriority.forEach(appendPriority);
+
+socket.on('config_priority', function (id, value, length) {
+    tabpriority[id] = value;
+    if (arrayLength(tabpriority) == length) {
+        $('#priority').html('');
+        tabpriority.forEach(appendPriority);
+    }
+});
+
+socket.on('config_status', function (id, value, length) {
+    tabstatus[id] = value;
+    if (arrayLength(tabstatus) == length) {
+        $('#edit_status').html('');
+        tabstatus.forEach(appendStatus);
+    }
+});
 
 socket.on('list_ticket', function (id, topic, data, status, priority) {
     $('#ticket_list').append($("<tr onclick='view(" + id + ")'>").html("<th>" + id + "</th><th>" + topic + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th>"));
@@ -60,4 +75,17 @@ function tabs(tab) {
 
 function appendPriority(item, index) {
     $('#priority').append($("<option value='" + index + "'>").html(item));
+}
+
+function appendStatus(item, index) {
+    $('#edit_status').append($("<option value='" + index + "'>").html(item));
+}
+
+//https://stackoverflow.com/a/48022161
+function arrayLength(arr) {
+    var count = 0;
+    arr.forEach(function () {
+        count++
+    });
+    return count
 }
