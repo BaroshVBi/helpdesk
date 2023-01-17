@@ -101,6 +101,12 @@
         </div>
 
         <div id="settings" class="tabcontent">
+            <div class="topnav">
+                <a href="#" onclick="tabs('settings');" class="active">Zmienne</a>
+                <a href="#" onclick="tabs('settings2');">Dodaj Użytkownika</a>
+                <a href="#" onclick="tabs('settings3');">Zarządzaj Użytkownikami</a>
+                <a href="#" onclick="tabs('settings4');">About</a>
+            </div>
             <h2>Ustawienia</h2>
 
             <h2>Priorytet</h2>
@@ -132,6 +138,16 @@
                     <th class='short_width'><input class='imgbutton' type='image' src='add.png' onClick='addDept();' /></th>
                 </tr>
             </table>
+        </div>
+
+        <div id="settings2" class="tabcontent">
+            <div class="topnav">
+                <a href="#" onclick="tabs('settings');" >Zmienne</a>
+                <a href="#" onclick="tabs('settings2');" class="active">Dodaj Użytkownika</a>
+                <a href="#" onclick="tabs('settings3');">Zarządzaj Użytkownikami</a>
+                <a href="#" onclick="tabs('settings');">About</a>
+            </div>
+            <h2>Ustawienia 2</h2>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
