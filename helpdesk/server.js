@@ -344,6 +344,18 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('add_user', (user_name, user_email, user_pass, user_dept, user_lvl) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (user_name != '' && user_email != '' && user_pass != '') {
+				var sql = "INSERT INTO login (name, email, password, lvl, dept) VALUES ('" + user_name + "', '" + user_email + "', '" + user_pass + "', '" + user_dept + "', '" + user_lvl + "')";
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("added user");
+				});
+			}
+		}
+	});
+
 	function comment_data(id) {
 		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
 		con.query(sql, function (err, result) {

@@ -94,8 +94,6 @@ h2 {
 .tabcontent {
     display: none;
     padding: 0px 0px;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 
 .header {

@@ -96,7 +96,7 @@
             <table id="add_com">
                 <tr><th class="header" colspan="2">Dodaj Komentarz</th></tr>
                 <tr><th class="header">Treść</th><th><input type="text" id="com" /></th></tr>
-                <tr><th class="header" colspan="2"><button onClick="send_com();">Wyślij</button></th></tr>
+                <tr><th class="header" colspan="2"><button onClick="sendCom();">Wyślij</button></th></tr>
             </table>
         </div>
 
@@ -142,12 +142,45 @@
 
         <div id="settings2" class="tabcontent">
             <div class="topnav">
-                <a href="#" onclick="tabs('settings');" >Zmienne</a>
+                <a href="#" onclick="tabs('settings');">Zmienne</a>
                 <a href="#" onclick="tabs('settings2');" class="active">Dodaj Użytkownika</a>
                 <a href="#" onclick="tabs('settings3');">Zarządzaj Użytkownikami</a>
                 <a href="#" onclick="tabs('settings');">About</a>
             </div>
-            <h2>Ustawienia 2</h2>
+            <h2>Dodaj Użytkownika</h2>
+            <table>
+                <tr>
+                    <td class="header" colspan="2">Dodaj Użytkownika</td>
+                </tr>
+                <tr>
+                    <th class="header">Imię i Nazwisko</th>
+                    <th><input type="text" id="user_name" class="full_cell" /></th>
+                </tr>
+                <tr>
+                    <th class="header">E-mail</th>
+                    <th><input type="text" id="user_email" class="full_cell" /></th>
+                </tr>
+                <tr>
+                    <th class="header">Hasło</th>
+                    <th><input type="password" id="user_pass" class="full_cell" /></th>
+                </tr>
+                <tr>
+                    <th class="header">Dział</th>
+                    <th><select id="user_dept"></select></th>
+                </tr>
+                <tr>
+                    <th class="header">Uprawnienia</th>
+                    <th>
+                        <select id="user_lvl">
+                            <option value="1">Użytkownik</option>
+                            <option value="2">Administrator</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="header" colspan="2"><button onClick="addUser();">Wyślij</button></th>
+                </tr>
+            </table>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>

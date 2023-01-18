@@ -61,14 +61,30 @@ function send() {
     socket.emit('ticket', $('#topic').val(), $('#desc').val(), $('#priority').val());
     $('#topic').val('');
     $('#desc').val('');
-    $('#priority').val(0);
     tabs('list_ticket');
 }
 
-function send_com() {
+function sendCom() {
     socket.emit('add_comment', $('#com').val());
     $('#com').val('');
     view(current_ticket);
+}
+
+function sendEdit() {
+    socket.emit('send_edit', $('#edit_priority').val(), $('#edit_status').val());
+    view(current_ticket);
+}
+
+function addUser() {
+    if ($('#user_name').val() != '' && $('#user_email').val() != '' && $('#user_pass').val() != '') {
+        socket.emit('add_user', $('#user_name').val(), $('#user_email').val(), $('#user_pass').val(), $('#user_dept').val(), $('#user_lvl').val());
+        $('#user_name').val('');
+        $('#user_email').val('');
+        $('#user_pass').val('');
+    }
+    else {
+        alert('Wypełnij wszystkie pola!');
+    }
 }
 
 function next(i) {
@@ -84,11 +100,6 @@ function next_admin(i) {
 function view(id) {
     socket.emit('view_ticket', id);
     current_ticket = id;
-}
-
-function sendEdit() {
-    socket.emit('send_edit', $('#edit_priority').val(), $('#edit_status').val());
-    view(current_ticket);
 }
 
 function editPriority(i, element) {
@@ -228,6 +239,7 @@ function appendStatus(item, index) {
 
 function appendDept(item, index) {
     $('#config_dept').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_dept_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editDept(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deleteDept(" + index + ")'/></th>"));
+    $('#user_dept').append($("<option value='" + index + "'>").html(item));
 }
 
 //https://stackoverflow.com/a/48022161
