@@ -10,6 +10,7 @@ var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 
 var port = process.env.PORT || 8080;
+var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 var con = mysql.createConnection({
 	host: "localhost",
@@ -351,14 +352,18 @@ io.on('connection', (socket) => {
 
 	socket.on('add_user', (user_name, user_email, user_pass, user_dept, user_lvl) => {
 		if (session.loggedin && session.lvl == 2) {
-			if (user_name != '' && user_email != '' && user_pass != '') {
-				bcrypt.hash(user_pass, 10, function (err, hash) { 
+			if (user_name && user_email.match(valid_email) && user_pass) {
+				bcrypt.hash(user_pass, 10, function (err, hash) {
 					var sql = "INSERT INTO login (name, email, password, lvl, dept) VALUES ('" + user_name + "', '" + user_email + "', '" + hash + "', '" + user_dept + "', '" + user_lvl + "')";
 					con.query(sql, function (err, result) {
 						if (err) throw err;
 						logs("added user");
+						io.to(socket.id).emit('server_response', 0);
 					});
 				});
+			}
+			else {
+				io.to(socket.id).emit('server_response', 1);
 			}
 		}
 	});

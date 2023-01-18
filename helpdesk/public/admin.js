@@ -3,6 +3,7 @@ var tabstatus = []; //tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabs
 var tabpriority = []; //tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
 var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
 var current_ticket = 0;
+var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 tabs('list_ticket_admin');
 
@@ -57,6 +58,21 @@ socket.on('comment_data', function (com, name, data) {
     $('#view_ticket_com').append($('<tr>').html("<th>" + data + "</th><th>" + name + "</th><th>" + com + "</th>"));
 });
 
+socket.on('server_response', function (i) {
+    switch (i) {
+        case 0:
+            $('#user_name').val('');
+            $('#user_email').val('');
+            $('#user_pass').val('');
+            text = "Utworzono nowego użytkownika";
+            break;
+        case 1:
+            text = "Niepoprawne dane użytkownika";
+            break;
+    }
+    alert(text);
+});
+
 function send() {
     socket.emit('ticket', $('#topic').val(), $('#desc').val(), $('#priority').val());
     $('#topic').val('');
@@ -77,10 +93,12 @@ function sendEdit() {
 
 function addUser() {
     if ($('#user_name').val() != '' && $('#user_email').val() != '' && $('#user_pass').val() != '') {
-        socket.emit('add_user', $('#user_name').val(), $('#user_email').val(), $('#user_pass').val(), $('#user_dept').val(), $('#user_lvl').val());
-        $('#user_name').val('');
-        $('#user_email').val('');
-        $('#user_pass').val('');
+        if ($('#user_email').val().match(valid_email)) {
+            socket.emit('add_user', $('#user_name').val(), $('#user_email').val(), $('#user_pass').val(), $('#user_dept').val(), $('#user_lvl').val());
+        }
+        else {
+            alert('Niepoprawny Adres e-mail!');
+        }
     }
     else {
         alert('Wypełnij wszystkie pola!');
