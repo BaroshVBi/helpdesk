@@ -41,7 +41,7 @@
 
         <div id="list_ticket" class="tabcontent">
             <h2>Twoje Zgłoszenia</h2>
-            <table id="ticket_list" class="ticketList">
+            <table id="ticket_list" class="list">
                 <tr>
                     <td>ID</td>
                     <td>Temat</td>
@@ -56,7 +56,7 @@
 
         <div id="list_ticket_admin" class="tabcontent">
             <h2>Twoje Zgłoszenia</h2>
-            <table id="ticket_list_admin" class="ticketList">
+            <table id="ticket_list_admin" class="list">
                 <tr>
                     <td>ID</td>
                     <td>Temat</td>
@@ -145,7 +145,7 @@
                 <a href="#" onclick="tabs('settings');">Zmienne</a>
                 <a href="#" onclick="tabs('settings2');" class="active">Dodaj Użytkownika</a>
                 <a href="#" onclick="tabs('settings3');">Zarządzaj Użytkownikami</a>
-                <a href="#" onclick="tabs('settings');">About</a>
+                <a href="#" onclick="tabs('settings4');">About</a>
             </div>
             <h2>Dodaj Użytkownika</h2>
             <table>
@@ -181,6 +181,27 @@
                     <th class="header" colspan="2"><button onClick="addUser();">Wyślij</button></th>
                 </tr>
             </table>
+        </div>
+
+        <div id="settings3" class="tabcontent">
+            <div class="topnav">
+                <a href="#" onclick="tabs('settings');">Zmienne</a>
+                <a href="#" onclick="tabs('settings2');">Dodaj Użytkownika</a>
+                <a href="#" onclick="tabs('settings3');" class="active">Zarządzaj Użytkownikami</a>
+                <a href="#" onclick="tabs('settings4');">About</a>
+            </div>
+            <h2>Lista Użytkowników</h2>
+            <table id="user_list" class="list"></table>
+        </div>
+
+        <div id="settings4" class="tabcontent">
+            <div class="topnav">
+                <a href="#" onclick="tabs('settings');">Zmienne</a>
+                <a href="#" onclick="tabs('settings2');">Dodaj Użytkownika</a>
+                <a href="#" onclick="tabs('settings3');">Zarządzaj Użytkownikami</a>
+                <a href="#" onclick="tabs('settings4');" class="active">About</a>
+            </div>
+            <h2>About</h2>
         </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>

@@ -2,6 +2,7 @@ var socket = io();
 var tabstatus = []; //tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
 var tabpriority = []; //tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
 var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
+var tablvl = []; tablvl[1] = 'Użytkownik'; tablvl[2] = 'Administrator';
 var current_ticket = 0;
 var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -58,6 +59,10 @@ socket.on('comment_data', function (com, name, data) {
     $('#view_ticket_com').append($('<tr>').html("<th>" + data + "</th><th>" + name + "</th><th>" + com + "</th>"));
 });
 
+socket.on('user_list', function (id, name, email, lvl, dept) {
+    $('#user_list').append($("<tr onclick='editUser(" + id + ")'>").html("<th>" + id + "</th><th>" + name + "</th><th>" + email + "</th><th>" + tabdept[dept] + "</th><th>" + tablvl[lvl] + "</th>"));
+});
+
 socket.on('server_response', function (i) {
     switch (i) {
         case 0:
@@ -106,12 +111,12 @@ function addUser() {
 }
 
 function next(i) {
-    $('#ticket_list').html("<tr><td> ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
+    $('#ticket_list').html("<tr><td>ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
     socket.emit('next_page', i);
 }
 
 function next_admin(i) {
-    $('#ticket_list_admin').html("<tr><td> ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
+    $('#ticket_list_admin').html("<tr><td>ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
     socket.emit('next_page_admin', i);
 }
 
@@ -240,6 +245,11 @@ function tabs(tab) {
     if (tab == 'list_ticket_admin') next_admin(0);
 
     if (tab == 'list_ticket') next(0);
+
+    if (tab == 'settings3') {
+        socket.emit('fetch_user_list');
+        $('#user_list').html("<tr><td>ID</td><td>Imię i Nazwisko</td><td>E-mail</td><td>Dział</td><td>Uprawnienia</td></tr>");
+    }
 
     document.getElementById(tab).style.display = 'block';
 }

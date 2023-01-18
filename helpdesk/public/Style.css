@@ -101,19 +101,19 @@ h2 {
     color: #f1f1f1;
 }
 
-.ticketList { }
+.list { }
 
-    .ticketList td {
+    .list td {
         background-color: lightslategrey;
         padding: 5px;
         color: #f1f1f1;
     }
 
-    .ticketList th {
+    .list th {
         cursor: pointer;
     }
 
-    .ticketList tr:hover {
+    .list tr:hover {
         background-color: #f1f1f1;
     }
 

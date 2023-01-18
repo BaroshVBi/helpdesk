@@ -368,6 +368,18 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('fetch_user_list', () => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "SELECT id, name, email, lvl, dept FROM login";
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				for (var i = 0; i < result.length; i++) {
+					io.to(socket.id).emit('user_list', result[i].id, result[i].name, result[i].email, result[i].lvl, result[i].dept);
+                }
+			});
+		}
+	});
+
 	function comment_data(id) {
 		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
 		con.query(sql, function (err, result) {
