@@ -7,6 +7,7 @@ var io = require('socket.io')(http);
 var fs = require('fs');
 var nodemailer = require('nodemailer');
 var mysql = require('mysql');
+var bcrypt = require('bcrypt');
 
 var port = process.env.PORT || 8080;
 
@@ -55,27 +56,31 @@ app.post('/auth', (req, res) => {
 	let password = req.body.password;
 
 	if (email && password) {
-		sql = "SELECT * FROM login WHERE email ='" + email + "'  AND password = '" + password + "'";
+		sql = "SELECT * FROM login WHERE email ='" + email + "'";
 		con.query(sql, function (err, result) {
 			if (err) throw err;
 			if (result.length > 0) {
-				req.session.loggedin = true;
-				req.session.username = email;
-				req.session.name = result[0].name;
-				req.session.user_id = result[0].id;
-				req.session.lvl = result[0].lvl;
-				req.session.pg = 0;
-				req.session.current_ticket = 0;
-				res.redirect('/home');
-				logs(result[0].name + " has logged in.");
+				bcrypt.compare(password, result[0].password, function (err, result2) {
+					if (result) {
+						req.session.loggedin = true;
+						req.session.username = email;
+						req.session.name = result[0].name;
+						req.session.user_id = result[0].id;
+						req.session.lvl = result[0].lvl;
+						req.session.pg = 0;
+						req.session.current_ticket = 0;
+						res.redirect('/home');
+						logs(result[0].name + " has logged in.");
+					} else {
+						res.send('Nieprawidłowa nazwa użytkownika lub hasło.');
+					}
+				});
 			} else {
 				res.send('Nieprawidłowa nazwa użytkownika lub hasło.');
 			}
-			res.end();
 		});
 	} else {
 		res.send('Wprowadź dane logowania.');
-		res.end();
 	}
 });
 
@@ -347,10 +352,12 @@ io.on('connection', (socket) => {
 	socket.on('add_user', (user_name, user_email, user_pass, user_dept, user_lvl) => {
 		if (session.loggedin && session.lvl == 2) {
 			if (user_name != '' && user_email != '' && user_pass != '') {
-				var sql = "INSERT INTO login (name, email, password, lvl, dept) VALUES ('" + user_name + "', '" + user_email + "', '" + user_pass + "', '" + user_dept + "', '" + user_lvl + "')";
-				con.query(sql, function (err, result) {
-					if (err) throw err;
-					logs("added user");
+				bcrypt.hash(user_pass, 10, function (err, hash) { 
+					var sql = "INSERT INTO login (name, email, password, lvl, dept) VALUES ('" + user_name + "', '" + user_email + "', '" + hash + "', '" + user_dept + "', '" + user_lvl + "')";
+					con.query(sql, function (err, result) {
+						if (err) throw err;
+						logs("added user");
+					});
 				});
 			}
 		}
@@ -388,7 +395,7 @@ io.on('connection', (socket) => {
 				});
 			}(i));
 		}
-    }
+	}
 });
 
 http.listen(port, () => {
