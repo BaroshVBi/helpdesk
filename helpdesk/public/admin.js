@@ -60,7 +60,15 @@ socket.on('comment_data', function (com, name, data) {
 });
 
 socket.on('user_list', function (id, name, email, lvl, dept) {
-    $('#user_list').append($("<tr onclick='editUser(" + id + ")'>").html("<th>" + id + "</th><th>" + name + "</th><th>" + email + "</th><th>" + tabdept[dept] + "</th><th>" + tablvl[lvl] + "</th>"));
+    $('#user_list').append($("<tr onclick='viewUser(" + id + ")'>").html("<th>" + id + "</th><th>" + name + "</th><th>" + email + "</th><th>" + tabdept[dept] + "</th><th>" + tablvl[lvl] + "</th>"));
+});
+
+socket.on('user_data', function (id, name, email, lvl, dept) {
+    $('#edit_user').html("<tr><th class='header'>ID</th><th>" + id + "</th><th class='header'>Nowe Wartości</th></tr><tr><th class='header'>Imię i Nazwisko</th><th>" + name + "</th><th><input id='new_user_name' class='full_cell'/></th></tr><tr><th class='header'>E-mail</th><th>" + email + "</th><th><input id='new_user_email' class='full_cell'/></th></tr><tr><th class='header'>Dział</th><th>" + tabdept[dept] + "</th><th><select id='new_user_dept' class='full_cell'>" + returnOption(tabdept) + "</select></th></tr><tr><th class='header'>Uprawnienia</th><th>" + tablvl[lvl] + "</th><th><select id='new_user_lvl' class='full_cell'>" + returnOption(tablvl) + "</select></th></tr>");
+    $('#new_user_dept').val(dept);
+    $('#new_user_lvl').val(lvl);
+    $('#edit_user_controls').html("<tr><th class='header' style='width:50%'><button onclick='editUser(" + id + ")'>Edytuj</button></th><th class='header'><button onclick='deleteUser(" + id + ")'>Usuń</button></th></tr>");
+    tabs('edit_user_tab');
 });
 
 socket.on('server_response', function (i) {
@@ -74,6 +82,10 @@ socket.on('server_response', function (i) {
         case 1:
             text = "Niepoprawne dane użytkownika";
             break;
+        case 2:
+            text = "Konto zostało usunięte";
+            tabs('settings3');
+            break
     }
     alert(text);
 });
@@ -108,6 +120,20 @@ function addUser() {
     else {
         alert('Wypełnij wszystkie pola!');
     }
+}
+
+function viewUser(id) {
+    socket.emit('view_user', id);
+}
+
+function deleteUser(id) {
+    if (confirm("Czy napewno chcesz usunąć wybrane konto?") == true) {
+        socket.emit('delete_user', id);
+    }
+}
+
+function editUser(id) {
+    socket.emit('edit_user', id, $('#new_user_name').val(), $('#new_user_email').val(), $('#new_user_dept').val(), $('#new_user_lvl').val());
 }
 
 function next(i) {
@@ -268,6 +294,14 @@ function appendStatus(item, index) {
 function appendDept(item, index) {
     $('#config_dept').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_dept_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editDept(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deleteDept(" + index + ")'/></th>"));
     $('#user_dept').append($("<option value='" + index + "'>").html(item));
+}
+
+function returnOption(array) {
+    var text = '';
+    array.forEach(function (item, index) {
+        text += "<option value = '" + index + "'>" + item + "</option>";
+    });
+    return text;
 }
 
 //https://stackoverflow.com/a/48022161

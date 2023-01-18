@@ -380,6 +380,40 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('view_user', (id) => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "SELECT id, name, email, lvl, dept FROM login WHERE login.id = " + id;
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				if (result.length > 0) {
+					io.to(socket.id).emit('user_data', result[0].id, result[0].name, result[0].email, result[0].lvl, result[0].dept);
+				}
+			});
+		}
+	});
+
+	socket.on('delete_user', (id) => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "DELETE FROM login WHERE login.id = " + id;
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("deleted user");
+				io.to(socket.id).emit('server_response', 2);
+			});
+		}
+	});
+
+	socket.on('edit_user', (id, name, email, dept, lvl) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (name) {
+				var sql = "UPDATE login SET name='" + name + "' WHERE login.id = " + id;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+				});
+			}
+		}
+	});
+
 	function comment_data(id) {
 		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
 		con.query(sql, function (err, result) {
