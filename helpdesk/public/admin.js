@@ -86,6 +86,9 @@ socket.on('server_response', function (i) {
             text = "Konto zostało usunięte";
             tabs('settings3');
             break
+        case 3:
+            text = "Zapisano zmiany"
+            tabs('settings3');
     }
     alert(text);
 });

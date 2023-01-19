@@ -411,6 +411,25 @@ io.on('connection', (socket) => {
 					if (err) throw err;
 				});
 			}
+			if (email) {
+				var sql = "UPDATE login SET email='" + email + "' WHERE login.id = " + id;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+				});
+			}
+			if (dept) {
+				var sql = "UPDATE login SET dept='" + dept + "' WHERE login.id = " + id;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+				});
+			}
+			if (lvl) {
+				var sql = "UPDATE login SET lvl='" + lvl + "' WHERE login.id = " + id;
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+				});
+			}
+			io.to(socket.id).emit('server_response', 3);
 		}
 	});
 
