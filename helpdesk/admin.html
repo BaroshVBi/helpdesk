@@ -43,7 +43,14 @@
         </div>
 
         <div id="list_ticket" class="tabcontent">
-            <h2>Twoje Zgłoszenia</h2>
+            <table class="list">
+                <tr>
+                    <td><button onclick="next(-1)">&#10094;</button></td>
+                    <td><label class="label_title">Twoje Zgłoszenia</label></td>
+                    <td><button onclick="next(1)">&#10095;</button></td>
+                </tr>
+            </table>
+
             <table id="ticket_list" class="list">
                 <tr>
                     <td>ID</td>
@@ -53,12 +60,16 @@
                     <td>Priorytet</td>
                 </tr>
             </table>
-            <button onclick="next(-1)">prev</button>
-            <button onclick="next(1)">next</button>
         </div>
 
         <div id="list_ticket_admin" class="tabcontent">
-            <h2>Twoje Zgłoszenia</h2>
+            <table class="list">
+                <tr>
+                    <td><button onclick="next_admin(-1)">&#10094;</button></td>
+                    <td><label class="label_title">Zgłoszenia Wszystkich Użytkowników</label></td>
+                    <td><button onclick="next_admin(1)">&#10095;</button></td>
+                </tr>
+            </table>
             <table id="ticket_list_admin" class="list">
                 <tr>
                     <td>ID</td>
@@ -68,8 +79,6 @@
                     <td>Priorytet</td>
                 </tr>
             </table>
-            <button onclick="next_admin(-1)">prev</button>
-            <button onclick="next_admin(1)">next</button>
         </div>
 
         <div id="view_ticket" class="tabcontent">
