@@ -68,6 +68,7 @@ socket.on('user_data', function (id, name, email, lvl, dept) {
     $('#new_user_dept').val(dept);
     $('#new_user_lvl').val(lvl);
     $('#edit_user_controls').html("<tr><th class='header' style='width:50%'><button onclick='editUser(" + id + ")'>Edytuj</button></th><th class='header'><button onclick='deleteUser(" + id + ")'>Usuń</button></th></tr>");
+    $('#pass_button').html("<button onclick='editUserPassword(" + id + ")'>Zmień hasło</button>");
     tabs('edit_user_tab');
 });
 
@@ -87,8 +88,12 @@ socket.on('server_response', function (i) {
             tabs('settings3');
             break
         case 3:
-            text = "Zapisano zmiany"
+            text = "Zapisano zmiany";
             tabs('settings3');
+            break;
+        case 4:
+            text = "Hasło zostało zmienione";
+            break;
     }
     alert(text);
 });
@@ -137,6 +142,14 @@ function deleteUser(id) {
 
 function editUser(id) {
     socket.emit('edit_user', id, $('#new_user_name').val(), $('#new_user_email').val(), $('#new_user_dept').val(), $('#new_user_lvl').val());
+}
+
+function editUserPassword(id) {
+    if ($('edit_user_pass1').val() != '' && $('edit_user_pass2').val() != '' && $('edit_user_pass1').val() == $('edit_user_pass2').val()) {
+        socket.emit('edit_user_password', id, $('edit_user_pass1').val(), $('edit_user_pass2').val());
+        $('edit_user_pass1').val('');
+        $('edit_user_pass2').val('');
+    }
 }
 
 function next(i) {

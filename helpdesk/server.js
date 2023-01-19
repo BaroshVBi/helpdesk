@@ -433,6 +433,21 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('edit_user_password', (id, pass1, pass2) => {
+		if (session.loggedin && session.lvl == 2) {
+			if (pass1 && pass2 && pass1 == pass2) {
+				bcrypt.hash(pass1, 10, function (err, hash) {
+					var sql = "UPDATE login SET password='" + hash + "' WHERE login.id = " + id;
+					con.query(sql, function (err, result) {
+						if (err) throw err;
+						logs('password changed');
+						io.to(socket.id).emit('server_response', 4);
+					});
+				});
+			}
+		}
+	});
+
 	function comment_data(id) {
 		var sql = "SELECT * From comment WHERE ticket_id = '" + id + "'";
 		con.query(sql, function (err, result) {

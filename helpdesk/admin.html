@@ -202,8 +202,21 @@
                 <a href="#" onclick="tabs('settings4');">About</a>
             </div>
             <h2>Edytuj dane Użytkownika</h2>
-            <table id="edit_user" class=""></table>
+            <table id="edit_user"></table>
             <table id="edit_user_controls"></table>
+            
+            <table id="edit_user_password">
+                <tr><th colspan="2" class="header">Zmiana hasła użytkownika</th></tr>
+                <tr>
+                    <th class="header">Nowe hasło</th>
+                    <th><input type="password" id="edit_user_pass1" class="full_cell"/></th>
+                </tr>
+                <tr>
+                    <th class="header">Potwierdź hasło</th>
+                    <th><input type="password" id="edit_user_pass2" class="full_cell"/></th>
+                </tr>
+                <tr><th id="pass_button" colspan="2" class="header"></th></tr>
+            </table>
         </div>
 
         <div id="settings4" class="tabcontent">
