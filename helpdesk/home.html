@@ -13,6 +13,9 @@
         <a class="tablinks" href="#" onclick="tabs('settings');">Ustawienia</a>
         <a href="/logout">Wyloguj</a>
     </div>
+
+    <div id="popup"><label id="popup_text"></label></div>
+
     <div class="main" id="test1">
         <div id="add_ticket" class="tabcontent">
             <h2>Nowe Zgłoszenie</h2>
@@ -21,15 +24,15 @@
                     <td class="header" colspan="2">Wypełnij formularz</td>
                 </tr>
                 <tr>
-                    <th class="header" >Temat</th>
+                    <th class="header">Temat</th>
                     <th><input type="text" id="topic" /></th>
                 </tr>
                 <tr>
-                    <th class="header" >Priorytet</th>
+                    <th class="header">Priorytet</th>
                     <th><select id="priority"></select></th>
                 </tr>
                 <tr>
-                    <th class="header" >Opis</th>
+                    <th class="header">Opis</th>
                     <th><textarea type="text" id="desc" wrap="hard"></textarea></th>
                 </tr>
                 <tr>

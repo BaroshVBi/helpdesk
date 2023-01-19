@@ -83,6 +83,14 @@ function appendPriority(item, index) {
     $('#priority').append($("<option value='" + index + "'>").html(item));
 }
 
+function popup(text) {
+    el = document.getElementById('popup');
+    el.classList.remove('popup_animation');
+    $('#popup_text').html(text);
+    el.offsetWidth;
+    el.classList.add('popup_animation');
+}
+
 //https://stackoverflow.com/a/48022161
 function arrayLength(arr) {
     var count = 0;

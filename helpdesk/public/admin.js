@@ -95,7 +95,7 @@ socket.on('server_response', function (i) {
             text = "Hasło zostało zmienione";
             break;
     }
-    alert(text);
+    popup(text);
 });
 
 function send() {
@@ -122,11 +122,11 @@ function addUser() {
             socket.emit('add_user', $('#user_name').val(), $('#user_email').val(), $('#user_pass').val(), $('#user_dept').val(), $('#user_lvl').val());
         }
         else {
-            alert('Niepoprawny Adres e-mail!');
+            popup('Niepoprawny Adres e-mail!');
         }
     }
     else {
-        alert('Wypełnij wszystkie pola!');
+        popup('Wypełnij wszystkie pola!');
     }
 }
 
@@ -183,7 +183,7 @@ function savePriority(i, element) {
         element.src = 'edit.png';
     }
     else {
-        alert('Wypełnij pole!');
+        popup('Wypełnij pole!');
     }
 }
 
@@ -194,7 +194,7 @@ function addPriority() {
         $("#add_priority_input").val('');
     }
     else {
-        alert('Wypełnij pole!');
+        popup('Wypełnij pole!');
     }
 }
 
@@ -220,7 +220,7 @@ function saveStatus(i, element) {
         element.src = 'edit.png';
     }
     else {
-        alert('Wypełnij pole!');
+        popup('Wypełnij pole!');
     }
 }
 
@@ -231,7 +231,7 @@ function addStatus() {
         $("#add_status_input").val('');
     }
     else {
-        alert('Wypełnij pole!');
+        popup('Wypełnij pole!');
     }
 }
 
@@ -257,7 +257,7 @@ function saveDept(i, element) {
         element.src = 'edit.png';
     }
     else {
-        alert('Wypełnij pole!');
+        popup('Wypełnij pole!');
     }
 }
 
@@ -268,7 +268,7 @@ function addDept() {
         $("#add_dept_input").val('');
     }
     else {
-        alert('Wypełnij pole!');
+        popup('Wypełnij pole!');
     }
 }
 
@@ -318,6 +318,14 @@ function returnOption(array) {
         text += "<option value = '" + index + "'>" + item + "</option>";
     });
     return text;
+}
+
+function popup(text) {
+    el = document.getElementById('popup');
+    el.classList.remove('popup_animation');
+    $('#popup_text').html(text);
+    el.offsetWidth;
+    el.classList.add('popup_animation');
 }
 
 //https://stackoverflow.com/a/48022161
