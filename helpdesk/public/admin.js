@@ -2,7 +2,8 @@ var socket = io();
 var tabstatus = []; //tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
 var tabpriority = []; //tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
 var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
-var tablvl = []; tablvl[1] = 'Użytkownik'; tablvl[2] = 'Administrator';
+var tablvl = ['', 'Użytkownik', 'Administrator'];
+var tab_sort = ['', 'ID', 'Temat', 'Data', 'Status', 'Priorytet'];
 var current_ticket = 0;
 var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 var asc = 1;
@@ -154,12 +155,12 @@ function editUserPassword(id) {
 }
 
 function next(pg) {
-    $('#ticket_list').html("<tr><td onclick='sortList(1)'>ID</td><td onclick='sortList(2)'>Temat</td><td onclick='sortList(3)'>Data</td><td onclick='sortList(4)'>Status</td><td onclick='sortList(5)'>Priorytet</td></tr>");
+    $('#ticket_list').html("<tr><td onclick='sortList(1)'>" + returnSort(1) + "</td><td onclick='sortList(2)'>" + returnSort(2) + "</td><td onclick='sortList(3)'>" + returnSort(3) + "</td><td onclick='sortList(4)'>" + returnSort(4) + "</td><td onclick='sortList(5)'>" + returnSort(5) + "</td></tr>");
     socket.emit('next_page', pg, asc);
 }
 
 function nextAdmin(pg) {
-    $('#ticket_list_admin').html("<tr><td onclick='sortListAdmin(1)'>ID</td><td onclick='sortListAdmin(2)'>Temat</td><td onclick='sortListAdmin(3)'>Data</td><td onclick='sortListAdmin(4)'>Status</td><td onclick='sortListAdmin(5)'>Priorytet</td></tr>");
+    $('#ticket_list_admin').html("<tr><td onclick='sortListAdmin(1)'>" + returnSort(1) + "</td><td onclick='sortListAdmin(2)'>" + returnSort(2) + "</td><td onclick='sortListAdmin(3)'>" + returnSort(3) + "</td><td onclick='sortListAdmin(4)'>" + returnSort(4) + "</td><td onclick='sortListAdmin(5)'>" + returnSort(5) + "</td></tr>");
     socket.emit('next_page_admin', pg, asc);
 }
 
@@ -343,6 +344,21 @@ function popup(text) {
     $('#popup_text').html(text);
     el.offsetWidth;
     el.classList.add('popup_animation');
+}
+
+function returnSort(i) {
+    var text = "";
+
+    if (i == Math.abs(asc)) {
+        if (asc > 0)
+            text = "&#8659; " + tab_sort[i];
+        if (asc < 0)
+            text = "&#8657; " + tab_sort[i];
+    }
+    else
+        text = tab_sort[i];
+
+    return text
 }
 
 //https://stackoverflow.com/a/48022161
