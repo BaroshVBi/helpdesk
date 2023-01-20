@@ -175,10 +175,45 @@ io.on('connection', (socket) => {
 		}
 	});
 
-	socket.on('next_page_admin', (pg) => {
+	socket.on('next_page_admin', (pg, asc) => {
 		if (session.loggedin && session.lvl == 2) {
+			switch (asc) {
+				case 0:
+					var sql = "SELECT * FROM tickets";
+					break;
+				case 1:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.id DESC";
+					break;
+				case -1:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.id ASC";
+					break;
+				case 2:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.topic DESC";
+					break;
+				case -2:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.topic ASC";
+					break;
+				case 3:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.data DESC";
+					break;
+				case -3:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.data ASC";
+					break;
+				case 4:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.status DESC";
+					break;
+				case -4:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.status ASC";
+					break;
+				case 5:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.priority DESC";
+					break;
+				case -5:
+					var sql = "SELECT * FROM tickets ORDER BY tickets.priority ASC";
+					break;
+			}
+			logs(sql);
 			session.current_ticket = 0;
-			var sql = "SELECT * FROM `tickets`";
 			con.query(sql, function (err, result) {
 				if (err) throw err;
 				if (pg == 0) {

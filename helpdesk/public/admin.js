@@ -5,6 +5,7 @@ var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzeda≈
 var tablvl = []; tablvl[1] = 'U≈ºytkownik'; tablvl[2] = 'Administrator';
 var current_ticket = 0;
 var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+var asc = 1;
 
 tabs('list_ticket_admin');
 
@@ -157,9 +158,19 @@ function next(i) {
     socket.emit('next_page', i);
 }
 
-function next_admin(i) {
-    $('#ticket_list_admin').html("<tr><td>ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
-    socket.emit('next_page_admin', i);
+function next_admin(pg) {
+    $('#ticket_list_admin').html("<tr><td onclick='sortList(1)'>ID</td><td onclick='sortList(2)'>Temat</td><td onclick='sortList(3)'>Data</td><td onclick='sortList(4)'>Status</td><td onclick='sortList(5)'>Priorytet</td></tr>");
+    socket.emit('next_page_admin', pg, asc);
+}
+
+function sortList(sort) {
+    if (asc == sort) {
+        asc = 0 - sort;
+    }
+    else {
+        asc = sort;
+    }
+    next_admin(0);
 }
 
 function view(id) {
@@ -284,7 +295,10 @@ function tabs(tab) {
         tabcontent[i].style.display = 'none';
     }
 
-    if (tab == 'list_ticket_admin') next_admin(0);
+    if (tab == 'list_ticket_admin') {
+        asc = 0;
+        next_admin(0);
+    }
 
     if (tab == 'list_ticket') next(0);
 
