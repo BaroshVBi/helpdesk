@@ -153,24 +153,24 @@ function editUserPassword(id) {
     }
 }
 
-function next(i) {
-    $('#ticket_list').html("<tr><td>ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
-    socket.emit('next_page', i);
+function next(pg) {
+    $('#ticket_list').html("<tr><td onclick='sortList(1)'>ID</td><td onclick='sortList(2)'>Temat</td><td onclick='sortList(3)'>Data</td><td onclick='sortList(4)'>Status</td><td onclick='sortList(5)'>Priorytet</td></tr>");
+    socket.emit('next_page', pg, asc);
 }
 
-function next_admin(pg) {
-    $('#ticket_list_admin').html("<tr><td onclick='sortList(1)'>ID</td><td onclick='sortList(2)'>Temat</td><td onclick='sortList(3)'>Data</td><td onclick='sortList(4)'>Status</td><td onclick='sortList(5)'>Priorytet</td></tr>");
+function nextAdmin(pg) {
+    $('#ticket_list_admin').html("<tr><td onclick='sortListAdmin(1)'>ID</td><td onclick='sortListAdmin(2)'>Temat</td><td onclick='sortListAdmin(3)'>Data</td><td onclick='sortListAdmin(4)'>Status</td><td onclick='sortListAdmin(5)'>Priorytet</td></tr>");
     socket.emit('next_page_admin', pg, asc);
 }
 
+function sortListAdmin(sort) {
+    if (asc == sort) asc = 0 - sort; else asc = sort;
+    nextAdmin(0);
+}
+
 function sortList(sort) {
-    if (asc == sort) {
-        asc = 0 - sort;
-    }
-    else {
-        asc = sort;
-    }
-    next_admin(0);
+    if (asc == sort) asc = 0 - sort; else asc = sort;
+    next(0);
 }
 
 function view(id) {
@@ -297,10 +297,13 @@ function tabs(tab) {
 
     if (tab == 'list_ticket_admin') {
         asc = 0;
-        next_admin(0);
+        nextAdmin(0);
     }
 
-    if (tab == 'list_ticket') next(0);
+    if (tab == 'list_ticket') {
+        asc = 0;
+        next(0);
+    }
 
     if (tab == 'settings3') {
         socket.emit('fetch_user_list');

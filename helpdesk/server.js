@@ -151,10 +151,46 @@ io.on('connection', (socket) => {
 		}
 	});
 
-	socket.on('next_page', (pg) => {
+	socket.on('next_page', (pg, asc) => {
 		if (session.loggedin) {
+			switch (asc) {
+				case 0:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "'";
+					break;
+				case 1:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.id DESC";
+					break;
+				case -1:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.id ASC";
+					break;
+				case 2:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.topic DESC";
+					break;
+				case -2:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.topic ASC";
+					break;
+				case 3:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.data DESC";
+					break;
+				case -3:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.data ASC";
+					break;
+				case 4:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.status DESC";
+					break;
+				case -4:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.status ASC";
+					break;
+				case 5:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.priority DESC";
+					break;
+				case -5:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "' ORDER BY tickets.priority ASC";
+					break;
+				default:
+					var sql = "SELECT * FROM tickets WHERE login_id = '" + session.user_id + "'";
+			}
 			session.current_ticket = 0;
-			var sql = "SELECT * FROM `tickets` WHERE login_id = '" + session.user_id + "'";
 			con.query(sql, function (err, result) {
 				if (err) throw err;
 				if (pg == 0) {
@@ -211,8 +247,10 @@ io.on('connection', (socket) => {
 				case -5:
 					var sql = "SELECT * FROM tickets ORDER BY tickets.priority ASC";
 					break;
+				default:
+					var sql = "SELECT * FROM tickets";
 			}
-			logs(sql);
+			//logs(sql);
 			session.current_ticket = 0;
 			con.query(sql, function (err, result) {
 				if (err) throw err;

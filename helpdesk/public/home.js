@@ -56,9 +56,14 @@ function send_com() {
     view(current_ticket);
 }
 
-function next(i) {
-    $('#ticket_list').html("<tr><td> ID</td><td>Temat</td><td>Data</td><td>Status</td><td>Priorytet</td></tr>");
-    socket.emit('next_page', i);
+function next(pg) {
+    $('#ticket_list').html("<tr><td onclick='sortList(1)'>ID</td><td onclick='sortList(2)'>Temat</td><td onclick='sortList(3)'>Data</td><td onclick='sortList(4)'>Status</td><td onclick='sortList(5)'>Priorytet</td></tr>");
+    socket.emit('next_page', pg, asc);
+}
+
+function sortList(sort) {
+    if (asc == sort) asc = 0 - sort; else asc = sort;
+    next(0);
 }
 
 function view(id) {
@@ -73,6 +78,7 @@ function tabs(tab) {
     }
 
     if (tab == 'list_ticket') {
+        asc = 0;
         next(0);
     }
 
