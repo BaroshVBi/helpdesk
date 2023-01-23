@@ -212,12 +212,17 @@ h2 {
 
 .login {
     background-color: white;
-    padding: 15px;
+    padding: 25px;
     border-radius: 5px;
     box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);
     font-size: 18px;
     color: #757575;
 }
+
+    .login div {
+        display: flex;
+        box-sizing: border-box;
+    }
 
     .login input {
         width: 240px;

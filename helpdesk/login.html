@@ -12,10 +12,16 @@
         <h2>Zaloguj się</h2>
         <form action="/auth" method="post">
             <label for="username">E-mail:</label><br>
-            <input type="text" name="email" placeholder="email@example.com" id="email" required><br>
+            <div>
+                <input type="image" src="email.png" tabindex="-1" style="height:20px; width:20px;"/>
+                <input type="text" name="email" placeholder="" id="email" required/><br>
+            </div>
             <label for="password">Password:</label><br>
-            <input type="password" name="password" placeholder="Password" id="password" required><br>
-            <input type="submit" value="Login"/>
+            <div>
+                <input type="image" src="padlock.png" tabindex="-1" style="height: 20px;width: 20px;"/>
+                <input type="password" name="password" placeholder="" id="password" required><br>
+            </div>
+            <input type="submit" value="Login" />
         </form>
     </div>
 </body>
