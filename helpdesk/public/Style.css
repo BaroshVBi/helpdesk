@@ -1,6 +1,7 @@
 body {
     background-color: #9ebace;
     margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 td, th {
@@ -195,6 +196,58 @@ h2 {
     display: block;
     text-align: center;
 }
+
+.banner {
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);
+    font-size: 18px;
+    color: #757575;
+}
+
+    .banner h1 {
+        margin: 0;
+    }
+
+.login {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);
+    font-size: 18px;
+    color: #757575;
+}
+
+    .login input {
+        width: 240px;
+        padding: 10px;
+        margin-bottom: 25px;
+        border: none;
+        border-bottom: 1px solid #757575;
+        outline: none;
+        font-size: 17px
+    }
+
+        .login input:focus {
+            border: none;
+            border-bottom: 1px solid #757575;
+        }
+
+        .login input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    .center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    }
 
 #add_ticket { }
 
