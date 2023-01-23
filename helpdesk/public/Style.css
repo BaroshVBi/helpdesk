@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #9ebace;
     margin: 0;
@@ -103,21 +107,27 @@ h2 {
 }
 
 .list {
-    border-collapse: separate;
-    border-spacing: 0px 19px;
+    border-collapse: collapse;
     width: 75%;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
     .list tr {
         border-radius: 15px;
-        background-color: #a0c2db;
+        border-left: 2px solid #5d5c61;
+        border-right: 2px solid #5d5c61;
+        background-color: white;
         box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
     }
 
         .list tr:hover {
-            animation-name: hoverBright;
+            animation-name: hoverBGColor;
             animation-duration: 0.25s;
-            filter: brightness(110%);
+            background-color:aliceblue;
+        }
+        .list tr:last-child {
+            border-bottom: 2px solid #5d5c61;
         }
 
     .list td {
@@ -126,18 +136,16 @@ h2 {
         padding: 10px 15px;
         color: #f1f1f1;
         border-left: 1px solid #7e7e7e;
+        cursor: pointer;
     }
         .list td:first-child {
-            border:none;
-            border-top-left-radius: 7px;
-            border-bottom-left-radius: 7px;
+            border: none;
         }
-
-        .list td:last-child {
-            border-bottom-right-radius: 7px;
-            border-top-right-radius: 7px;
+        .list td:hover {
+            animation-name: hoverBright;
+            animation-duration: 0.25s;
+            filter:brightness(110%);
         }
-
     .list th {
         padding: 10px 15px;
         cursor: pointer;
@@ -146,13 +154,6 @@ h2 {
     }
         .list th:first-child {
             border: none;
-            border-top-left-radius: 7px;
-            border-bottom-left-radius: 7px;
-        }
-
-        .list th:last-child {
-            border-bottom-right-radius: 7px;
-            border-top-right-radius: 7px;
         }
 
     .list button {
@@ -321,6 +322,16 @@ h2 {
 
     100% {
         right: -100%;
+    }
+}
+
+@keyframes hoverBGColor {
+    0% {
+        background-color:white;
+    }
+
+    100% {
+        background-color: aliceblue;
     }
 }
 
