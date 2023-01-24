@@ -21,7 +21,7 @@ socket.on('config_priority', function (id, value, length) {
     if (arrayLength(tabpriority) == length) {
         $('#edit_priority').html('');
         $('#priority').html('');
-        $('#config_priority').html("<tr class='header'><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
+        $('#config_priority').html("<tr class='header'><td colspan='4'>Ustawienia Priorytetów</td><tr><tr><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
         tabpriority.forEach(appendPriority);
     }
 });
@@ -30,7 +30,7 @@ socket.on('config_status', function (id, value, length) {
     tabstatus[id] = value;
     if (arrayLength(tabstatus) == length) {
         $('#edit_status').html('');
-        $('#config_status').html("<tr class='header'><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
+        $('#config_status').html("<tr class='header'><td colspan='4'>Ustawienia Statusów</td><tr><tr><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
         tabstatus.forEach(appendStatus);
     }
 });
@@ -38,7 +38,7 @@ socket.on('config_status', function (id, value, length) {
 socket.on('config_dept', function (id, value, length) {
     tabdept[id] = value;
     if (arrayLength(tabdept) == length) {
-        $('#config_dept').html("<tr class='header'><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
+        $('#config_dept').html("<tr class='header'><td colspan='4'>Ustawienia Działów</td><tr><tr><td class='short_width'>ID</td><td class='full_width'>Wartość</td><td class='short_width'>Edytuj</td><td class='short_width'>Usuń</td></tr>");
         tabdept.forEach(appendDept);
     }
 });

@@ -92,7 +92,7 @@ h2 {
         }
 
         .topnav a.active {
-            background-color: #04AA6D;
+            background-color: #044baa;
             color: white;
         }
 
@@ -102,9 +102,14 @@ h2 {
 }
 
 .header {
-    background-color: lightslategrey;
-    color: #f1f1f1;
+    border: none;
+    border-bottom: 1px solid #7e7e7e;
 }
+
+    .header td {
+        text-align: center;
+        font-size: 20px;
+    }
 
 .list {
     border-collapse: collapse;
@@ -193,6 +198,10 @@ h2 {
         border-left: 1px solid #7e7e7e;
     }
 
+.space_50 {
+    margin-bottom: 50px;
+}
+
 .bg_yellow {
     background-color: #fdf10070;
 }
@@ -245,6 +254,7 @@ h2 {
     background-color: white;
     padding: 25px;
     border-radius: 15px;
+    border: 2px solid #757575;
     box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);
     font-size: 18px;
     color: #757575;
@@ -258,6 +268,7 @@ h2 {
     background-color: white;
     padding: 25px;
     border-radius: 5px;
+    border: 2px solid #757575;
     box-shadow: 0px 0px 9px 5px rgba(0,0,0,0.1);
     font-size: 18px;
     color: #757575;
@@ -285,9 +296,15 @@ h2 {
 
         .login input[type=submit] {
             width: 100%;
-            background-color: #4CAF50;
+            background-color: #044baa;
             color: white;
+            cursor:pointer;
         }
+            .login input[type=submit]:hover {
+                animation-name: hoverBright;
+                animation-duration: 0.5s;
+                filter:brightness(130%);
+            }
 
     .center {
     margin: 0;
@@ -385,6 +402,6 @@ h2 {
     }
 
     100% {
-        filter: brightness(110%);
+        filter: brightness(130%);
     }
 }
