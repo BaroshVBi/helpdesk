@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Sty 2023, 12:22
+-- Czas generowania: 24 Sty 2023, 14:42
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 8.1.6
 
@@ -70,7 +70,11 @@ INSERT INTO `comment` (`id`, `com`, `login_id`, `ticket_id`, `data`) VALUES
 (28, '1', 2, 55, '2023-01-12 13:02:04'),
 (29, 's', 2, 55, '2023-01-12 13:02:09'),
 (30, 'sdfgdsf', 2, 56, '2023-01-13 11:27:48'),
-(31, 'gsdfgsdfg', 2, 56, '2023-01-13 11:27:58');
+(31, 'gsdfgsdfg', 2, 56, '2023-01-13 11:27:58'),
+(32, '', 2, 57, '2023-01-24 14:14:45'),
+(33, 'Halo', 2, 56, '2023-01-24 14:20:09'),
+(34, 'xcb', 1, 54, '2023-01-24 14:40:01'),
+(35, 'test', 1, 55, '2023-01-24 14:40:26');
 
 -- --------------------------------------------------------
 
@@ -1950,7 +1954,46 @@ INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
 (1793, '2023-01-20 12:17:39', 'Database connected!'),
 (1794, '2023-01-20 12:17:46', 'admin has logged in.'),
 (1795, '2023-01-20 12:17:46', 'SELECT * FROM tickets'),
-(1796, '2023-01-20 12:19:51', 'test has logged in.');
+(1796, '2023-01-20 12:19:51', 'test has logged in.'),
+(1797, '2023-01-20 12:42:48', 'Database connected!'),
+(1798, '2023-01-20 12:43:00', 'admin has logged in.'),
+(1799, '2023-01-20 12:51:15', 'test has logged in.'),
+(1800, '2023-01-23 09:16:52', 'Database connected!'),
+(1801, '2023-01-23 15:37:12', 'test has logged in.'),
+(1802, '2023-01-23 15:43:13', 'admin has logged in.'),
+(1803, '2023-01-24 07:49:45', 'Database connected!'),
+(1804, '2023-01-24 07:53:03', 'Database connected!'),
+(1805, '2023-01-24 09:00:56', 'admin has logged in.'),
+(1806, '2023-01-24 09:10:45', 'updated priority'),
+(1807, '2023-01-24 09:23:02', 'updated priority'),
+(1808, '2023-01-24 09:24:00', 'updated priority'),
+(1809, '2023-01-24 10:00:42', 'updated priority'),
+(1810, '2023-01-24 10:01:54', 'updated priority'),
+(1811, '2023-01-24 10:02:46', 'updated priority'),
+(1812, '2023-01-24 10:03:02', 'updated priority'),
+(1813, '2023-01-24 10:03:09', 'updated priority'),
+(1814, '2023-01-24 10:03:39', 'updated priority'),
+(1815, '2023-01-24 10:04:07', 'updated priority'),
+(1816, '2023-01-24 10:04:11', 'updated priority'),
+(1817, '2023-01-24 10:04:27', 'updated priority'),
+(1818, '2023-01-24 10:09:46', 'updated priority'),
+(1819, '2023-01-24 10:09:52', 'updated priority'),
+(1820, '2023-01-24 10:12:01', 'updated status'),
+(1821, '2023-01-24 10:12:56', 'updated status'),
+(1822, '2023-01-24 11:04:22', 'admin has logged in.'),
+(1823, '2023-01-24 11:11:48', 'updated priority'),
+(1824, '2023-01-24 11:27:25', 'admin has logged in.'),
+(1825, '2023-01-24 11:36:09', 'admin has logged in.'),
+(1826, '2023-01-24 13:30:25', 'ticket edited'),
+(1827, '2023-01-24 13:30:26', 'ticket edited'),
+(1828, '2023-01-24 13:30:28', 'ticket edited'),
+(1829, '2023-01-24 14:14:45', 'comment inserted'),
+(1830, '2023-01-24 14:20:09', 'comment inserted'),
+(1831, '2023-01-24 14:37:33', 'test has logged in.'),
+(1832, '2023-01-24 14:40:01', 'comment inserted'),
+(1833, '2023-01-24 14:40:11', 'Database connected!'),
+(1834, '2023-01-24 14:40:17', 'test has logged in.'),
+(1835, '2023-01-24 14:40:26', 'comment inserted');
 
 -- --------------------------------------------------------
 
@@ -2026,7 +2069,7 @@ INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `pr
 (53, 2, 'test3', 'test', '2023-01-12 11:50:52', 0, 0),
 (54, 1, 'tesgdfh', 'sdfgsdfg', '2023-01-12 12:04:59', 0, 0),
 (55, 1, 'testsetsetestset', 'etsetestestest', '2023-01-12 12:05:33', 0, 0),
-(56, 2, 'tiuf', 'gygyg', '2023-01-12 12:30:18', 3, 2),
+(56, 2, 'tiuf', 'gygyg', '2023-01-12 12:30:18', 1, 1),
 (57, 2, 'sprawdziac', 'ale o co chodzi', '2023-01-13 12:30:40', 0, 1),
 (58, 2, 'temat', 'sdtasd', '2023-01-18 09:22:26', 1, 3),
 (59, 2, 'dfhdhfs', 'hlk', '2023-01-18 09:23:59', 0, 1);
@@ -2085,7 +2128,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT dla tabeli `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT dla tabeli `config_dept`
@@ -2115,7 +2158,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT dla tabeli `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1797;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1836;
 
 --
 -- AUTO_INCREMENT dla tabeli `tickets`
