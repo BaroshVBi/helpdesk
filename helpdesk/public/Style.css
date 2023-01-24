@@ -202,6 +202,10 @@ h2 {
     margin-bottom: 50px;
 }
 
+.space_top_50 {
+    margin-top: 50px;
+}
+
 .bg_yellow {
     background-color: #fdf10070;
 }

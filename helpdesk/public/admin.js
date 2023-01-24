@@ -52,8 +52,8 @@ socket.on('list_ticket_admin', function (id, topic, data, status, priority) {
 });
 
 socket.on('ticket_data', function (id, topic, descr, data, status, priority, name, dept) {
-    $('#view_ticket_table').html("<tr><th class='header'>ID</th><th class='header'>Data</th><th class='header'>Status</th><th class='header'>Priorytet</th><th class='header'>Pracownik</th><th class='header'>Dział</th></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + tabdept[dept] + "</th></tr><tr><th class='header'>Temat</th><th colspan='5'>" + topic + "</th></tr><tr><th class='header'>Opis</th><th colspan='5'>" + descr + "</th></tr>");
-    $('#view_ticket_com').html("<tr><td class='header'>Data dodania</td><td class='header'>Użytkownik</td><td class='header'>Komentarz</td></tr>");
+    $('#view_ticket_table').html("<tr class='header'><td colspan='6'>Dane Zgłoszenia</td></tr><tr><td>ID</td><td>Data</td><td>Status</td><td>Priorytet</td><td>Pracownik</td><td>Dział</td></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + tabdept[dept] + "</th></tr><tr><td>Temat</td><th colspan='5'>" + topic + "</th></tr><tr><td>Opis</td><th colspan='5'>" + descr + "</th></tr>");
+    $('#view_ticket_com').html("<tr class='header'><td colspan='3'>Komentarze</td></tr><tr><td>Data dodania</td><td>Użytkownik</td><td>Komentarz</td></tr>");
     tabs('view_ticket');
 });
 
