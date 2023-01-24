@@ -184,6 +184,7 @@ function editPriority(i, element) {
     $(element).removeAttr('onclick');
     $(element).attr('onClick', "savePriority(" + i + ", this);");
     element.src = 'move.png';
+    element.parentElement.classList.replace('bg_yellow', 'bg_green');
 }
 
 function savePriority(i, element) {
@@ -193,6 +194,7 @@ function savePriority(i, element) {
         $(element).removeAttr('onclick');
         $(element).attr('onClick', "editPriority(" + i + ", this);");
         element.src = 'edit.png';
+        element.parentElement.classList.replace('bg_green', 'bg_yellow');
     }
     else {
         popup('Wypełnij pole!');
@@ -221,6 +223,7 @@ function editStatus(i, element) {
     $(element).removeAttr('onclick');
     $(element).attr('onClick', "saveStatus(" + i + ", this);");
     element.src = 'move.png';
+    element.parentElement.classList.replace('bg_yellow', 'bg_green');
 }
 
 function saveStatus(i, element) {
@@ -230,6 +233,7 @@ function saveStatus(i, element) {
         $(element).removeAttr('onclick');
         $(element).attr('onClick', "editStatus(" + i + ", this);");
         element.src = 'edit.png';
+        element.parentElement.classList.replace('bg_green', 'bg_yellow');
     }
     else {
         popup('Wypełnij pole!');
@@ -258,6 +262,7 @@ function editDept(i, element) {
     $(element).removeAttr('onclick');
     $(element).attr('onClick', "saveDept(" + i + ", this);");
     element.src = 'move.png';
+    element.parentElement.classList.replace('bg_yellow', 'bg_green');
 }
 
 function saveDept(i, element) {
@@ -267,6 +272,7 @@ function saveDept(i, element) {
         $(element).removeAttr('onclick');
         $(element).attr('onClick', "editDept(" + i + ", this);");
         element.src = 'edit.png';
+        element.parentElement.classList.replace('bg_green', 'bg_yellow');
     }
     else {
         popup('Wypełnij pole!');
@@ -317,16 +323,16 @@ function tabs(tab) {
 function appendPriority(item, index) {
     $('#edit_priority').append($("<option value='" + index + "'>").html(item));
     $('#priority').append($("<option value='" + index + "'>").html(item));
-    $('#config_priority').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_priority_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editPriority(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deletePriority(" + index + ")'/></th>"));
+    $('#config_priority').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_priority_" + index + "'>" + item + "</th><th class='short_width bg_yellow'><input class='imgbutton' type='image' src='edit.png' onClick='editPriority(" + index + ", this);'/></th><th class='short_width bg_red'><input class='imgbutton' type='image' src='delete.png' onClick='deletePriority(" + index + ")'/></th>"));
 }
 
 function appendStatus(item, index) {
     $('#edit_status').append($("<option value='" + index + "'>").html(item));
-    $('#config_status').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_status_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editStatus(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deleteStatus(" + index + ")'/></th>"));
+    $('#config_status').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_status_" + index + "'>" + item + "</th><th class='short_width bg_yellow'><input class='imgbutton' type='image' src='edit.png' onClick='editStatus(" + index + ", this);'/></th><th class='short_width bg_red'><input class='imgbutton' type='image' src='delete.png' onClick='deleteStatus(" + index + ")'/></th>"));
 }
 
 function appendDept(item, index) {
-    $('#config_dept').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_dept_" + index + "'>" + item + "</th><th class='short_width'><input class='imgbutton' type='image' src='edit.png' onClick='editDept(" + index + ", this);'/></th><th class='short_width'><input class='imgbutton' type='image' src='delete.png' onClick='deleteDept(" + index + ")'/></th>"));
+    $('#config_dept').append($("<tr>").html("<th class='short_width'>" + index + "</th><th class='full_width' id='edit_dept_" + index + "'>" + item + "</th><th class='short_width bg_yellow'><input class='imgbutton' type='image' src='edit.png' onClick='editDept(" + index + ", this);'/></th><th class='short_width bg_red'><input class='imgbutton' type='image' src='delete.png' onClick='deleteDept(" + index + ")'/></th>"));
     $('#user_dept').append($("<option value='" + index + "'>").html(item));
 }
 

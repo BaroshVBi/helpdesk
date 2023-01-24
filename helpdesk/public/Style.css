@@ -126,6 +126,7 @@ h2 {
             animation-duration: 0.25s;
             background-color:aliceblue;
         }
+
         .list tr:last-child {
             border-bottom: 2px solid #5d5c61;
         }
@@ -166,6 +167,47 @@ h2 {
         border-radius: 4px;
         cursor: pointer;
     }
+
+.list_50 {
+    border-collapse: collapse;
+    width: 50%;
+}
+
+    .list_50 tr {
+        border-radius: 15px;
+        border-left: 2px solid #5d5c61;
+        border-right: 2px solid #5d5c61;
+        background-color: white;
+        box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    }
+
+        .list_50 tr:last-child {
+            border-bottom: 2px solid #5d5c61;
+        }
+
+    .list_50 td {
+        border: none;
+        background-color: #5D5C61;
+        padding: 10px 15px;
+        color: #f1f1f1;
+        border-left: 1px solid #7e7e7e;
+    }
+
+.bg_yellow {
+    background-color: #fdf10070;
+}
+
+.bg_green {
+    background-color: #3cfd0070;
+}
+
+.bg_blue {
+    background-color: #005afd70;
+}
+
+.bg_red {
+    background-color: #fd000070;
+}
 
 .imgbutton {
     height:100%;
@@ -293,8 +335,9 @@ h2 {
     right: -100%;
     bottom: 25px;
     padding: 20px 30px;
-    background-color:darkseagreen;
+    background-color: white;
     border-radius: 5px;
+    border: 4px solid #5d5c61;
 }
 
 #popup_text {
