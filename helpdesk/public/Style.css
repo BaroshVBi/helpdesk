@@ -11,7 +11,7 @@ body {
 td, th {
     border: 1px solid #dddddd;
     text-align: left;
-    padding: 3px;
+    padding: 10px;
     height: 30px;
 }
 
@@ -150,7 +150,7 @@ h2 {
         .list td:hover {
             animation-name: hoverBright;
             animation-duration: 0.25s;
-            filter:brightness(110%);
+            filter:brightness(130%);
         }
     .list th {
         padding: 10px 15px;
@@ -196,6 +196,25 @@ h2 {
         padding: 10px 15px;
         color: #f1f1f1;
         border-left: 1px solid #7e7e7e;
+    }
+
+    .list_50 button {
+        width: 240px;
+        background-color: #044baa;
+        color: white;
+        cursor: pointer;
+        padding:10px;
+    }
+
+        .list_50 button:hover {
+            animation-name: hoverBright;
+            animation-duration: 0.5s;
+            filter: brightness(130%);
+        }
+
+    .list_50 select {
+        border: none;
+        outline: none;
     }
 
 .space_50 {
@@ -335,10 +354,6 @@ h2 {
         display: block;
         box-sizing: border-box;
     }
-
-#view_ticket_com {
-    margin-top: 30px;
-}
 
 #add_com input {
     width: 100%;

@@ -2,7 +2,7 @@ var socket = io();
 var tabstatus = []; //tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
 var tabpriority = []; //tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
 var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
-var tablvl = ['', 'Użytkownik', 'Administrator'];
+var tablvl = [, 'Użytkownik', 'Administrator'];
 var tab_sort = ['', 'ID', 'Temat', 'Data', 'Status', 'Priorytet'];
 var current_ticket = 0;
 var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -66,10 +66,10 @@ socket.on('user_list', function (id, name, email, lvl, dept) {
 });
 
 socket.on('user_data', function (id, name, email, lvl, dept) {
-    $('#edit_user').html("<tr><th class='header'>ID</th><th>" + id + "</th><th class='header'>Nowe Wartości</th></tr><tr><th class='header'>Imię i Nazwisko</th><th>" + name + "</th><th><input id='new_user_name' class='full_cell'/></th></tr><tr><th class='header'>E-mail</th><th>" + email + "</th><th><input id='new_user_email' class='full_cell'/></th></tr><tr><th class='header'>Dział</th><th>" + tabdept[dept] + "</th><th><select id='new_user_dept' class='full_cell'>" + returnOption(tabdept) + "</select></th></tr><tr><th class='header'>Uprawnienia</th><th>" + tablvl[lvl] + "</th><th><select id='new_user_lvl' class='full_cell'>" + returnOption(tablvl) + "</select></th></tr>");
+    $('#edit_user').html("<tr><td>ID</td><th>" + id + "</th><td>Nowe Wartości</td></tr><tr><td>Imię i Nazwisko</td><th>" + name + "</th><th><input id='new_user_name' class='full_cell'/></th></tr><tr><td>E-mail</td><th>" + email + "</th><th><input id='new_user_email' class='full_cell'/></th></tr><tr><td>Dział</td><th>" + tabdept[dept] + "</th><th><select id='new_user_dept' class='full_cell'>" + returnOption(tabdept) + "</select></th></tr><tr><td>Uprawnienia</td><th>" + tablvl[lvl] + "</th><th><select id='new_user_lvl' class='full_cell'>" + returnOption(tablvl) + "</select></th></tr>");
     $('#new_user_dept').val(dept);
     $('#new_user_lvl').val(lvl);
-    $('#edit_user_controls').html("<tr><th class='header' style='width:50%'><button onclick='editUser(" + id + ")'>Edytuj</button></th><th class='header'><button onclick='deleteUser(" + id + ")'>Usuń</button></th></tr>");
+    $('#edit_user_controls').html("<tr class='header'><td style='width:50%'><button onclick='editUser(" + id + ")'>Edytuj</button></td><td><button onclick='deleteUser(" + id + ")'>Usuń</button></td></tr>");
     $('#pass_button').html("<button onclick='editUserPassword(" + id + ")'>Zmień hasło</button>");
     tabs('edit_user_tab');
 });
@@ -96,21 +96,36 @@ socket.on('server_response', function (i) {
         case 4:
             text = "Hasło zostało zmienione";
             break;
+        case 5:
+            text = "Dodano Komentarz";
+            break;
+        default:
+            text = "Wystąpił Błąd";
     }
     popup(text);
 });
 
 function send() {
-    socket.emit('ticket', $('#topic').val(), $('#desc').val(), $('#priority').val());
-    $('#topic').val('');
-    $('#desc').val('');
-    tabs('list_ticket');
+    if ($('#topic').val() != '' && $('#desc').val() != '') {
+        socket.emit('ticket', $('#topic').val(), $('#desc').val(), $('#priority').val());
+        $('#topic').val('');
+        $('#desc').val('');
+        tabs('list_ticket');
+    }
+    else {
+        popup('Wypełnij wszystkie pola');
+    }
 }
 
 function sendCom() {
-    socket.emit('add_comment', $('#com').val());
-    $('#com').val('');
-    view(current_ticket);
+    if ($('#com').val() != '' && $('#com').val() != null) {
+        socket.emit('add_comment', $('#com').val());
+        $('#com').val('');
+        view(current_ticket);
+    }
+    else {
+        popup('Wypełnij pole aby napisać komentarz');
+    }
 }
 
 function sendEdit() {
@@ -151,6 +166,9 @@ function editUserPassword(id) {
         socket.emit('edit_user_password', id, $('edit_user_pass1').val(), $('edit_user_pass2').val());
         $('edit_user_pass1').val('');
         $('edit_user_pass2').val('');
+    }
+    else {
+        popup('Wypełnij wszystkie pola!');
     }
 }
 
@@ -354,16 +372,15 @@ function popup(text) {
 
 function returnSort(i) {
     var text = "";
-
     if (i == Math.abs(asc)) {
         if (asc > 0)
             text = "&#8659; " + tab_sort[i];
         if (asc < 0)
             text = "&#8657; " + tab_sort[i];
     }
-    else
+    else {
         text = tab_sort[i];
-
+    }
     return text
 }
 

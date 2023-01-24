@@ -294,11 +294,14 @@ io.on('connection', (socket) => {
 
 	socket.on('add_comment', (com) => {
 		if (session.loggedin) {
-			var sql = "INSERT INTO comment (com, login_id, ticket_id, data) VALUES ('" + com + "', '" + session.user_id + "', '" + session.current_ticket + "', '" + parseTime(new Date()) + "')";
-			con.query(sql, function (err, result) {
-				if (err) throw err;
-				logs("comment inserted");
-			});
+			if (com) {
+				var sql = "INSERT INTO comment (com, login_id, ticket_id, data) VALUES ('" + com + "', '" + session.user_id + "', '" + session.current_ticket + "', '" + parseTime(new Date()) + "')";
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("comment inserted");
+					io.to(socket.id).emit('server_response', 5);
+				});
+			}
 		}
 	});
 

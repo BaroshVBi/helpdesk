@@ -35,7 +35,7 @@
                     <td>Opis</td>
                     <th><textarea type="text" id="desc" wrap="hard"></textarea></th>
                 </tr>
-                <tr>
+                <tr class="header">
                     <td colspan="2"><button onClick="send();">Wyślij</button></td>
                 </tr>
             </table>
@@ -68,17 +68,17 @@
         <div id="view_ticket" class="tabcontent">
             <table id="view_ticket_table" class="list_50 space_50 space_top_50"></table>
 
-            <table class="list_50">
+            <table class="list_50 space_50">
                 <tr class="header"><td colspan="2">Wprowadź Zmiany</td></tr>
                 <tr>
-                    <th class="header">Priorytet</th>
+                    <td>Priorytet</td>
                     <th><select id="edit_priority"></select></th>
                 </tr>
                 <tr>
-                    <th class="header">Status</th>
+                    <td>Status</td>
                     <th><select id="edit_status"></select></th>
                 </tr>
-                <tr><th class="header" colspan="2"><button onClick="sendEdit();">Wyślij</button></th></tr>
+                <tr class="header"><td colspan="2"><button onClick="sendEdit();">Wyślij</button></td></tr>
             </table>
 
             <table id="view_ticket_com" class="list_50">
@@ -88,7 +88,7 @@
             <table id="add_com" class="list_50 space_50">
                 <tr class="header"><td colspan="2">Dodaj Komentarz</td></tr>
                 <tr><td>Treść</td><th><input type="text" id="com"/></th></tr>
-                <tr><td colspan="2"><button onClick="sendCom();">Wyślij</button></td></tr>
+                <tr class="header"><td colspan="2"><button onClick="sendCom();">Wyślij</button></td></tr>
             </table>
         </div>
 
@@ -190,20 +190,20 @@
                 <a href="#" onclick="tabs('settings4');">About</a>
             </div>
             <h2>Edytuj dane Użytkownika</h2>
-            <table id="edit_user"></table>
-            <table id="edit_user_controls"></table>
+            <table id="edit_user" class="list_50"></table>
+            <table id="edit_user_controls" class="list_50 space_50"></table>
             
-            <table id="edit_user_password">
-                <tr><th colspan="2" class="header">Zmiana hasła użytkownika</th></tr>
+            <table id="edit_user_password"class="list_50 space_50">
+                <tr class="header"><td colspan="2">Zmiana hasła użytkownika</td></tr>
                 <tr>
-                    <th class="header">Nowe hasło</th>
+                    <td>Nowe hasło</td>
                     <th><input type="password" id="edit_user_pass1" class="full_cell"/></th>
                 </tr>
                 <tr>
-                    <th class="header">Potwierdź hasło</th>
+                    <td>Potwierdź hasło</td>
                     <th><input type="password" id="edit_user_pass2" class="full_cell"/></th>
                 </tr>
-                <tr><th id="pass_button" colspan="2" class="header"></th></tr>
+                <tr class="header"><td id="pass_button" colspan="2"></td></tr>
             </table>
         </div>
 
