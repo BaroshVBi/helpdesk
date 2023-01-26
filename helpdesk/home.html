@@ -65,6 +65,25 @@
                 <tr class="header"><td colspan="2"><button onClick="sendCom();">Wyślij</button></td></tr>
             </table>
         </div>
+
+        <div id="settings" class="tabcontent">
+            <table id="edit_user_password" class="list_50 space_50">
+                <tr class="header"><td colspan="2">Zmiana hasła użytkownika</td></tr>
+                <tr>
+                    <td>Obecne Hasło</td>
+                    <th><input type="password" id="edit_user_pass_old" class="full_cell" /></th>
+                </tr>
+                <tr>
+                    <td>Nowe hasło</td>
+                    <th><input type="password" id="edit_user_pass1" class="full_cell" /></th>
+                </tr>
+                <tr>
+                    <td>Potwierdź hasło</td>
+                    <th><input type="password" id="edit_user_pass2" class="full_cell" /></th>
+                </tr>
+                <tr class="header"><td colspan="2"><button onClick="editPassword();">Zmień hasło</button></td></tr>
+            </table>
+        </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

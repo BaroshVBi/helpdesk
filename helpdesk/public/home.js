@@ -47,6 +47,9 @@ socket.on('comment_data', function (com, name, data) {
 
 socket.on('server_response', function (i) {
     switch (i) {
+        case 4:
+            text = "Hasło zostało zmienione";
+            break;
         case 5:
             text = "Dodano Komentarz";
             break;
@@ -76,6 +79,19 @@ function sendCom() {
     }
     else {
         popup('Wypełnij pole aby napisać komentarz');
+    }
+}
+
+function editPassword() {
+    if ($('#edit_user_pass1').val() && $('#edit_user_pass2').val() && $('#edit_user_pass_old').val() && $('#edit_user_pass1').val() == $('#edit_user_pass2').val()) {
+        socket.emit('edit_password', $('#edit_user_pass_old').val(), $('#edit_user_pass1').val(), $('#edit_user_pass2').val());
+        $('#edit_user_pass_old').val('');
+        $('#edit_user_pass1').val('');
+        $('#edit_user_pass2').val('');
+        console.log('test');
+    }
+    else {
+        popup('Wypełnij wszystkie pola!');
     }
 }
 
