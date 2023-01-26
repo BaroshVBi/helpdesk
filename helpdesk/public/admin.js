@@ -162,10 +162,10 @@ function editUser(id) {
 }
 
 function editUserPassword(id) {
-    if ($('edit_user_pass1').val() != '' && $('edit_user_pass2').val() != '' && $('edit_user_pass1').val() == $('edit_user_pass2').val()) {
-        socket.emit('edit_user_password', id, $('edit_user_pass1').val(), $('edit_user_pass2').val());
-        $('edit_user_pass1').val('');
-        $('edit_user_pass2').val('');
+    if ($('#edit_user_pass1').val() != '' && $('#edit_user_pass2').val() != '' && $('#edit_user_pass1').val() == $('#edit_user_pass2').val()) {
+        socket.emit('edit_user_password', id, $('#edit_user_pass1').val(), $('#edit_user_pass2').val());
+        $('#edit_user_pass1').val('');
+        $('#edit_user_pass2').val('');
     }
     else {
         popup('Wypełnij wszystkie pola!');
