@@ -4,8 +4,6 @@ var session = require('express-session');
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-var fs = require('fs');
-var nodemailer = require('nodemailer');
 var mysql = require('mysql');
 var bcrypt = require('bcrypt');
 
