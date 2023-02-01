@@ -66,7 +66,7 @@ socket.on('user_list', function (id, name, email, lvl, dept) {
 });
 
 socket.on('user_data', function (id, name, email, lvl, dept) {
-    $('#edit_user').html("<tr><td>ID</td><th>" + id + "</th><td>Nowe Wartości</td></tr><tr><td>Imię i Nazwisko</td><th>" + name + "</th><th><input id='new_user_name' class='full_cell'/></th></tr><tr><td>E-mail</td><th>" + email + "</th><th><input id='new_user_email' class='full_cell'/></th></tr><tr><td>Dział</td><th>" + tabdept[dept] + "</th><th><select id='new_user_dept' class='full_cell'>" + returnOption(tabdept) + "</select></th></tr><tr><td>Uprawnienia</td><th>" + tablvl[lvl] + "</th><th><select id='new_user_lvl' class='full_cell'>" + returnOption(tablvl) + "</select></th></tr>");
+    $('#edit_user').html("<tr class='header'><td colspan='3'>Edytuj Dane Użytkownika</td></tr><tr><td>ID</td><th>" + id + "</th><td>Nowe Wartości</td></tr><tr><td>Imię i Nazwisko</td><th>" + name + "</th><th><input id='new_user_name' class='full_cell'/></th></tr><tr><td>E-mail</td><th>" + email + "</th><th><input id='new_user_email' class='full_cell'/></th></tr><tr><td>Dział</td><th>" + tabdept[dept] + "</th><th><select id='new_user_dept' class='full_cell'>" + returnOption(tabdept) + "</select></th></tr><tr><td>Uprawnienia</td><th>" + tablvl[lvl] + "</th><th><select id='new_user_lvl' class='full_cell'>" + returnOption(tablvl) + "</select></th></tr>");
     $('#new_user_dept').val(dept);
     $('#new_user_lvl').val(lvl);
     $('#edit_user_controls').html("<tr class='header'><td style='width:50%'><button onclick='editUser(" + id + ")'>Edytuj</button></td><td><button onclick='deleteUser(" + id + ")'>Usuń</button></td></tr>");
@@ -332,7 +332,7 @@ function tabs(tab) {
 
     if (tab == 'settings3') {
         socket.emit('fetch_user_list');
-        $('#user_list').html("<tr><td>ID</td><td>Imię i Nazwisko</td><td>E-mail</td><td>Dział</td><td>Uprawnienia</td></tr>");
+        $('#user_list').html("<tr class='header'><td colspan='5'>Lista Użytkowników</td></tr><tr><td>ID</td><td>Imię i Nazwisko</td><td>E-mail</td><td>Dział</td><td>Uprawnienia</td></tr>");
     }
 
     document.getElementById(tab).style.display = 'block';
