@@ -52,7 +52,7 @@ socket.on('list_ticket_admin', function (id, topic, data, status, priority) {
 });
 
 socket.on('ticket_data', function (id, topic, descr, data, status, priority, name, dept) {
-    $('#view_ticket_table').html("<tr class='header'><td colspan='6'>Dane Zgłoszenia</td></tr><tr><td>ID</td><td>Data</td><td>Status</td><td>Priorytet</td><td>Pracownik</td><td>Dział</td></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + tabdept[dept] + "</th></tr><tr><td>Temat</td><th colspan='5'>" + topic + "</th></tr><tr><td>Opis</td><th colspan='5'>" + descr + "</th></tr>");
+    $('#view_ticket_table').html("<tr class='header'><td colspan='6'>Dane Zgłoszenia</td></tr><tr><td>ID</td><td>Data</td><td>Status</td><td>Priorytet</td><td>Pracownik</td><td>Dział</td></tr><tr><th>" + id + "</th><th>" + data + "</th><th>" + tabstatus[status] + "</th><th>" + tabpriority[priority] + "</th><th>" + name + "</th><th>" + tabdept[dept] + "</th></tr><tr><td>Temat</td><th colspan='5'>" + topic + "</th></tr><tr><td>Opis</td><th colspan='5'>" + descr + "</th></tr><tr class='header'><td colspan='6'><button onClick='deleteTicket();'>Usuń</button></td></tr>");
     $('#view_ticket_com').html("<tr class='header'><td colspan='3'>Komentarze</td></tr><tr><td>Data dodania</td><td>Użytkownik</td><td>Komentarz</td></tr>");
     tabs('view_ticket');
 });
@@ -98,6 +98,11 @@ socket.on('server_response', function (i) {
             break;
         case 5:
             text = "Dodano Komentarz";
+            break;
+        case 6:
+            text = "Usunięto Zgłoszenie";
+            current_ticket = 0;
+            tabs('list_ticket_admin');
             break;
         default:
             text = "Wystąpił Błąd";
@@ -195,6 +200,12 @@ function sortList(sort) {
 function view(id) {
     socket.emit('view_ticket', id);
     current_ticket = id;
+}
+
+function deleteTicket() {
+    if (confirm("Czy napewno chcesz usunąć to zgłoszenie?") == true) {
+        socket.emit('delete_ticket');
+    }
 }
 
 function editPriority(i, element) {

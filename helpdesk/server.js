@@ -5,22 +5,24 @@ var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 var mysql = require('mysql');
+var config = require("./config.json");
 var bcrypt = require('bcrypt');
 
 var port = process.env.PORT || 8080;
 var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 var con = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "root",
-	database: "helpdesk"
+	host: config.mysql.host,
+	user: config.mysql.user,
+	password: config.mysql.password,
+	database: config.mysql.database
 });
 
 con.connect(function (err) {
 	if (err) throw err;
 	logs("Database connected!");
 });
+
 
 const sessionMiddleware = session({
 	secret: 'secret',
@@ -248,7 +250,6 @@ io.on('connection', (socket) => {
 				default:
 					var sql = "SELECT * FROM tickets";
 			}
-			//logs(sql);
 			session.current_ticket = 0;
 			con.query(sql, function (err, result) {
 				if (err) throw err;
@@ -288,6 +289,17 @@ io.on('connection', (socket) => {
 				}
 			});
 		}
+	});
+
+	socket.on('delete_ticket', () => {
+		if (session.loggedin && session.lvl == 2) {
+			var sql = "DELETE FROM tickets WHERE tickets.id = " + session.current_ticket;
+			con.query(sql, function (err, result) {
+				if (err) throw err;
+				logs("ticket deleted");
+				io.to(socket.id).emit('server_response', 6);
+			});
+        }
 	});
 
 	socket.on('add_comment', (com) => {
