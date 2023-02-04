@@ -127,14 +127,14 @@ io.on('connection', (socket) => {
 	const session = socket.request.session;
 
 	if (session.loggedin) {
-		var config = ['config_priority', 'config_status', 'config_dept'];
-		for (var i = 0; i < config.length; i++) {
+		var configtab = ['config_priority', 'config_status', 'config_dept'];
+		for (var i = 0; i < configtab.length; i++) {
 			(function (i) {
-				var sql = "SELECT * FROM " + config[i];
+				var sql = "SELECT * FROM " + configtab[i];
 				con.query(sql, function (err, result) {
 					if (err) throw err;
 					for (var j = 0; j < result.length; j++) {
-						io.to(socket.id).emit(config[i], result[j].id, result[j].value, result.length);
+						io.to(socket.id).emit(configtab[i], result[j].id, result[j].value, result.length);
                     }
 				});
 			}(i));
@@ -283,7 +283,7 @@ io.on('connection', (socket) => {
 						if (result2.length > 0) {
 							io.to(socket.id).emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority, result2[0].name, result2[0].dept);
 							session.current_ticket = result[0].id;
-							comment_data(id); //function
+							comment_data(id);
 						}
 					});
 				}
@@ -439,13 +439,22 @@ io.on('connection', (socket) => {
 	socket.on('add_user', (user_name, user_email, user_pass, user_dept, user_lvl) => {
 		if (session.loggedin && session.lvl == 2) {
 			if (user_name && user_email.match(valid_email) && user_pass) {
-				bcrypt.hash(user_pass, 10, function (err, hash) {
-					var sql = "INSERT INTO login (name, email, password, lvl, dept) VALUES ('" + user_name + "', '" + user_email + "', '" + hash + "', '" + user_dept + "', '" + user_lvl + "')";
-					con.query(sql, function (err, result) {
-						if (err) throw err;
-						logs("added user");
-						io.to(socket.id).emit('server_response', 0);
-					});
+				var sql = "SELECT email FROM login WHERE login.email = '" + user_email + "'";
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					if (result.length > 0) {
+						io.to(socket.id).emit('server_response', 7);
+					}
+					else {
+						bcrypt.hash(user_pass, 10, function (err, hash) {
+							var sql = "INSERT INTO login (name, email, password, lvl, dept) VALUES ('" + user_name + "', '" + user_email + "', '" + hash + "', '" + user_dept + "', '" + user_lvl + "')";
+							con.query(sql, function (err, result2) {
+								if (err) throw err;
+								logs("added user");
+								io.to(socket.id).emit('server_response', 0);
+							});
+						});
+					}
 				});
 			}
 			else {
@@ -579,15 +588,15 @@ io.on('connection', (socket) => {
 	}
 
 	function updateConfig() {
-		var config = ['config_priority', 'config_status', 'config_dept'];
+		var configtab = ['config_priority', 'config_status', 'config_dept'];
 		io.emit('clean_config');
-		for (var i = 0; i < config.length; i++) {
+		for (var i = 0; i < configtab.length; i++) {
 			(function (i) {
-				var sql = "SELECT * FROM " + config[i];
+				var sql = "SELECT * FROM " + configtab[i];
 				con.query(sql, function (err, result) {
 					if (err) throw err;
 					for (var j = 0; j < result.length; j++) {
-						io.emit(config[i], result[j].id, result[j].value, result.length);
+						io.emit(configtab[i], result[j].id, result[j].value, result.length);
 					}
 				});
 			}(i));

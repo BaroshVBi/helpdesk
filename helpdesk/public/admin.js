@@ -1,7 +1,7 @@
 var socket = io();
-var tabstatus = []; //tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
-var tabpriority = []; //tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
-var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
+var tabstatus = []; 
+var tabpriority = []; 
+var tabdept = [];
 var tablvl = [, 'Użytkownik', 'Administrator'];
 var tab_sort = ['', 'ID', 'Temat', 'Data', 'Status', 'Priorytet'];
 var current_ticket = 0;
@@ -103,6 +103,9 @@ socket.on('server_response', function (i) {
             text = "Usunięto Zgłoszenie";
             current_ticket = 0;
             tabs('list_ticket_admin');
+            break;
+        case 7:
+            text = "Adres e-mail został już wykorzystany";
             break;
         default:
             text = "Wystąpił Błąd";
@@ -395,7 +398,6 @@ function returnSort(i) {
     return text
 }
 
-//https://stackoverflow.com/a/48022161
 function arrayLength(arr) {
     var count = 0;
     arr.forEach(function () {

@@ -144,20 +144,24 @@ h2 {
         border-left: 1px solid #7e7e7e;
         cursor: pointer;
     }
+
         .list td:first-child {
             border: none;
         }
+
         .list td:hover {
             animation-name: hoverBright;
             animation-duration: 0.25s;
             filter:brightness(130%);
         }
+
     .list th {
         padding: 10px 15px;
         cursor: pointer;
         border: none;
         border-left: 1px solid #86a1b9;
     }
+
         .list th:first-child {
             border: none;
         }

@@ -1,7 +1,7 @@
 ﻿var socket = io();
-var tabstatus = []; //tabstatus[0] = 'Nowy'; tabstatus[1] = 'Potwierdzony'; tabstatus[2] = 'Wstrzymany'; tabstatus[3] = 'Rozwiązany';
-var tabpriority = []; //tabpriority[0] = 'Niski'; tabpriority[1] = 'Normalny'; tabpriority[2] = 'Wysoki';
-var tabdept = []; //tabdept[0] = 'HR'; tabdept[1] = 'IT'; tabdept[2] = 'Sprzedaż'; tabdept[3] = 'Produkcja';
+var tabstatus = []; 
+var tabpriority = []; 
+var tabdept = [];
 var tablvl = [, 'Użytkownik', 'Administrator'];
 var tab_sort = ['', 'ID', 'Temat', 'Data', 'Status', 'Priorytet'];
 var current_ticket = 0;
