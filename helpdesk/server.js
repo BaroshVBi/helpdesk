@@ -283,7 +283,7 @@ io.on('connection', (socket) => {
 						if (result2.length > 0) {
 							io.to(socket.id).emit('ticket_data', result[0].id, result[0].topic, result[0].descr, parseTime(result[0].data), result[0].status, result[0].priority, result2[0].name, result2[0].dept);
 							session.current_ticket = result[0].id;
-							commenData(id);
+							commentData(id);
 						}
 					});
 				}
