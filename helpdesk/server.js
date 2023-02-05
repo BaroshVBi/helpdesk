@@ -8,7 +8,7 @@ var mysql = require('mysql');
 var config = require("./config.json");
 var bcrypt = require('bcrypt');
 
-var port = process.env.PORT || 8080;
+var port = config.server.port;
 var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 var con = mysql.createConnection({

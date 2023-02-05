@@ -4,5 +4,9 @@
     "user": "root",
     "password": "root",
     "database": "helpdesk"
+  },
+
+  "server": {
+    "port": 1337
   }
 }
