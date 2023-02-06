@@ -23,7 +23,6 @@ con.connect(function (err) {
 	logs("Database connected!");
 });
 
-
 const sessionMiddleware = session({
 	secret: 'secret',
 	resave: true,
