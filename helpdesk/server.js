@@ -143,11 +143,13 @@ io.on('connection', (socket) => {
 
 	socket.on('ticket', (topic, desc, priority) => {
 		if (session.loggedin) {
-			var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
-			con.query(sql, function (err, result) {
-				if (err) throw err;
-				logs("ticket inserted");
-			});
+			if (topic && desc && priority) {
+				var sql = "INSERT INTO tickets (login_id, topic, descr, data, priority) VALUES ('" + session.user_id + "', '" + topic + "', '" + desc + "', '" + parseTime(new Date()) + "', '" + priority + "')";
+				con.query(sql, function (err, result) {
+					if (err) throw err;
+					logs("ticket inserted");
+				});
+			} else { io.to(socket.id).emit('server_response', 9); }
 		}
 	});
 
