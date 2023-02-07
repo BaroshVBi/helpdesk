@@ -534,42 +534,46 @@ io.on('connection', (socket) => {
 
 	socket.on('edit_user_password', (id, pass1, pass2) => {
 		if (session.loggedin && session.lvl == 2) {
-			if (pass1 && pass2 && pass1 == pass2) {
-				bcrypt.hash(pass1, 10, function (err, hash) {
-					var sql = "UPDATE login SET password='" + hash + "' WHERE login.id = " + id;
-					con.query(sql, function (err, result) {
-						if (err) throw err;
-						logs('password changed');
-						io.to(socket.id).emit('server_response', 4);
+			if (pass1 && pass2) {
+				if (pass1 == pass2) {
+					bcrypt.hash(pass1, 10, function (err, hash) {
+						var sql = "UPDATE login SET password='" + hash + "' WHERE login.id = " + id;
+						con.query(sql, function (err, result) {
+							if (err) throw err;
+							logs('password changed');
+							io.to(socket.id).emit('server_response', 4);
+						});
 					});
-				});
-			}
+				} else { io.to(socket.id).emit('server_response', 8); }
+			} else { io.to(socket.id).emit('server_response', 9); }
 		}
 	});
 
 	socket.on('edit_password', (pass_old, pass1, pass2) => {
 		if (session.loggedin) {
-			if (pass_old && pass1 && pass2 && pass1 == pass2) {
-				sql = "SELECT password FROM login WHERE login.id ='" + session.user_id + "'";
-				con.query(sql, function (err, result) {
-					if (err) throw err;
-					if (result.length > 0) {
-						bcrypt.compare(pass_old, result[0].password, function (err, result2) {
-							if (err) { logs('wrong password'); }
-							if (result2) {
-								bcrypt.hash(pass1, 10, function (err, hash) {
-									var sql = "UPDATE login SET password='" + hash + "' WHERE login.id = " + session.user_id;
-									con.query(sql, function (err, result) {
-										if (err) throw err;
-										logs('password changed');
-										io.to(socket.id).emit('server_response', 4);
+			if (pass_old && pass1 && pass2) {
+				if (pass1 == pass2) {
+					sql = "SELECT password FROM login WHERE login.id ='" + session.user_id + "'";
+					con.query(sql, function (err, result) {
+						if (err) throw err;
+						if (result.length > 0) {
+							bcrypt.compare(pass_old, result[0].password, function (err, result2) {
+								if (err) { logs('wrong password'); }
+								if (result2) {
+									bcrypt.hash(pass1, 10, function (err, hash) {
+										var sql = "UPDATE login SET password='" + hash + "' WHERE login.id = " + session.user_id;
+										con.query(sql, function (err, result) {
+											if (err) throw err;
+											logs('password changed');
+											io.to(socket.id).emit('server_response', 4);
+										});
 									});
-								});
-							}
-						});
-					}
-				});
-			}
+								}
+							});
+						}
+					});
+				} else { io.to(socket.id).emit('server_response', 8); }
+			} else { io.to(socket.id).emit('server_response', 9); }
 		}
 	});
 

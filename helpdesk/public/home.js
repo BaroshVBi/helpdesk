@@ -53,6 +53,12 @@ socket.on('server_response', function (i) {
         case 5:
             text = "Dodano Komentarz";
             break;
+        case 8:
+            text = "Hasła nie są takie same";
+            break
+        case 9:
+            text = "Wypełnij wszystkie pola";
+            break;
         default:
             text = "Wystąpił Błąd";
     }

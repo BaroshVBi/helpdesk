@@ -95,6 +95,8 @@ socket.on('server_response', function (i) {
             break;
         case 4:
             text = "Hasło zostało zmienione";
+            $('#edit_user_pass1').val('');
+            $('#edit_user_pass2').val('');
             break;
         case 5:
             text = "Dodano Komentarz";
@@ -107,7 +109,13 @@ socket.on('server_response', function (i) {
         case 7:
             text = "Adres e-mail został już wykorzystany";
             break;
-        default:
+        case 8:
+            text = "Hasła nie są takie same";
+            break
+        case 9:
+            text = "Wypełnij wszystkie pola";
+            break;
+        default: 
             text = "Wystąpił Błąd";
     }
     popup(text);
@@ -172,8 +180,6 @@ function editUser(id) {
 function editUserPassword(id) {
     if ($('#edit_user_pass1').val() != '' && $('#edit_user_pass2').val() != '' && $('#edit_user_pass1').val() == $('#edit_user_pass2').val()) {
         socket.emit('edit_user_password', id, $('#edit_user_pass1').val(), $('#edit_user_pass2').val());
-        $('#edit_user_pass1').val('');
-        $('#edit_user_pass2').val('');
     }
     else {
         popup('Wypełnij wszystkie pola!');
