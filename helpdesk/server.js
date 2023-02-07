@@ -13,6 +13,7 @@ var valid_email = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-
 
 var con = mysql.createConnection({
 	host: config.mysql.host,
+	port: config.mysql.port,
 	user: config.mysql.user,
 	password: config.mysql.password,
 	database: config.mysql.database
