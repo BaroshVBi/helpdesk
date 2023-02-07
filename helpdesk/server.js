@@ -192,19 +192,21 @@ io.on('connection', (socket) => {
 			session.current_ticket = 0;
 			con.query(sql, function (err, result) {
 				if (err) throw err;
-				if (pg == 0) {
-					session.pg = 0;
-				}
-				else {
-					session.pg += pg;
-					if (session.pg < 0) session.pg = 0;
-					if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
-				}
-				var x = 0;
-				var top = result.length - 1 - (10 * session.pg);
-				for (var i = top; i >= 0 && x < 10; i--) {
-					io.to(socket.id).emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
-					x += 1;
+				if (result.length > 0) {
+					if (pg == 0) {
+						session.pg = 0;
+					}
+					else {
+						session.pg += pg;
+						if (session.pg < 0) session.pg = 0;
+						if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
+					}
+					var x = 0;
+					var top = result.length - 1 - (10 * session.pg);
+					for (var i = top; i >= 0 && x < 10; i--) {
+						io.to(socket.id).emit('list_ticket', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
+						x += 1;
+					}
 				}
 			});
 		}
@@ -252,19 +254,21 @@ io.on('connection', (socket) => {
 			session.current_ticket = 0;
 			con.query(sql, function (err, result) {
 				if (err) throw err;
-				if (pg == 0) {
-					session.pg = 0;
-				}
-				else {
-					session.pg += pg;
-					if (session.pg < 0) session.pg = 0;
-					if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
-				}
-				var x = 0;
-				var top = result.length - 1 - (10 * session.pg);
-				for (var i = top; i >= 0 && x < 10; i--) {
-					io.to(socket.id).emit('list_ticket_admin', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
-					x += 1;
+				if (result.length > 0) {
+					if (pg == 0) {
+						session.pg = 0;
+					}
+					else {
+						session.pg += pg;
+						if (session.pg < 0) session.pg = 0;
+						if (session.pg > ((result.length - 1) / 10)) session.pg = Math.floor((result.length - 1) / 10);
+					}
+					var x = 0;
+					var top = result.length - 1 - (10 * session.pg);
+					for (var i = top; i >= 0 && x < 10; i--) {
+						io.to(socket.id).emit('list_ticket_admin', result[i].id, result[i].topic, parseTime(result[i].data), result[i].status, result[i].priority);
+						x += 1;
+					}
 				}
 			});
 		}
