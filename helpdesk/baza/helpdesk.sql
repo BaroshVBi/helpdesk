@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 24 Sty 2023, 14:42
--- Wersja serwera: 10.4.24-MariaDB
--- Wersja PHP: 8.1.6
+-- Generation Time: Feb 07, 2023 at 10:08 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `helpdesk`
+-- Database: `helpdesk`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
@@ -33,40 +33,22 @@ CREATE TABLE `comment` (
   `login_id` int(11) NOT NULL,
   `ticket_id` int(11) NOT NULL,
   `data` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `comment`
+-- Dumping data for table `comment`
 --
 
 INSERT INTO `comment` (`id`, `com`, `login_id`, `ticket_id`, `data`) VALUES
 (1, 'nowy komentaz', 1, 49, '2023-01-11 11:47:16'),
-(2, 'fgdhdfgh', 1, 49, '2023-01-11 13:00:01'),
-(3, 'sadgsdg', 1, 49, '2023-01-11 13:55:47'),
 (4, 'nie wiem', 1, 50, '2023-01-11 13:56:01'),
 (5, 'a może wiem', 1, 50, '2023-01-11 13:56:35'),
-(6, 'sdfasd', 2, 51, '2023-01-12 10:44:36'),
-(7, 'dfgdfg', 1, 54, '2023-01-12 12:27:00'),
-(8, 'ghjvgh', 1, 54, '2023-01-12 12:27:03'),
-(9, 'hjlkj', 1, 54, '2023-01-12 12:27:07'),
 (10, 'halo', 1, 55, '2023-01-12 12:27:21'),
 (11, 'test sesji', 2, 55, '2023-01-12 12:28:24'),
 (12, 'test 2', 2, 55, '2023-01-12 12:28:32'),
-(13, 'test sessesesse', 2, 55, '2023-01-12 12:29:10'),
 (14, 'test sa', 2, 55, '2023-01-12 12:38:55'),
-(15, 'rtdt', 1, 55, '2023-01-12 12:39:04'),
-(16, 'rertretretretre', 2, 55, '2023-01-12 12:39:43'),
-(17, 'sdfsdf', 1, 55, '2023-01-12 12:43:22'),
-(18, 'sdfgdfsg', 2, 55, '2023-01-12 12:47:46'),
 (19, 'test', 1, 55, '2023-01-12 12:59:02'),
 (20, 'halo', 1, 55, '2023-01-12 12:59:51'),
-(21, 'sdfgs', 1, 55, '2023-01-12 13:00:06'),
-(22, 'sdfg', 2, 55, '2023-01-12 13:00:08'),
-(23, 'sdfgsdfg', 2, 55, '2023-01-12 13:00:15'),
-(24, 'sdfgs', 1, 55, '2023-01-12 13:00:36'),
-(25, 'sdfg', 2, 55, '2023-01-12 13:00:41'),
-(26, 'sdfg', 2, 55, '2023-01-12 13:00:47'),
-(27, 'asdfasdf', 2, 55, '2023-01-12 13:01:59'),
 (28, '1', 2, 55, '2023-01-12 13:02:04'),
 (29, 's', 2, 55, '2023-01-12 13:02:09'),
 (30, 'sdfgdsf', 2, 56, '2023-01-13 11:27:48'),
@@ -74,21 +56,23 @@ INSERT INTO `comment` (`id`, `com`, `login_id`, `ticket_id`, `data`) VALUES
 (32, '', 2, 57, '2023-01-24 14:14:45'),
 (33, 'Halo', 2, 56, '2023-01-24 14:20:09'),
 (34, 'xcb', 1, 54, '2023-01-24 14:40:01'),
-(35, 'test', 1, 55, '2023-01-24 14:40:26');
+(35, 'test', 1, 55, '2023-01-24 14:40:26'),
+(36, 'halo', 1, 54, '2023-01-26 20:22:44'),
+(39, 'Chwilowo nie mamy baterii na wymianę', 2, 67, '2023-02-05 16:06:55');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `config_dept`
+-- Table structure for table `config_dept`
 --
 
 CREATE TABLE `config_dept` (
   `id` int(11) NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `config_dept`
+-- Dumping data for table `config_dept`
 --
 
 INSERT INTO `config_dept` (`id`, `value`) VALUES
@@ -100,16 +84,16 @@ INSERT INTO `config_dept` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `config_priority`
+-- Table structure for table `config_priority`
 --
 
 CREATE TABLE `config_priority` (
   `id` int(11) NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `config_priority`
+-- Dumping data for table `config_priority`
 --
 
 INSERT INTO `config_priority` (`id`, `value`) VALUES
@@ -120,16 +104,16 @@ INSERT INTO `config_priority` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `config_status`
+-- Table structure for table `config_status`
 --
 
 CREATE TABLE `config_status` (
   `id` int(11) NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `config_status`
+-- Dumping data for table `config_status`
 --
 
 INSERT INTO `config_status` (`id`, `value`) VALUES
@@ -141,7 +125,7 @@ INSERT INTO `config_status` (`id`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -151,35 +135,37 @@ CREATE TABLE `login` (
   `password` varchar(255) NOT NULL,
   `lvl` int(11) NOT NULL DEFAULT 1,
   `dept` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`id`, `name`, `email`, `password`, `lvl`, `dept`) VALUES
-(1, 'test', 'test@test.com', '$2b$10$AlwIU/8huZF8gCzri7MlNu.F1LeJANeMNdqk4Sdn929K1pffOm9ZW', 1, 0),
+(1, 'test', 'test@test.com', '$2b$10$5kN9qge.T/FQPObQjRQV1.6WWPomEKVcNoAecYd.9OeMOcrRKPbb.', 1, 3),
 (2, 'admin', 'admin@test.com', '$2b$10$AlwIU/8huZF8gCzri7MlNu.F1LeJANeMNdqk4Sdn929K1pffOm9ZW', 2, 1),
 (7, 'grzesiek', 'grzesiek@test.com', '$2b$10$aLIlV2YB3Zz7yFtrVxRekO.zAHApETFq9y82skyoqk0jTxvREe6f2', 2, 2),
 (8, 'mateusz', 'mateusz@test.com', '$2b$10$J.TmYy5ZjZChXOv5s1Lih.uo9ny6kqIRVIfj8HJ3IehTR7UWCA.W2', 1, 2),
 (9, 'test', 'test5@test.com', '$2b$10$EtxUifi8DUQbmEHgaXZOcudkL7xg4ylyzbZYPmwimrB.Zpdz8/NeC', 1, 1),
 (10, 'test', 'test45@test.com', '$2b$10$GdR4iF1Z6MWQaA/WmYFWvunVGR5nH62UoBwUEw.kLIJ9i/DzzHlRu', 1, 1),
-(11, 'test324', 'test324@test.com', '$2b$10$Mf9XhKPeOZngUrgN7S6JKetwUrT0sIMSnak.lsiikf7t.d7ADXmoe', 1, 1);
+(11, 'test324', 'test324@test.com', '$2b$10$Mf9XhKPeOZngUrgN7S6JKetwUrT0sIMSnak.lsiikf7t.d7ADXmoe', 1, 1),
+(15, 'Mateusz Kowalski', 'jan@test.com', '$2b$10$kdqz3RrnZCn9m3qdLFsYV.976gAHQuP8xbAvU/rSeQrLe/Afw2ney', 1, 1),
+(18, 'test', 'test2@test.com', '$2b$10$sgonLloHraRpMQPh4w/IXejuRQXn3CiMCVNbXDD1ceXitGqZOqYBC', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `logs`
+-- Table structure for table `logs`
 --
 
 CREATE TABLE `logs` (
   `id` int(11) NOT NULL,
   `data` datetime NOT NULL,
   `tresc` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `logs`
+-- Dumping data for table `logs`
 --
 
 INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
@@ -1993,12 +1979,65 @@ INSERT INTO `logs` (`id`, `data`, `tresc`) VALUES
 (1832, '2023-01-24 14:40:01', 'comment inserted'),
 (1833, '2023-01-24 14:40:11', 'Database connected!'),
 (1834, '2023-01-24 14:40:17', 'test has logged in.'),
-(1835, '2023-01-24 14:40:26', 'comment inserted');
+(1835, '2023-01-24 14:40:26', 'comment inserted'),
+(1836, '2023-01-26 20:13:39', 'Database connected!'),
+(1837, '2023-01-26 20:13:46', 'admin has logged in.'),
+(1838, '2023-01-26 20:20:28', 'test has logged in.'),
+(1839, '2023-01-26 20:22:44', 'comment inserted'),
+(1840, '2023-01-26 20:23:29', 'password changed'),
+(1841, '2023-01-26 20:23:38', 'test has logged in.'),
+(1842, '2023-01-26 20:23:53', 'ticket inserted'),
+(1843, '2023-01-26 20:24:11', 'comment inserted'),
+(1844, '2023-01-26 20:24:23', 'admin has logged in.'),
+(1845, '2023-01-26 20:25:23', 'comment inserted'),
+(1846, '2023-01-26 20:25:54', 'added priority'),
+(1847, '2023-01-26 20:26:16', 'updated priority'),
+(1848, '2023-01-26 20:27:27', 'added user'),
+(1849, '2023-02-03 17:44:18', 'Database connected!'),
+(1850, '2023-02-03 17:44:24', 'admin has logged in.'),
+(1851, '2023-02-03 19:00:18', 'ticket inserted'),
+(1852, '2023-02-03 19:01:25', 'ticket inserted'),
+(1853, '2023-02-03 19:02:49', 'ticket inserted'),
+(1854, '2023-02-03 19:04:51', 'ticket inserted'),
+(1855, '2023-02-03 19:09:26', 'ticket inserted'),
+(1856, '2023-02-03 19:11:25', 'ticket inserted'),
+(1857, '2023-02-03 19:17:15', 'ticket inserted'),
+(1858, '2023-02-03 19:21:22', 'ticket inserted'),
+(1859, '2023-02-03 19:24:37', 'ticket inserted'),
+(1860, '2023-02-03 19:25:10', 'ticket inserted'),
+(1861, '2023-02-04 15:07:36', 'Database connected!'),
+(1862, '2023-02-04 15:07:40', 'admin has logged in.'),
+(1863, '2023-02-04 16:15:45', 'Database connected!'),
+(1864, '2023-02-04 16:16:28', 'admin has logged in.'),
+(1865, '2023-02-04 16:24:21', 'Database connected!'),
+(1866, '2023-02-04 16:24:25', 'admin has logged in.'),
+(1867, '2023-02-04 16:24:43', 'Database connected!'),
+(1868, '2023-02-04 16:24:54', 'admin has logged in.'),
+(1869, '2023-02-04 16:27:38', 'Database connected!'),
+(1870, '2023-02-04 16:27:46', 'admin has logged in.'),
+(1871, '2023-02-04 16:29:38', 'Database connected!'),
+(1872, '2023-02-04 16:29:45', 'admin has logged in.'),
+(1873, '2023-02-04 16:30:10', 'added user'),
+(1874, '2023-02-05 15:30:22', 'Database connected!'),
+(1875, '2023-02-05 15:36:54', 'admin has logged in.'),
+(1876, '2023-02-05 15:37:01', 'password changed'),
+(1877, '2023-02-05 15:37:07', 'test has logged in.'),
+(1878, '2023-02-05 15:43:00', 'admin has logged in.'),
+(1879, '2023-02-05 15:56:49', 'Database connected!'),
+(1880, '2023-02-05 15:56:57', 'admin has logged in.'),
+(1881, '2023-02-05 16:06:55', 'comment inserted'),
+(1882, '2023-02-05 16:10:19', 'Mateusz Kowalski has logged in.'),
+(1883, '2023-02-05 16:10:53', 'Mateusz Kowalski has logged in.'),
+(1884, '2023-02-05 16:18:39', 'admin has logged in.'),
+(1885, '2023-02-05 19:52:32', 'Database connected!'),
+(1886, '2023-02-05 19:53:12', 'Database connected!'),
+(1887, '2023-02-05 20:17:24', 'admin has logged in.'),
+(1888, '2023-02-05 20:34:24', 'test has logged in.');
 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `tickets`
+-- Table structure for table `tickets`
 --
 
 CREATE TABLE `tickets` (
@@ -2007,24 +2046,15 @@ CREATE TABLE `tickets` (
   `topic` text NOT NULL DEFAULT 'brak',
   `descr` text NOT NULL,
   `data` datetime NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
+  `status` int(11) NOT NULL DEFAULT 1,
   `priority` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `tickets`
+-- Dumping data for table `tickets`
 --
 
 INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `priority`) VALUES
-(2, 0, '', 'tyitityu', '0000-00-00 00:00:00', 2, 1),
-(3, 0, '', 'tgfhgf', '0000-00-00 00:00:00', 1, 0),
-(4, 0, '', 'bhj', '0000-00-00 00:00:00', 1, 0),
-(5, 0, '', 'yuiy', '0000-00-00 00:00:00', 1, 0),
-(6, 0, '', 'ghg', '2022-12-28 13:46:37', 1, 0),
-(7, 0, '', 'hj', '2022-12-28 13:57:14', 1, 0),
-(9, 0, '', 'gfhfgh', '2022-12-28 14:18:43', 1, 0),
-(10, 1, 'sdg', 'asdg', '2023-01-02 16:45:44', 1, 0),
-(11, 1, 'dsfg', 'dfgsdf', '2023-01-02 16:47:40', 1, 0),
 (12, 1, 'dfhdhfs', 'dsfhdsfhdf', '2023-01-03 08:01:19', 1, 0),
 (13, 1, 'test', 'test', '2023-01-03 08:08:10', 1, 0),
 (14, 1, 'tesgdfh', 'dsfhdfhdh', '2023-01-03 08:16:12', 1, 2),
@@ -2062,7 +2092,7 @@ INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `pr
 (46, 1, 'dsfh', 'fgjd', '2023-01-03 12:33:10', 1, 1),
 (47, 1, 'dfhdhfs', 'dsfhdfhdh', '2023-01-03 14:09:58', 1, 1),
 (48, 1, 'Problem z komputerem', 'Komputer sie nie uruchamia', '2023-01-04 11:58:20', 0, 0),
-(49, 1, 'cos tam', 'halo', '2023-01-04 12:08:39', 0, 1),
+(49, 1, 'cos tam', 'halo', '2023-01-04 12:08:39', 1, 1),
 (50, 1, 'halo', 'cos tam', '2023-01-04 12:09:02', 0, 2),
 (51, 2, 'admin', 'admin', '2023-01-12 10:44:28', 0, 0),
 (52, 2, 'test2', 'test', '2023-01-12 11:36:24', 0, 0),
@@ -2072,99 +2102,132 @@ INSERT INTO `tickets` (`id`, `login_id`, `topic`, `descr`, `data`, `status`, `pr
 (56, 2, 'tiuf', 'gygyg', '2023-01-12 12:30:18', 1, 1),
 (57, 2, 'sprawdziac', 'ale o co chodzi', '2023-01-13 12:30:40', 0, 1),
 (58, 2, 'temat', 'sdtasd', '2023-01-18 09:22:26', 1, 3),
-(59, 2, 'dfhdhfs', 'hlk', '2023-01-18 09:23:59', 0, 1);
+(61, 15, 'Drukarka', 'Proszę podłączenie nowej drukarki do mojego komputera', '2023-02-03 19:00:18', 1, 1),
+(62, 3, 'Aktywacja', 'Przy włączeniu pragramu Word wyskakuje powiadomienie o brak licencji', '2023-02-03 19:01:25', 1, 1),
+(63, 5, 'Problemy z komputerem', 'Po ostatniej aktualizacji komputer znacznie zwolnił co utrudnia prace', '2023-02-03 19:02:49', 2, 2),
+(64, 7, 'Brak dźwięku', 'Od jakiegoś czasu nie działają mi głośniki', '2023-02-03 19:04:51', 4, 2),
+(65, 8, 'Brak internetu', 'Brak dostępu do sieci web', '2023-02-03 19:09:26', 3, 3),
+(66, 11, 'Napęd dvd', 'Po włożeniu płyty do napędu system nie wykrywa płyty', '2023-02-03 19:11:25', 1, 2),
+(67, 15, 'UPS', 'UPS cały czas pika', '2023-02-03 19:17:15', 3, 3),
+(68, 9, 'Wymiana klawiatury', 'Niektóre klawisze nie działają, proszę o wymianę klawiatury.', '2023-02-03 19:21:22', 4, 2),
+(69, 1, 'Przypadkowe usunięcie pliku', 'Usunąłem sobie kilka ważnych plików z pulpitu. Czy da się je odzyskać?\n', '2023-02-03 19:24:37', 2, 2),
+(70, 7, 'Koniec Tonera', 'Proszę o wymianę tonera w drukarce.', '2023-02-03 19:25:10', 1, 2);
 
 --
--- Indeksy dla zrzutów tabel
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `login_id` (`login_id`),
+  ADD KEY `ticket_id` (`ticket_id`);
 
 --
--- Indeksy dla tabeli `config_dept`
+-- Indexes for table `config_dept`
 --
 ALTER TABLE `config_dept`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `config_priority`
+-- Indexes for table `config_priority`
 --
 ALTER TABLE `config_priority`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `config_status`
+-- Indexes for table `config_status`
 --
 ALTER TABLE `config_status`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `dept` (`dept`);
 
 --
--- Indeksy dla tabeli `logs`
+-- Indexes for table `logs`
 --
 ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `tickets`
+-- Indexes for table `tickets`
 --
 ALTER TABLE `tickets`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `priority` (`priority`),
+  ADD KEY `login_id` (`login_id`),
+  ADD KEY `status` (`status`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
--- AUTO_INCREMENT dla tabeli `config_dept`
+-- AUTO_INCREMENT for table `config_dept`
 --
 ALTER TABLE `config_dept`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT dla tabeli `config_priority`
+-- AUTO_INCREMENT for table `config_priority`
 --
 ALTER TABLE `config_priority`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT dla tabeli `config_status`
---
-ALTER TABLE `config_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT dla tabeli `login`
---
-ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT dla tabeli `logs`
+-- AUTO_INCREMENT for table `config_status`
 --
-ALTER TABLE `logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1836;
+ALTER TABLE `config_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT dla tabeli `tickets`
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1889;
+
+--
+-- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `comment`
+--
+ALTER TABLE `comment`
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`login_id`) REFERENCES `login` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`ticket_id`) REFERENCES `tickets` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `login`
+--
+ALTER TABLE `login`
+  ADD CONSTRAINT `login_ibfk_1` FOREIGN KEY (`dept`) REFERENCES `config_dept` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
